@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+import WorkItem from '../components/Work-Item.astro'
+import workHistory from '../data/work-history.json'
+---
+
+<Layout title="About | Chris Tse">
+	<main class="flex-1 w-full px-4 py-8 mx-auto md:px-8 md:py-8">
+		<h1 class="text-2xl font-bold mb-8">
+			Places I've Worked
+		</h1>
+
+		<section class="max-w-xl">
+			{workHistory.map((item) => (
+				<WorkItem {...item} />
+			))}
+		</section>
+	</main>
+</Layout>

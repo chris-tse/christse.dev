@@ -1,0 +1,31 @@
+---
+interface Props {
+	id: string
+	placeholder: string
+	type: 'text' | 'email'
+	name: string
+	required?: boolean
+	label: string
+}
+// src/components/NameInput.astro
+const {
+	id,
+	placeholder,
+	type,
+	name,
+	required,
+	label
+} = Astro.props
+---
+<label class="block mb-2 text-xs font-bold uppercase" for={id}>
+	{label} {required ? <span class="text-red-500">*</span> : null}
+</label>
+
+<input
+	class="w-full mb-6 rounded border-0 form-input placeholder:text-slate-400"
+	id={id}
+	placeholder={placeholder}
+	type={type}
+	name={name}
+	required={required}
+/>

@@ -1,0 +1,98 @@
+[
+  {
+    "section": "Coding",
+    "entries": [
+      {
+        "name": "Terminal",
+        "items": [
+          "Windows - Windows Terminal",
+          "Mac / Linux - WezTerm"
+        ]
+      },
+      {
+        "name": "Editors",
+        "items": [
+          "Jetbrains WebStorm",
+          "Visual Studio Code",
+          "Vim"
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Hardware",
+    "entries": [
+      {
+        "name": "Keyboards",
+        "items": [
+          "ZSA Voyager w/ Kailh Choc Browns",
+          "Ergodox EZ w/ Everglide Purples",
+          "Portico75 Magic Girl Kit",
+          "Vortex Race 3 w/ Cherry MX Browns",
+          "OLKB Planck w/ Halo Clears",
+          "Anne Pro 2 w/ Kailh Blues",
+          "Das Keyboard 4 Ultimate w/ Cherry MX Blues"
+        ]
+      },
+      {
+        "name": "Custom Built Desktop",
+        "items": [
+          "CPU: Ryzen 7 7800X3D",
+          "GPU: XFX Speedster MERC310 AMD Radeon RX 7900XT Black",
+          "RAM: CORSAIR VENGEANCE RGB DDR5 64GB",
+          "Cooler: Thermalright Phantom Spirit 120 SE",
+          "Case: Limited Edition Mori Calliope HYTE Y40",
+          "Windows 11"
+        ]
+      },
+      {
+        "name": "MacBook Pro M1 16\"",
+        "items": [
+          "Apple M1 Pro",
+          "32 GB RAM"
+        ]
+      },
+      {
+        "name": "Monitors",
+        "items": [
+          "38\" Alienware AW3821DW @ 144Hz",
+          "27\" Acer Predator XB271HU @ 144Hz"
+        ]
+      },
+      {
+        "name": "Audio",
+        "items": [
+          "Microphone: Shure SM57",
+          "Audio Interface: Focusrite Scarlett Solo",
+          "Headphones: Sennheiser HD6XX",
+          "Amp: JDS Labs Atom Amp",
+          "DAC: JDS Labs OL DAC - USB Edition"
+        ]
+      },
+      {
+        "name": "Camera",
+        "items": [
+          "Logitech HD C920"
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Furniture",
+    "entries": [
+      {
+        "name": "Desk",
+        "items": [
+          "Jarvis Standing Desk Frame",
+          "IKEA GERTON Tabletop"
+        ]
+      },
+      {
+        "name": "Chair",
+        "items": [
+          "Herman Miller Embody"
+        ]
+      }
+    ]
+  }
+]

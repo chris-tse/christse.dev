@@ -1,0 +1,32 @@
+[
+  {
+    "employer": "Rent. a Redfin Company",
+    "title": "Software Engineer",
+    "dateRange": "April 2021 - Present",
+    "description": "Optimize and modernize both B2B and B2C applications, leading to improved monthly active users and conversion rates respectively. We rewrote our B2B platform from Salesforce to SvelteKit, while updating the B2C sites from in-house SSR React to Next.js. My work also contributed to reducing load times and improving INP metrics across the site, which in turn helped keep our search engine rankings high."
+  },
+  {
+    "employer": "Oracle Netsuite",
+    "title": "Software Engineer",
+    "dateRange": "March 2019 - April 2021",
+    "description": "Enhance the user experience with Netsuite’s Site Management Tools by creating React components capable of handling enterprise-level data. I work closely with designers to workshop and iterate on the UX of components and contribute to technical design documents of release features."
+  },
+  {
+    "employer": "Tom Love Innovation Hub",
+    "title": "Lead Developer",
+    "dateRange": "February 2018 - December 2018",
+    "description": "Created the SBIR Connector platform to make it easier for businesses to locate SBIR grant programs. I broke down project requirements into tasks, enforced good practices, and set up staging/production environments on AWS."
+  },
+  {
+    "employer": "University of Electro-Communications",
+    "title": "Website Developer",
+    "dateRange": "October 2015 - September 2016",
+    "description": "Designed and created a website for an international conference on teaching ESL to provide useful information and handle conference registration."
+  },
+  {
+    "employer": "a la mode, inc.",
+    "title": "Web Developer Intern",
+    "dateRange": "May 2014 - September 2015",
+    "description": "Designed and implemented 10 mobile-friendly responsive web page templates using HTML5, CSS3, and Bootstrap 3 to be upgraded from legacy Flash-based layouts."
+  }
+]

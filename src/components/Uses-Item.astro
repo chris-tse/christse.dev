@@ -1,0 +1,21 @@
+---
+interface Props {
+	name: string;
+	items: string[];
+}
+
+const {
+	name,
+	items
+} = Astro.props
+---
+
+<div class="pl-1">
+	<p class="font-semibold mb-1">{name}</p>
+
+	<ul class="list-inside list-disc pl-4 mb-3">
+		{items.map((item) => (
+			<li set:html={item}></li>
+		))}
+	</ul>
+</div>

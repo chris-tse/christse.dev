@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Framework Matcher",
+    "description": "Flip the cards to match the frameworks. A small game made with React, TypeScript, and Tailwind CSS.",
+    "thumbnailPath": "/framework-matcher.png",
+    "demoUrl": "https://framework-matcher.christse.io",
+    "sourceUrl": "https://github.com/chris-tse/framework-matcher",
+    "altText": "Framework Matcher game thumbnail"
+  },
+  {
+    "name": "Pomodoro Timer",
+    "description": "A simple pomodoro timer for working and taking breaks. Made with React, TypeScript, and styled components.",
+    "thumbnailPath": "/pomodoro.png",
+    "demoUrl": "https://pomotomato.christse.io",
+    "sourceUrl": "https://github.com/chris-tse/ReactHooksPomodoro",
+    "altText": "Pomodoro Timer thumbnail"
+  },
+  {
+    "name": "Random Quote Generator",
+    "description": "A random quote generator built with React, TypeScript, and Tailwind CSS.",
+    "thumbnailPath": "/qwotez.png",
+    "demoUrl": "https://qwotez.christse.io",
+    "sourceUrl": "https://github.com/chris-tse/qwotez",
+    "altText": "Random Quote Generator thumbnail"
+  },
+  {
+    "name": "Weather App",
+    "description": "A simple app using location permissions to show the current weather. Made with plain vanilla JavaScript.",
+    "thumbnailPath": "/weather.jpg",
+    "demoUrl": "https://weather.christse.io",
+    "sourceUrl": "https://github.com/chris-tse/weather-app",
+    "altText": "Weather App thumbnail"
+  }
+]
