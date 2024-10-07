@@ -19,8 +19,8 @@ const date = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
 </head>
 <body>
 <div class="flex flex-col max-w-3xl mx-auto min-h-screen font-sans text-gray-800 text-lg">
-	<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-8">
-		<Header />
+	<Header />
+	<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4">
 		<h1 class="text-3xl font-bold mt-8 leading-normal">{frontmatter.title}</h1>
 		<time datetime="" class="block mt-3 mb-8 text-gray-500 font-semibold">{date}</time>
 		<slot />
