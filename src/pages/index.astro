@@ -1,34 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Face from '../components/Face.astro';
-import Link from "../components/Link.astro";
+import Layout from '../layouts/Layout.astro'
+import Face from '../components/Face.astro'
+import Link from '../components/Link.astro'
 ---
 
 <Layout title="Home | Chris Tse">
 	<main class="flex-1 w-full px-4 py-8 mx-auto md:px-8 md:py-8">
-      <section>
-					<Face />
+		<section>
+			<Face />
 
-          <h2 class="inline-block py-3 mb-4 text-2xl font-bold">
-              Hi, I&apos;m Chris! I&apos;m a software engineer specializing in front end development.
-          </h2>
+			<h2 class="inline-block py-3 mb-4 text-2xl font-bold">
+				Hi, I&apos;m Chris! I&apos;m a software engineer specializing in front end development.
+			</h2>
 
-          <p class="leading-normal mb-4">
-              I love creating things for the web. My main choice of tools currently are React, Sass/SCSS,
-              Tailwind CSS, and Node.js. I was born and raised in Calgary, Canada and now reside in Oklahoma City
-              working at{' '}
-              <Link href="https://solutions.rent.com/about-us">
-                  Rent.
-              </Link>, a Redfin company.
-          </p>
+			<p class="leading-normal mb-4">
+				I love creating things for the web. My main choice of tools currently are Svelte,
+				Tailwind CSS, and Node.js. I was born and raised in Calgary, Canada and now reside in Oklahoma City
+				working at{' '}
+				<Link href="https://solutions.rent.com/about-us">
+					Rent.
+				</Link>
+				, a Redfin company.
+			</p>
 
-          <p>
-              If you&apos;d like to get in touch, feel free to{' '}
-              <Link href="/contact">
-                  leave me a message
-              </Link>
-              .
-          </p>
-      </section>
+			<p>
+				If you&apos;d like to get in touch, feel free to{' '}
+				<Link href="/contact">
+					leave me a message
+				</Link>
+				.
+			</p>
+		</section>
 	</main>
 </Layout>
