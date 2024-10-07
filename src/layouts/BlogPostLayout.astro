@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro'
+const { frontmatter } = Astro.props
+
+const date = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+	year: 'numeric',
+	month: 'numeric',
+	day: 'numeric'
+})
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{`${frontmatter.title} | Chris Tse`}</title>
+</head>
+<body>
+<div class="flex flex-col max-w-3xl mx-auto min-h-screen font-sans text-gray-800 text-lg">
+	<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-8">
+		<Header />
+		<h1 class="text-3xl font-bold mt-8 leading-normal">{frontmatter.title}</h1>
+		<time datetime="" class="block mt-3 mb-8 text-gray-500 font-semibold">{date}</time>
+		<slot />
+	</main>
+</div>
+</body>
+</html>
+<style is:global>
+  :root {
+    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  h2 {
+    @apply text-2xl mt-8 font-bold mb-4
+  }
+
+  p {
+    @apply leading-loose mb-4
+  }
+
+  blockquote {
+    @apply bg-slate-100 border-l-2 border-l-slate-300 pl-3 italic my-3 py-2 px-2
+  }
+</style>
