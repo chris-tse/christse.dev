@@ -21,8 +21,9 @@ const routeList = [
 		route: `/contact`,
 		title: `Contact`
 	}]
-console.log(Astro.url.pathname)
-const isActivePath = (path: string) => Astro.url.pathname === path
+
+const currentPath = Astro.url.pathname
+const isActivePath = (path: string) => currentPath === path
 ---
 
 <header class="text-purple-900">
