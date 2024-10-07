@@ -21,6 +21,8 @@ const routeList = [
 		route: `/contact`,
 		title: `Contact`
 	}]
+
+const isActivePath = (path: string) => Astro.url.pathname === path
 ---
 
 <header class="text-purple-900">
@@ -48,7 +50,7 @@ const routeList = [
 		>
 			{routeList.map((link) => (
 				<a
-					class={`${link.route === Astro.url.pathname ? 'underline underline-offset-4 font-semibold' : 'no-underline font-normal'} mb-4 md:mb-0 block md:inline-block md:mt-0 md:ml-6 `}
+					class={`${isActivePath(link.route) ? 'underline underline-offset-4 font-semibold' : 'no-underline font-normal'} mb-4 md:mb-0 block md:inline-block md:mt-0 md:ml-6 `}
 					href={link.route}
 				>
 					{link.title}
