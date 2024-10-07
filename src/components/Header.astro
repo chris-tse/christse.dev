@@ -21,9 +21,6 @@ const routeList = [
 		route: `/contact`,
 		title: `Contact`
 	}]
-
-const currentPath = Astro.url.pathname
-const isActivePath = (path: string) => currentPath === path
 ---
 
 <header class="text-purple-900">
@@ -51,7 +48,7 @@ const isActivePath = (path: string) => currentPath === path
 		>
 			{routeList.map((link) => (
 				<a
-					class={`${isActivePath(link.route) ? 'underline underline-offset-4 font-semibold' : 'no-underline font-normal'} mb-4 md:mb-0 block md:inline-block md:mt-0 md:ml-6 `}
+					class="no-underline font-normal mb-4 md:mb-0 block md:inline-block md:mt-0 md:ml-6"
 					href={link.route}
 				>
 					{link.title}
@@ -67,6 +64,16 @@ const isActivePath = (path: string) => currentPath === path
 
 	menuToggle?.addEventListener('click', () => {
 		menu?.classList.toggle('sm:hidden')
+	})
+
+	const currentPath = window.location.pathname
+	console.log(currentPath)
+	const links = document.querySelectorAll('#menu a')
+	links.forEach(link => {
+		if (currentPath.includes(link.getAttribute('href') ?? '')) {
+			link.classList.remove('no-underline', 'font-normal')
+			link.classList.add('underline', 'underline-offset-4', 'font-semibold')
+		}
 	})
 </script>
 
