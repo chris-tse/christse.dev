@@ -1,21 +1,15 @@
 ---
 interface Props {
-	name: string;
-	description: string;
-	thumbnailPath: string;
-	demoUrl: string;
-	sourceUrl: string;
-	altText: string;
+	name: string
+	description: string
+	thumbnailPath: string
+	demoUrl: string
+	sourceUrl?: string
+	altText: string
 }
 
-const {
-	name,
-	description,
-	thumbnailPath,
-	demoUrl,
-	sourceUrl,
-	altText
-} = Astro.props
+const { name, description, thumbnailPath, demoUrl, sourceUrl, altText } =
+	Astro.props
 ---
 
 <div class="flex flex-col md:flex-row mb-8">
@@ -37,11 +31,15 @@ const {
 		>
 			Demo
 		</a>
-		<a
-			class="inline-block rounded-sm py-2 px-4 bg-gray-300 ml-2 hover:bg-gray-200"
-			href={sourceUrl}
-		>
-			Source
-		</a>
+		{
+			sourceUrl ? (
+				<a
+					class="inline-block rounded-sm py-2 px-4 bg-gray-300 ml-2 hover:bg-gray-200"
+					href={sourceUrl}
+				>
+					Source
+				</a>
+			) : null
+		}
 	</div>
 </div>

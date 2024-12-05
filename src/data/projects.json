@@ -1,5 +1,12 @@
 [
   {
+    "name": "React Performance Talk",
+    "description": "Slides for a tech talk presentation I did at Rent, going over some basics of Interaction to Next Paint and strategies on improving React performance with Transitions and thread yielding techniques.",
+    "thumbnailPath": "/perf-slides.jpg",
+    "demoUrl": "https://react-perf-slides.christse.io",
+    "altText": "React performance talk slides thumbnail"
+  },
+  {
     "name": "Framework Matcher",
     "description": "Flip the cards to match the frameworks. A small game made with React, TypeScript, and Tailwind CSS.",
     "thumbnailPath": "/framework-matcher.png",
