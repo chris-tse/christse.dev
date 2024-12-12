@@ -1,6 +1,8 @@
 ---
 import Hero from '../components/Hero.astro'
 import Navigation from '../components/Navigation.astro'
+import About from '../components/About.astro'
+import WorkHistory from '../components/Work-History.astro'
 import ProjectSection from '../components/Project-Section.astro'
 ---
 <!DOCTYPE html>
@@ -18,25 +20,12 @@ import ProjectSection from '../components/Project-Section.astro'
 
 <Hero />
 
+<About />
+
+<WorkHistory />
+
 <ProjectSection />
 
-<!-- About Section -->
-<div id="about" class="bg-white py-16">
-	<div class="max-w-4xl mx-auto px-4">
-		<h2 class="text-3xl font-bold text-gray-900 mb-8">About Me</h2>
-		<div class="prose prose-lg text-gray-600">
-			<p class="mb-4">
-				I'm a frontend engineer with 5 years of experience building modern web applications.
-				I specialize in React, TypeScript, and responsive design, with a strong focus on
-				creating accessible and performant user interfaces.
-			</p>
-			<p>
-				When I'm not coding, you can find me contributing to open source projects,
-				writing technical articles, or exploring new web technologies.
-			</p>
-		</div>
-	</div>
-</div>
 
 <!-- Contact Section -->
 <div id="contact" class="bg-gray-50 py-16">
