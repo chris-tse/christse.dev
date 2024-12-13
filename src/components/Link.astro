@@ -1,17 +1,17 @@
 ---
 export interface Props {
-	href: string;
+	href: string
 	classNames?: string
 	newTab?: boolean
 }
 
-const {
-	href,
-	classNames,
-	newTab
-} = Astro.props
+const { href, classNames, newTab } = Astro.props
 ---
 
-<a href={href} class={`${classNames} font-semibold text-purple-900`} target={newTab ? '_blank' : ''}>
+<a
+	href={href}
+	class={`${classNames} font-semibold text-indigo-600 hover:underline`}
+	target={newTab ? '_blank' : ''}
+>
 	<slot />
 </a>

@@ -4,21 +4,25 @@ import Navigation from '../components/Navigation.astro'
 import About from '../components/About.astro'
 import WorkHistory from '../components/Work-History.astro'
 import ProjectSection from '../components/Project-Section.astro'
+import Link from '../components/Link.astro'
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Chris Tse - Frontend Engineer</title>
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="description" content="Chris Tse - Frontend Engineer and UI/UX Enthusiast">
+	<meta
+		name="description"
+		content="Chris Tse - Frontend Engineer and UI/UX Enthusiast"
+	/>
 </head>
 <body class="min-h-screen bg-gray-50">
-
 <Navigation />
 
-<Hero />
+<Hero contact="contact" />
 
 <About />
 
@@ -26,15 +30,14 @@ import ProjectSection from '../components/Project-Section.astro'
 
 <ProjectSection />
 
-
 <!-- Contact Section -->
 <div id="contact" class="bg-gray-50 py-16">
 	<div class="max-w-4xl mx-auto px-4">
 		<h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
 		<div class="bg-white rounded-lg shadow-sm p-6">
 			<p class="text-gray-600 mb-6">
-				I'm always open to discussing new projects or opportunities.
-				Feel free to reach out!
+				I'm always open to discussing new projects or opportunities. Feel
+				free to reach out!
 			</p>
 			<div class="flex space-x-4">
 				<a
@@ -58,9 +61,25 @@ import ProjectSection from '../components/Project-Section.astro'
 <footer class="bg-white border-t border-gray-200">
 	<div class="max-w-4xl mx-auto px-4 py-8">
 		<p class="text-center text-gray-600">
-			© 2024 Chris Tse. Built with Astro and Tailwind CSS.
+			© 2024 Chris Tse. Built with
+			<Link href="https://astro.build" newTab>Astro</Link>
+			and
+			<Link href="https://tailwindcss.com">Tailwind CSS</Link>
+			.
 		</p>
 	</div>
 </footer>
 </body>
 </html>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+  }
+</style>
