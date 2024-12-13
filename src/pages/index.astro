@@ -5,6 +5,10 @@ import About from '../components/About.astro'
 import WorkHistory from '../components/Work-History.astro'
 import ProjectSection from '../components/Project-Section.astro'
 import Link from '../components/Link.astro'
+
+const aboutId = 'about'
+const projectsId = 'projects'
+const contactId = 'contact'
 ---
 
 <!doctype html>
@@ -20,11 +24,15 @@ import Link from '../components/Link.astro'
 	/>
 </head>
 <body class="min-h-screen bg-gray-50">
-<Navigation />
+<Navigation ids={{
+	aboutId,
+	projectsId,
+	contactId
+}} />
 
-<Hero contact="contact" />
+<Hero contactId={contactId} />
 
-<About />
+<About id={aboutId} />
 
 <WorkHistory />
 
