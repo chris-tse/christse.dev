@@ -2,7 +2,7 @@
 import Face from './Face.astro'
 import { Github, Linkedin } from 'lucide-astro'
 
-const { contact } = Astro.props
+const { contactId } = Astro.props
 ---
 
 <div
@@ -20,16 +20,15 @@ const { contact } = Astro.props
 					>
 				</h1>
 				<p class="text-xl text-gray-600 mb-8 leading-relaxed">
-					A <span class="font-medium text-purple-600">frontend engineer</span> passionate
-					about building
-					<span class="font-medium text-indigo-600"> intuitive interfaces</span>
-					and
-					<span class="font-medium text-pink-600"> accessible web apps</span> that
-					make a difference.
+					A <span class="font-medium text-purple-600">frontend engineer</span> specializing in
+					<span class="font-medium text-indigo-600"> performance optimization</span>
+					and building
+					<span class="font-medium text-pink-600"> scalable UIs</span> that
+					serve millions.
 				</p>
 				<div class="flex items-center space-x-6">
 					<a
-						href={`#${contact}`}
+						href={`#${contactId}`}
 						class="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
 					>
 						Let's Connect
