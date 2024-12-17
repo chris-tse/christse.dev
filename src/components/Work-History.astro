@@ -1,3 +1,8 @@
+---
+import workHistory from '../data/work-history.json'
+import WorkItem from './Work-Item.astro'
+---
+
 <div id="experience" class="bg-white max-w-5xl mx-auto px-8 py-20">
 	<div class="max-w-4xl mx-auto px-4">
 		<div class="flex justify-between items-center mb-8">
@@ -18,92 +23,15 @@
 		</div>
 
 		<div>
-			<!-- Job 1 -->
-			<div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
-				<div
-					class="before:absolute before:content-[''] before:w-full before:bg-white before:block before:left-0 before:-top-4 before:h-full absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-2"></div>
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-					<h3 class="text-xl font-semibold text-gray-900">Software Engineer II</h3>
-					<div class="text-indigo-600 font-medium">2021 - Present</div>
-				</div>
-				<div class="text-lg text-gray-600 mb-2 italic">Rent. at Redfin</div>
-				<ul class="list-inside text-gray-600 space-y-4">
-					<li>Reduced INP metrics by 80% through React performance audits and optimizations, boosting Core Web Vitals
-						scores
-					</li>
-					<li>Unified multiple brand applications by migrating legacy SSR React app to Next.js, cutting feature release
-						time by 50%
-					</li>
-					<li>Improved lead conversion by 10% by implementing ML-powered search and sort capabilities</li>
-					<li>Prevented critical service outages by resolving memory leaks in GraphQL gateway and Kubernetes
-						infrastructure
-					</li>
-				</ul>
-			</div>
-
-			<!-- Job 2 -->
-			<div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
-				<div class="absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-2"></div>
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-					<h3 class="text-xl font-semibold text-gray-900">Software Engineer</h3>
-					<div class="text-indigo-600 font-medium">2019 - 2021</div>
-				</div>
-				<div class="text-lg text-gray-600 mb-2 italic">Oracle Netsuite</div>
-				<ul class="list-inside text-gray-600 space-y-4">
-					<li>Led adoption of React Hooks across engineering team, enhancing code maintainability and reusability</li>
-					<li>Achieved 90%+ test coverage through comprehensive Jest and React Testing Library implementation</li>
-				</ul>
-			</div>
-
-			<!-- Job 3 -->
-			<div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
-				<div class="absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-2"></div>
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-					<h3 class="text-xl font-semibold text-gray-900">Lead Developer</h3>
-					<div class="text-indigo-600 font-medium">2018 - 2018</div>
-				</div>
-				<div class="text-lg text-gray-600 mb-2 italic">Tom Love Innovation Hub</div>
-				<ul class="list-inside text-gray-600 space-y-4">
-					<li>Developed centralized platform managing 3000+ SBIR government contracts with custom matching algorithm
-					</li>
-					<li>Consulted students and faculty on prospective small business ideas on tech viability and scope of work
-					</li>
-				</ul>
-			</div>
-
-			<!-- Job 4 -->
-			<div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
-				<div class="absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-2"></div>
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-					<h3 class="text-xl font-semibold text-gray-900">Website Developer</h3>
-					<div class="text-indigo-600 font-medium">2015 - 2016</div>
-				</div>
-				<div class="text-lg text-gray-600 mb-2 italic">電気通信大学</div>
-				<ul class="list-inside text-gray-600 space-y-4">
-					<li>Designed and created a website for an international conference on teaching ESL to provide information
-					</li>
-					<li>Set up basic form handling on basic PHP server to handle form registrations
-					</li>
-				</ul>
-			</div>
-
-			<!-- Job 5 -->
-			<div class="relative pl-8 border-l-2 border-indigo-200 pb-8">
-				<div class="absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-2"></div>
-				<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-					<h3 class="text-xl font-semibold text-gray-900">Web Developer Intern</h3>
-					<div class="text-indigo-600 font-medium">2014 - 2015</div>
-				</div>
-				<div class="text-lg text-gray-600 mb-2 italic">a la mode, inc.</div>
-				<ul class="list-inside text-gray-600 space-y-4">
-					<li>Designed and implemented 10 mobile-friendly responsive web page templates using HTML5, CSS3, and Bootstrap
-						3 to be upgraded from legacy Flash-based layouts
-					</li>
-					<li>Created a live template editor for use by sales representatives to demo the product and increase
-						conversion
-					</li>
-				</ul>
-			</div>
+			{workHistory.map(({
+													title,
+													employer,
+													dateRange,
+													description
+												}, index) => (
+				<WorkItem isFirst={index === 0} title={title} employer={employer} dateRange={dateRange}
+									description={description} />
+			))}
 		</div>
 	</div>
 </div>
