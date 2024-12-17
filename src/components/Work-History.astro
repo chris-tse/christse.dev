@@ -4,9 +4,9 @@ import WorkItem from './Work-Item.astro'
 ---
 
 <div id="experience" class="bg-white max-w-5xl mx-auto px-8 py-20">
-	<div class="max-w-4xl mx-auto px-4">
+	<div class="w-full flex justify-between items-center mb-8">
+		<h2 class="text-3xl font-bold text-gray-900">Work Experience</h2>
 		<div class="flex justify-between items-center mb-8">
-			<h2 class="text-3xl font-bold text-gray-900">Work Experience</h2>
 			<a
 				href="/resume.pdf"
 				download
@@ -21,17 +21,17 @@ import WorkItem from './Work-Item.astro'
 				<span class="hidden sm:inline">Download </span>Resume
 			</a>
 		</div>
+	</div>
 
-		<div>
-			{workHistory.map(({
-													title,
-													employer,
-													dateRange,
-													description
-												}, index) => (
-				<WorkItem isFirst={index === 0} title={title} employer={employer} dateRange={dateRange}
-									description={description} />
-			))}
-		</div>
+	<div class="pl-4 md:pl-14">
+		{workHistory.map(({
+												title,
+												employer,
+												dateRange,
+												description
+											}, index) => (
+			<WorkItem isFirst={index === 0} title={title} employer={employer} dateRange={dateRange}
+								description={description} />
+		))}
 	</div>
 </div>
