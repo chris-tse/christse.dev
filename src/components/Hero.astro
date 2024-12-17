@@ -8,13 +8,13 @@ const { contactId } = Astro.props
 <div
 	class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden"
 >
-	<div class="max-w-5xl mx-auto px-4 py-20">
+	<div class="max-w-5xl mx-auto px-8 py-20">
 		<div class="flex flex-col md:flex-row items-center justify-between gap-12">
 			<!-- Text Content -->
 			<div class="flex-1">
-				<h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+				<h1 class="text-4xl font-bold text-gray-900 mb-6 leading-tight">
 					Hey, I'm Chris 👋
-					<span class="block mt-2"
+					<span class="block mt-3"
 					>Crafting <span class="text-purple-600">high-performance apps</span>
 						at <span class="text-indigo-600">large scale</span></span
 					>
@@ -37,12 +37,14 @@ const { contactId } = Astro.props
 						<a
 							href="https://github.com/chris-tse"
 							class="text-gray-600 hover:text-indigo-600 transition-colors"
+							target="_blank"
 						>
 							<Github />
 						</a>
 						<a
 							href="https://www.linkedin.com/in/chrismtse/"
 							class="text-gray-600 hover:text-indigo-600 transition-colors"
+							target="_blank"
 						>
 							<Linkedin />
 						</a>
@@ -69,7 +71,9 @@ const { contactId } = Astro.props
 				</div>
 			</div>
 
-			<Face />
+			<div class="hidden sm:block">
+				<Face />
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,16 +1,19 @@
 ---
 const {
-	aboutId,
-	projectsId,
-	contactId
+	ids: {
+		aboutId,
+		projectsId,
+		contactId
+	}
 } = Astro.props
 ---
 
 <nav class="bg-white shadow-sm z-10">
-	<div class="max-w-5xl mx-auto px-4 py-4">
+	<div class="max-w-5xl mx-auto px-8 py-4">
 		<div class="flex justify-between items-center">
-			<span class="text-xl font-semibold text-gray-800">Chris Tse 🇺🇸 🇨🇦 🇭🇰</span>
-			<div class="space-x-4">
+			<span class="text-xl font-semibold text-gray-800">Chris Tse <span
+				class="hidden md:inline-block">🇺🇸 🇨🇦 🇭🇰</span></span>
+			<div class="space-x-2 md:space-x-4">
 				<a href={`#${aboutId}`} class="text-gray-600 hover:text-gray-900">About</a>
 				<a href={`#${projectsId}`} class="text-gray-600 hover:text-gray-900"
 				>Projects</a
