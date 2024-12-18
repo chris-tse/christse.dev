@@ -2,40 +2,37 @@
   {
     "name": "React Performance Talk",
     "description": "Slides for a tech talk presentation I did at Rent, going over some basics of Interaction to Next Paint and strategies on improving React performance with Transitions and thread yielding techniques.",
-    "thumbnailPath": "/perf-slides.jpg",
-    "demoUrl": "https://react-perf-slides.christse.io",
-    "altText": "React performance talk slides thumbnail"
+    "href": "https://react-perf-slides.christse.io",
+    "technologies": [
+      "React",
+      "Performance"
+    ]
+  },
+  {
+    "name": "freeCodeCamp Oklahoma",
+    "description": "Community organizer for FreeCodeCamp Oklahoma, coordinating meetups and delivering technical talks. Focus on facilitating networking between local professionals and providing mentoring opportunities for new programmers.",
+    "href": "https://www.techlahoma.org/",
+    "technologies": [
+      "Community",
+      "Mentorship"
+    ]
   },
   {
     "name": "Framework Matcher",
-    "description": "Flip the cards to match the frameworks. A small game made with React, TypeScript, and Tailwind CSS.",
-    "thumbnailPath": "/framework-matcher.png",
-    "demoUrl": "https://framework-matcher.christse.io",
-    "sourceUrl": "https://github.com/chris-tse/framework-matcher",
-    "altText": "Framework Matcher game thumbnail"
+    "description": "A small game made with React, TypeScript, and Tailwind CSS to experiment with using transforms. Flip the cards to find matching pairs.",
+    "href": "https://framework-matcher.christse.io",
+    "technologies": [
+      "React",
+      "Tailwind"
+    ]
   },
   {
     "name": "Pomodoro Timer",
     "description": "A simple pomodoro timer for working and taking breaks. Made with React, TypeScript, and styled components.",
-    "thumbnailPath": "/pomodoro.png",
-    "demoUrl": "https://pomotomato.christse.io",
-    "sourceUrl": "https://github.com/chris-tse/ReactHooksPomodoro",
-    "altText": "Pomodoro Timer thumbnail"
-  },
-  {
-    "name": "Random Quote Generator",
-    "description": "A random quote generator built with React, TypeScript, and Tailwind CSS.",
-    "thumbnailPath": "/qwotez.png",
-    "demoUrl": "https://qwotez.christse.io",
-    "sourceUrl": "https://github.com/chris-tse/qwotez",
-    "altText": "Random Quote Generator thumbnail"
-  },
-  {
-    "name": "Weather App",
-    "description": "A simple app using location permissions to show the current weather. Made with plain vanilla JavaScript.",
-    "thumbnailPath": "/weather.jpg",
-    "demoUrl": "https://weather.christse.io",
-    "sourceUrl": "https://github.com/chris-tse/weather-app",
-    "altText": "Weather App thumbnail"
+    "href": "https://pomotomato.christse.io",
+    "technologies": [
+      "React",
+      "styled-components"
+    ]
   }
 ]

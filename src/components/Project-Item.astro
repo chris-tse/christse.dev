@@ -1,45 +1,40 @@
 ---
 interface Props {
-	name: string
-	description: string
-	thumbnailPath: string
-	demoUrl: string
-	sourceUrl?: string
-	altText: string
+	project: {
+		name: string
+		description: string
+		href: string
+		technologies: string[]
+	}
 }
 
-const { name, description, thumbnailPath, demoUrl, sourceUrl, altText } =
+const {
+	project: {
+		name,
+		description,
+		href,
+		technologies: [tech1, tech2]
+	}
+} =
 	Astro.props
 ---
 
-<div class="flex flex-col md:flex-row mb-8">
-	<div class="p-8 pl-0">
-		<img
-			class="rounded shadow-xl"
-			src={thumbnailPath}
-			style="max-width: 350px;"
-			alt={altText}
-		/>
-	</div>
-	<div class="row-span-2 p-8 pl-0">
-		<h3 class="text-2xl mb-4">{name}</h3>
-		<p class="mb-8">{description}</p>
+<div class="bg-white rounded-lg shadow-sm p-6 flex flex-col">
+	<h3 class="text-xl font-semibold mb-2">{name}</h3>
 
-		<a
-			class="inline-block rounded-sm py-2 px-4 bg-purple-800 text-white hover:bg-purple-900"
-			href={demoUrl}
-		>
-			Demo
+	<p class="text-gray-600 mb-4">{description}</p>
+
+	<div class="flex items-center space-x-4 mt-auto">
+		<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">{tech1}</span>
+		<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">{tech2}</span>
+
+		<a href={href} class="text-gray-600 hover:text-gray-900">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+					 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+				<polyline points="15 3 21 3 21 9" />
+				<line x1="10" x2="21" y1="14" y2="3" />
+			</svg>
 		</a>
-		{
-			sourceUrl ? (
-				<a
-					class="inline-block rounded-sm py-2 px-4 bg-gray-300 ml-2 hover:bg-gray-200"
-					href={sourceUrl}
-				>
-					Source
-				</a>
-			) : null
-		}
 	</div>
 </div>
