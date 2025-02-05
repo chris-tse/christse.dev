@@ -1,4 +1,5 @@
 ---
+import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
 import Navigation from '../components/Navigation.astro'
 import About from '../components/About.astro'
@@ -11,64 +12,50 @@ const projectsId = 'projects'
 const contactId = 'contact'
 ---
 
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Chris Tse - Frontend Engineer</title>
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta
-		name="description"
-		content="Chris Tse - Frontend Engineer and UI/UX Enthusiast"
-	/>
-	<link rel="sitemap" href="/sitemap-index.xml" />
-</head>
-<body class="min-h-screen">
-<Navigation ids={{
-	aboutId,
-	projectsId,
-	contactId
-}} />
+<Layout title="Chris Tse - Frontend Engineer">
+	<Navigation ids={{
+		aboutId,
+		projectsId,
+		contactId
+	}} />
 
-<Hero contactId={contactId} />
+	<Hero contactId={contactId} />
 
-<About id={aboutId} />
+	<About id={aboutId} />
 
-<WorkHistory />
+	<WorkHistory />
 
-<ProjectSection />
+	<ProjectSection />
 
-<!-- Contact Section -->
-<div id="contact" class="bg-gray-50">
-	<div class="max-w-5xl mx-auto px-8 py-20">
-		<h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
-		<div class="bg-white rounded-lg shadow-sm p-6">
-			<p class="text-gray-600 mb-6">
-				I'm always open to discussing new projects or opportunities. Feel
-				free to reach out!
-			</p>
-			<div class="flex space-x-4">
-				<a
-					href="https://bsky.app/profile/christse.dev"
-					class="text-center inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-				>
-					Connect on BlueSky
-				</a>
-				<a
-					href="https://linkedin.com"
-					class="text-center inline-flex items-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
-				>
-					Message on LinkedIn
-				</a>
+	<!-- Contact Section -->
+	<div id="contact" class="bg-gray-50">
+		<div class="max-w-5xl mx-auto px-8 py-20">
+			<h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+			<div class="bg-white rounded-lg shadow-sm p-6">
+				<p class="text-gray-600 mb-6">
+					I'm always open to discussing new projects or opportunities. Feel
+					free to reach out!
+				</p>
+				<div class="flex space-x-4">
+					<a
+						href="https://bsky.app/profile/christse.dev"
+						class="text-center inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+					>
+						Connect on BlueSky
+					</a>
+					<a
+						href="https://linkedin.com"
+						class="text-center inline-flex items-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+					>
+						Message on LinkedIn
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<Footer />
-</body>
-</html>
+	<Footer />
+</Layout>
 
 <style>
   :global(html) {

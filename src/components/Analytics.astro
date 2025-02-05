@@ -1,0 +1,11 @@
+---
+const umamiId = import.meta.env.UMAMI_ID;
+const isProd = import.meta.env.PROD; // Astro provides this automatically
+---
+{isProd && umamiId && (
+  <script 
+    defer 
+    src="https://umami.ctse.dev/script.js" 
+    data-website-id={umamiId}
+  ></script>
+)} 
