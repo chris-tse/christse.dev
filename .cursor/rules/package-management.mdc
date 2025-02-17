@@ -1,0 +1,5 @@
+---
+description: Running commands to install packages
+globs: 
+---
+- always use `pnpm` to install packages

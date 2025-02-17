@@ -1,41 +1,49 @@
 ---
-import Analytics from '../components/Analytics.astro';
+import Analytics from '../components/Analytics.astro'
+import Navigation from '../components/Navigation.astro'
 
 export interface Props {
-	title: string;
-	description?: string;
+	title: string
+	description?: string
+	navigationHrefs?: {
+		about?: string
+		projects?: string
+		contact?: string
+	}
 }
 
-const { 
+const {
 	title,
-	description = "Chris Tse - Frontend Engineer and UI/UX Enthusiast"
-} = Astro.props;
+	description = 'Chris Tse is a frontend engineer, performance optimization specialist, and PC & mechanical keyboard enthusiast who likes to build stuff for the web.',
+	navigationHrefs = {},
+} = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>{title}</title>
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="description" content={description} />
-	<link rel="sitemap" href="/sitemap-index.xml" />
-	<Analytics />
-</head>
-<body class="min-h-screen">
-	<slot />
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{`${title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<Analytics />
+	</head>
+	<body class="min-h-screen">
+		<Navigation hrefs={navigationHrefs} />
+		<slot />
+	</body>
 </html>
 
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
+	:global(html) {
+		scroll-behavior: smooth;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    :global(html) {
-      scroll-behavior: auto;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
 </style>

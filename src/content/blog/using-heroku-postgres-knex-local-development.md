@@ -140,13 +140,13 @@ host    all             all             <ip-address>/32        trust
 Second, you will need to add this line to your `knexfile.js` where the `pg` module is required:
 
 ```js
-pg.defaults.ssl = true;
+pg.defaults.ssl = true
 ```
 
 Finally, set this environment variable so that Node.js will not check for a certificate:
 
 ```js
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 ```
 
 This can be done in the code as shown above, via setting it before running your app, or using a dotenv file.

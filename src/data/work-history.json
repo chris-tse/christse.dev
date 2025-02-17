@@ -1,49 +1,49 @@
 [
-  {
-    "employer": "Rent. at Redfin",
-    "title": "Software Engineer II",
-    "dateRange": "2021 - Present",
-    "description": [
-      "Reduced INP metrics by 80% through React performance audits and optimizations, boosting Core Web Vitals scores",
-      "Unified multiple brand applications by migrating legacy SSR React app to Next.js, cutting feature release time by 50%",
-      "Improved lead conversion by 10% by implementing ML-powered search and sort capabilities",
-      "Prevented critical service outages by resolving memory leaks in GraphQL gateway and Kubernetes infrastructure"
-    ]
-  },
-  {
-    "employer": "Oracle Netsuite",
-    "title": "Software Engineer",
-    "dateRange": "2019 - 2021",
-    "description": [
-      "Led adoption of React Hooks across engineering team, enhancing code maintainability and reusability",
-      "Achieved 90%+ test coverage through comprehensive Jest and React Testing Library implementation"
-    ]
-  },
-  {
-    "employer": "Tom Love Innovation Hub",
-    "title": "Lead Developer",
-    "dateRange": "2018 - 2018",
-    "description": [
-      "Developed centralized platform managing 3000+ SBIR government contracts with custom matching algorithm",
-      "Consulted students and faculty on prospective small business ideas on tech viability and scope of work"
-    ]
-  },
-  {
-    "employer": "電気通信大学",
-    "title": "Website Developer",
-    "dateRange": "2015 - 2016",
-    "description": [
-      "Designed and created a website for an international conference on teaching ESL to provide information",
-      "Set up basic form handling on basic PHP server to handle form registrations"
-    ]
-  },
-  {
-    "employer": "a la mode, inc.",
-    "title": "Web Developer Intern",
-    "dateRange": "2014 - 2015",
-    "description": [
-      "Designed and implemented 10 mobile-friendly responsive web page templates using HTML5, CSS3, and Bootstrap 3 to be upgraded from legacy Flash-based layouts",
-      "Created a live template editor for use by sales representatives to demo the product and increase conversion"
-    ]
-  }
+	{
+		"employer": "Rent. at Redfin",
+		"title": "Software Engineer II",
+		"dateRange": "2021 - Present",
+		"description": [
+			"Reduced INP metrics by 80% through React performance audits and optimizations, boosting Core Web Vitals scores",
+			"Unified multiple brand applications by migrating legacy SSR React app to Next.js, cutting feature release time by 50%",
+			"Improved lead conversion by 10% by implementing ML-powered search and sort capabilities",
+			"Prevented critical service outages by resolving memory leaks in GraphQL gateway and Kubernetes infrastructure"
+		]
+	},
+	{
+		"employer": "Oracle Netsuite",
+		"title": "Software Engineer",
+		"dateRange": "2019 - 2021",
+		"description": [
+			"Led adoption of React Hooks across engineering team, enhancing code maintainability and reusability",
+			"Achieved 90%+ test coverage through comprehensive Jest and React Testing Library implementation"
+		]
+	},
+	{
+		"employer": "Tom Love Innovation Hub",
+		"title": "Lead Developer",
+		"dateRange": "2018 - 2018",
+		"description": [
+			"Developed centralized platform managing 3000+ SBIR government contracts with custom matching algorithm",
+			"Consulted students and faculty on prospective small business ideas on tech viability and scope of work"
+		]
+	},
+	{
+		"employer": "電気通信大学",
+		"title": "Website Developer",
+		"dateRange": "2015 - 2016",
+		"description": [
+			"Designed and created a website for an international conference on teaching ESL to provide information",
+			"Set up basic form handling on basic PHP server to handle form registrations"
+		]
+	},
+	{
+		"employer": "a la mode, inc.",
+		"title": "Web Developer Intern",
+		"dateRange": "2014 - 2015",
+		"description": [
+			"Designed and implemented 10 mobile-friendly responsive web page templates using HTML5, CSS3, and Bootstrap 3 to be upgraded from legacy Flash-based layouts",
+			"Created a live template editor for use by sales representatives to demo the product and increase conversion"
+		]
+	}
 ]

@@ -1,38 +1,26 @@
 [
-  {
-    "name": "React Performance Talk",
-    "description": "Slides for a tech talk presentation I did at Rent, going over some basics of Interaction to Next Paint and strategies on improving React performance with Transitions and thread yielding techniques.",
-    "href": "https://react-perf-slides.christse.io",
-    "technologies": [
-      "React",
-      "Performance"
-    ]
-  },
-  {
-    "name": "freeCodeCamp Oklahoma",
-    "description": "Community organizer for FreeCodeCamp Oklahoma, coordinating meetups and delivering technical talks. Focus on facilitating networking between local professionals and providing mentoring opportunities for new programmers.",
-    "href": "https://www.techlahoma.org/",
-    "technologies": [
-      "Community",
-      "Mentorship"
-    ]
-  },
-  {
-    "name": "Framework Matcher",
-    "description": "A small game made with React, TypeScript, and Tailwind CSS to experiment with using transforms. Flip the cards to find matching pairs.",
-    "href": "https://framework-matcher.christse.io",
-    "technologies": [
-      "React",
-      "Tailwind"
-    ]
-  },
-  {
-    "name": "Pomodoro Timer",
-    "description": "A simple pomodoro timer for working and taking breaks. Made with React, TypeScript, and styled components.",
-    "href": "https://pomotomato.christse.io",
-    "technologies": [
-      "React",
-      "styled-components"
-    ]
-  }
+	{
+		"name": "FiguTrack (WIP)",
+		"description": "FiguTrack is a work-in-progress app for managing anime figure pre-orders, with local-first storage via IndexedDB.",
+		"href": "https://figutrack.com",
+		"technologies": ["Next.js", "Tailwind CSS"]
+	},
+	{
+		"name": "Typsica",
+		"description": "Typsica is a simple recreation and homage to Glyphica, a typing surivial roguelite made for the web.",
+		"href": "https://typsica.christse.dev",
+		"technologies": ["PhaserJS", "TypeScript"]
+	},
+	{
+		"name": "React Performance Talk",
+		"description": "Slides for a tech talk presentation I did at Rent, going over some basics of Interaction to Next Paint and strategies on improving React performance with Transitions and thread yielding techniques.",
+		"href": "https://react-perf-slides.christse.io",
+		"technologies": ["React", "Performance"]
+	},
+	{
+		"name": "freeCodeCamp Oklahoma",
+		"description": "Community organizer for FreeCodeCamp Oklahoma, coordinating meetups and delivering technical talks. Focus on facilitating networking between local professionals and providing mentoring opportunities for new programmers.",
+		"href": "https://www.techlahoma.org/",
+		"technologies": ["Community", "Mentorship"]
+	}
 ]

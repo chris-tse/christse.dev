@@ -4,9 +4,9 @@ import Layout from '../../layouts/BlogPostLayout.astro'
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog')
-	return blogEntries.map(entry => ({
+	return blogEntries.map((entry) => ({
 		params: { slug: entry.slug },
-		props: { entry }
+		props: { entry },
 	}))
 }
 
@@ -17,4 +17,3 @@ const { Content } = await entry.render()
 <Layout frontmatter={entry.data}>
 	<Content />
 </Layout>
-

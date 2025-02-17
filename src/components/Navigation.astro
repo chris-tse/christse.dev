@@ -1,24 +1,28 @@
 ---
 const {
-	ids: {
-		aboutId,
-		projectsId,
-		contactId
-	}
+	hrefs: { about = '/', projects = '/', contact = '/' },
 } = Astro.props
+
+const currentPath = Astro.url.pathname
+const isBlogRoute = currentPath.startsWith('/blog')
 ---
 
 <nav class="bg-white shadow-sm z-10">
 	<div class="max-w-5xl mx-auto px-8 py-4">
 		<div class="flex justify-between items-center">
-			<span class="text-xl font-semibold text-gray-800">Chris Tse <span
-				class="hidden md:inline-block">| クリス</span></span>
+			<span class="text-xl font-semibold text-gray-800"
+				>Chris Tse <span class="hidden md:inline-block">| クリス</span></span
+			>
 			<div class="space-x-2 md:space-x-4">
-				<a href={`#${aboutId}`} class="text-gray-600 hover:text-gray-900">About</a>
-				<a href={`#${projectsId}`} class="text-gray-600 hover:text-gray-900"
-				>Projects</a
+				<a href={about} class="text-gray-600 hover:text-gray-900">About</a>
+				<a href={projects} class="text-gray-600 hover:text-gray-900">Projects</a
 				>
-				<a href={`#${contactId}`} class="text-gray-600 hover:text-gray-900">Contact</a>
+				<a href={contact} class="text-gray-600 hover:text-gray-900">Contact</a>
+				<a
+					href="/blog"
+					class={`text-gray-600 hover:text-gray-900 ${isBlogRoute ? 'font-bold' : ''}`}
+					>Blog</a
+				>
 			</div>
 		</div>
 	</div>

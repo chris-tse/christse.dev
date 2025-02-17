@@ -1,0 +1,6 @@
+---
+description: Astro markup files
+globs: *.astro
+---
+- always follow the config specified in [.prettierrc.mjs](mdc:.prettierrc.mjs)
+- run the script `pnpm format:write` after making changes

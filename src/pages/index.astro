@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
-import Navigation from '../components/Navigation.astro'
 import About from '../components/About.astro'
 import WorkHistory from '../components/Work-History.astro'
 import ProjectSection from '../components/Project-Section.astro'
@@ -12,13 +11,14 @@ const projectsId = 'projects'
 const contactId = 'contact'
 ---
 
-<Layout title="Chris Tse - Frontend Engineer">
-	<Navigation ids={{
-		aboutId,
-		projectsId,
-		contactId
-	}} />
-
+<Layout
+	title="Chris Tse - Frontend Engineer"
+	navigationHrefs={{
+		about: `#${aboutId}`,
+		projects: `#${projectsId}`,
+		contact: `#${contactId}`,
+	}}
+>
 	<Hero contactId={contactId} />
 
 	<About id={aboutId} />
@@ -33,8 +33,8 @@ const contactId = 'contact'
 			<h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
 			<div class="bg-white rounded-lg shadow-sm p-6">
 				<p class="text-gray-600 mb-6">
-					I'm always open to discussing new projects or opportunities. Feel
-					free to reach out!
+					I'm always open to discussing new projects or opportunities. Feel free
+					to reach out!
 				</p>
 				<div class="flex space-x-4">
 					<a
@@ -58,13 +58,13 @@ const contactId = 'contact'
 </Layout>
 
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
+	:global(html) {
+		scroll-behavior: smooth;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    :global(html) {
-      scroll-behavior: auto;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
 </style>

@@ -12,11 +12,21 @@ import WorkItem from './Work-Item.astro'
 				download
 				class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-						 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-					<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-					<polyline points="7 10 12 15 17 10" />
-					<line x1="12" y1="15" x2="12" y2="3" />
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="mr-2"
+				>
+					<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+					<polyline points="7 10 12 15 17 10"></polyline>
+					<line x1="12" y1="15" x2="12" y2="3"></line>
 				</svg>
 				<span class="hidden sm:inline">Download&nbsp;</span> Resume
 			</a>
@@ -24,14 +34,16 @@ import WorkItem from './Work-Item.astro'
 	</div>
 
 	<div class="pl-4 md:pl-14">
-		{workHistory.map(({
-												title,
-												employer,
-												dateRange,
-												description
-											}, index) => (
-			<WorkItem isFirst={index === 0} title={title} employer={employer} dateRange={dateRange}
-								description={description} />
-		))}
+		{
+			workHistory.map(({ title, employer, dateRange, description }, index) => (
+				<WorkItem
+					isFirst={index === 0}
+					title={title}
+					employer={employer}
+					dateRange={dateRange}
+					description={description}
+				/>
+			))
+		}
 	</div>
 </div>
