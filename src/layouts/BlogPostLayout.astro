@@ -1,9 +1,16 @@
 ---
+import {ViewTransitions} from 'astro:transitions'
+import type { BlogPostLayoutProps } from '../types/ghost'
 import Navigation from '../components/Navigation.astro'
 import Analytics from '../components/Analytics.astro'
-const { frontmatter } = Astro.props
 
-const date = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+interface Props extends BlogPostLayoutProps {
+	children: any
+}
+
+const { title, pubDate, heroImage, description } = Astro.props
+
+const date = new Date(pubDate).toLocaleDateString('en-US', {
 	year: 'numeric',
 	month: 'numeric',
 	day: 'numeric',
@@ -12,37 +19,59 @@ const date = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
 const navigationHrefs = {
 	about: '/#about',
 	projects: '/#projects',
-	contact: '/#contact'
+	contact: '/#contact',
 }
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<ViewTransitions/>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{`${frontmatter.title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`}</title>
+		<title>
+			{
+				`${title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`
+			}
+		</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="description" content="Chris Tse is a frontend engineer, performance optimization specialist, and PC & mechanical keyboard enthusiast who likes to build stuff for the web." />
+		<meta name="description" content={description} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<Analytics />
 	</head>
 	<body class="min-h-screen">
 		<Navigation hrefs={navigationHrefs} />
-		<div class="flex flex-col max-w-3xl mx-auto font-sans text-gray-800 text-lg">
-			<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4">
-				<h1 class="text-3xl font-bold mt-8 leading-normal">
-					{frontmatter.title}
-				</h1>
-				<time datetime="" class="block mt-3 mb-8 text-gray-500 font-semibold"
-					>{date}</time
+		<div
+			class="flex flex-col max-w-3xl mx-auto font-sans text-gray-800 text-lg"
+		>
+			<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4 prose prose-lg">
+				{
+					heroImage && (
+						<img
+							src={heroImage}
+							alt={title}
+							class="w-full h-64 object-cover rounded-lg mb-8"
+						/>
+					)
+				}
+				<h1 
+					transition:name={`post-title-${Astro.params.slug}`} 
+					class="text-3xl font-bold mb-4"
 				>
+					{title}
+				</h1>
+				<p 
+					class="text-base mb-2 text-gray-500" 
+					transition:name={`post-date-${Astro.params.slug}`}
+				>
+					{date}
+				</p>
 				<slot />
 			</main>
 		</div>
 	</body>
 </html>
-<style is:global>
+<!-- <style is:global>
 	:root {
 		--accent-gradient: linear-gradient(
 			45deg,
@@ -97,7 +126,30 @@ const navigationHrefs = {
 		}
 	}
 
+	figure {
+
+		& > img {
+			@apply mx-auto;
+		}
+
+		& > figcaption {
+			@apply text-center text-gray-500 text-base mt-2;
+		}
+	}
+
 	.astro-code {
 		@apply p-4 rounded-md mb-4;
+	}
+</style> -->
+
+<style is:global>
+	figure {
+		& > img {
+			@apply mx-auto;
+		}
+
+		& > figcaption {
+			@apply text-center text-gray-500 text-base mt-2;
+		}
 	}
 </style>

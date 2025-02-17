@@ -7,5 +7,6 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
 	readonly env: ImportMetaEnv
-	readonly CONTENT_API_KEY: string
+	readonly GHOST_URL: string
+	readonly GHOST_CONTENT_API_KEY: string
 }

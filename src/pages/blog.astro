@@ -1,10 +1,11 @@
 ---
-import { getCollection } from 'astro:content'
+import type { GhostPost } from '../types/ghost'
 import Layout from '../layouts/Layout.astro'
-const allPosts = await getCollection('blog')
-const sortedPosts = allPosts.sort((a, b) => {
-	return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-})
+import { getAllPosts } from '../lib/ghost'
+
+const posts: GhostPost[] = await getAllPosts()
+console.log('****************************************')
+console.log(posts)
 ---
 
 <Layout
@@ -15,28 +16,38 @@ const sortedPosts = allPosts.sort((a, b) => {
 		contact: '/#contact',
 	}}
 >
-	<main class="flex-1 w-full px-4 py-8 mx-auto md:px-8 md:py-8">
+	<main class="flex-1 w-full max-w-5xl px-4 py-8 mx-auto md:px-8 md:py-8">
 		<section>
-			<h1 class="text-2xl font-bold mb-8">Blog</h1>
+			<h1 class="text-3xl font-bold mb-8">Blog</h1>
 			{
-				sortedPosts.map((post) => (
+				posts.map((post: GhostPost) => (
 					<article>
-						<h2>
+						<h2 transition:name={`post-title-${post.slug}`}>
 							<a
-								class="text-purple-900 text-2xl font-semibold hover:underline"
+								class="text-3xl font-bold block hover:underline text-purple-900"
 								href={`/blog/${post.slug}`}
 							>
-								{post.data.title}
+								{post.title}
 							</a>
 						</h2>
-						<p class="text-base mb-2 text-gray-500">
-							{new Date(post.data.pubDate).toLocaleDateString('en-US', {
+						<p 
+							class="text-base mb-2 text-gray-500"
+							transition:name={`post-date-${post.slug}`}
+						>
+							{new Date(post.published_at).toLocaleDateString('en-US', {
 								year: 'numeric',
 								month: 'numeric',
 								day: 'numeric',
 							})}
 						</p>
-						<p class="mb-4">{post.data.description}</p>
+						<p class="mb-4">{post.excerpt}</p>
+						{post.feature_image && (
+							<img
+								src={post.feature_image}
+								alt={post.title}
+								class="w-full h-48 object-cover rounded-lg mb-4"
+							/>
+						)}
 						<hr class="mb-4" />
 					</article>
 				))
