@@ -1,28 +1,28 @@
 ---
-import type { GhostPost } from '../../types/ghost'
+import type { PostOrPage } from '@tryghost/content-api'
 import Layout from '../../layouts/BlogPostLayout.astro'
 import { getAllPosts } from '../../lib/ghost'
 
 export async function getStaticPaths() {
 	const posts = await getAllPosts()
-	return posts.map((post: GhostPost) => ({
+	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: { post },
 	}))
 }
 
 interface Props {
-	post: GhostPost
+	post: PostOrPage
 }
 
 const { post } = Astro.props
 ---
 
 <Layout
-	title={post.title}
-	pubDate={new Date(post.published_at)}
-	heroImage={post.feature_image}
-	description={post.excerpt}
+	title={post.title ?? null}
+	pubDate={post.published_at ?? null}
+	heroImage={post.feature_image ?? null}
+	description={post.excerpt ?? null}
 >
 	<article class="prose prose-purple lg:prose-lg mx-auto">
 		<Fragment set:html={post.html} />

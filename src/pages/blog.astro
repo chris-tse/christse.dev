@@ -1,15 +1,13 @@
 ---
-import type { GhostPost } from '../types/ghost'
 import Layout from '../layouts/Layout.astro'
 import { getAllPosts } from '../lib/ghost'
 
-const posts: GhostPost[] = await getAllPosts()
-console.log('****************************************')
-console.log(posts)
+const posts = await getAllPosts()
 ---
 
 <Layout
 	title="Blog | Chris Tse - Frontend Engineer"
+	canonical="https://christse.dev/blog"
 	navigationHrefs={{
 		about: '/#about',
 		projects: '/#projects',
@@ -20,7 +18,7 @@ console.log(posts)
 		<section>
 			<h1 class="text-3xl font-bold mb-8">Blog</h1>
 			{
-				posts.map((post: GhostPost) => (
+				posts.map((post) => (
 					<article>
 						<h2 transition:name={`post-title-${post.slug}`}>
 							<a
@@ -30,16 +28,18 @@ console.log(posts)
 								{post.title}
 							</a>
 						</h2>
-						<p 
-							class="text-base mb-2 text-gray-500"
-							transition:name={`post-date-${post.slug}`}
-						>
-							{new Date(post.published_at).toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'numeric',
-								day: 'numeric',
-							})}
-						</p>
+						{post.published_at && (
+							<p
+								class="text-base mb-2 text-gray-500"
+								transition:name={`post-date-${post.slug}`}
+							>
+								{new Date(post.published_at).toLocaleDateString('en-US', {
+									year: 'numeric',
+									month: 'numeric',
+									day: 'numeric',
+								})}
+							</p>
+						)}
 						<p class="mb-4">{post.excerpt}</p>
 						{post.feature_image && (
 							<img

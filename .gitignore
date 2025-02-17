@@ -5,3 +5,7 @@
 .env
 
 src/content/blog/backups
+
+/backups
+
+.DS_Store

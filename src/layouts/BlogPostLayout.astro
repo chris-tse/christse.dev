@@ -1,20 +1,25 @@
 ---
-import {ViewTransitions} from 'astro:transitions'
-import type { BlogPostLayoutProps } from '../types/ghost'
+import { ViewTransitions } from 'astro:transitions'
 import Navigation from '../components/Navigation.astro'
 import Analytics from '../components/Analytics.astro'
 
-interface Props extends BlogPostLayoutProps {
+interface Props {
+	title?: string | null
+	pubDate?: string | null
+	heroImage?: string | null
+	description?: string | null
 	children: any
 }
 
 const { title, pubDate, heroImage, description } = Astro.props
 
-const date = new Date(pubDate).toLocaleDateString('en-US', {
-	year: 'numeric',
-	month: 'numeric',
-	day: 'numeric',
-})
+const date = pubDate
+	? new Date(pubDate).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'numeric',
+			day: 'numeric',
+		})
+	: null
 
 const navigationHrefs = {
 	about: '/#about',
@@ -26,7 +31,7 @@ const navigationHrefs = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<ViewTransitions/>
+		<ViewTransitions />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>
@@ -34,7 +39,7 @@ const navigationHrefs = {
 				`${title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`
 			}
 		</title>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<meta name="description" content={description} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<Analytics />
@@ -54,18 +59,22 @@ const navigationHrefs = {
 						/>
 					)
 				}
-				<h1 
-					transition:name={`post-title-${Astro.params.slug}`} 
+				<h1
+					transition:name={`post-title-${Astro.params.slug}`}
 					class="text-3xl font-bold mb-4"
 				>
 					{title}
 				</h1>
-				<p 
-					class="text-base mb-2 text-gray-500" 
-					transition:name={`post-date-${Astro.params.slug}`}
-				>
-					{date}
-				</p>
+				{
+					date && (
+						<p
+							class="text-base mb-2 text-gray-500"
+							transition:name={`post-date-${Astro.params.slug}`}
+						>
+							{date}
+						</p>
+					)
+				}
 				<slot />
 			</main>
 		</div>
