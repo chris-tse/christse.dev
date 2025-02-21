@@ -1,54 +1,48 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
-import { getAllPosts } from '../lib/ghost'
-
-const posts = await getAllPosts()
+const allPosts = await getCollection('blog')
+const sortedPosts = allPosts.sort((a, b) => {
+	return (
+		new Date(b.data.published_at).valueOf() -
+		new Date(a.data.published_at).valueOf()
+	)
+})
 ---
 
 <Layout
-	title="Blog | Chris Tse - Frontend Engineer"
-	canonical="https://christse.dev/blog"
+	title="Blog"
 	navigationHrefs={{
 		about: '/#about',
 		projects: '/#projects',
 		contact: '/#contact',
 	}}
 >
-	<main class="flex-1 w-full max-w-5xl px-4 py-8 mx-auto md:px-8 md:py-8">
+	<main class="max-w-5xl flex-1 w-full px-4 py-8 mx-auto md:px-8 md:py-8">
 		<section>
-			<h1 class="text-3xl font-bold mb-8">Blog</h1>
+			<h1 class="text-2xl font-bold mb-8">Blog</h1>
 			{
-				posts.map((post) => (
-					<article>
+				sortedPosts.map((post) => (
+					<article class="mb-10">
 						<h2 transition:name={`post-title-${post.slug}`}>
 							<a
-								class="text-3xl font-bold block hover:underline text-purple-900"
+								class="text-purple-900 text-3xl font-semibold hover:underline"
 								href={`/blog/${post.slug}`}
 							>
-								{post.title}
+								{post.data.title}
 							</a>
 						</h2>
-						{post.published_at && (
-							<p
-								class="text-base mb-2 text-gray-500"
-								transition:name={`post-date-${post.slug}`}
-							>
-								{new Date(post.published_at).toLocaleDateString('en-US', {
-									year: 'numeric',
-									month: 'numeric',
-									day: 'numeric',
-								})}
-							</p>
-						)}
-						<p class="mb-4">{post.excerpt}</p>
-						{post.feature_image && (
-							<img
-								src={post.feature_image}
-								alt={post.title}
-								class="w-full h-48 object-cover rounded-lg mb-4"
-							/>
-						)}
-						<hr class="mb-4" />
+						<time
+							class="block text-base mb-2 text-gray-500"
+							transition:name={`post-date-${post.slug}`}
+						>
+							{new Date(post.data.published_at).toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'numeric',
+								day: 'numeric',
+							})}
+						</time>
+						<p>{post.data.excerpt}</p>
 					</article>
 				))
 			}

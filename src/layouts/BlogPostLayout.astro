@@ -5,13 +5,14 @@ import Analytics from '../components/Analytics.astro'
 
 interface Props {
 	title?: string | null
-	pubDate?: string | null
+	pubDate: string | null
 	heroImage?: string | null
 	description?: string | null
+	socialImage?: string | null
 	children: any
 }
 
-const { title, pubDate, heroImage, description } = Astro.props
+const { title, pubDate, heroImage, description, socialImage } = Astro.props
 
 const date = pubDate
 	? new Date(pubDate).toLocaleDateString('en-US', {
@@ -26,6 +27,7 @@ const navigationHrefs = {
 	projects: '/#projects',
 	contact: '/#contact',
 }
+const currentUrl = new URL(Astro.url.pathname, Astro.site).href
 ---
 
 <!doctype html>
@@ -39,9 +41,55 @@ const navigationHrefs = {
 				`${title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`
 			}
 		</title>
-		<link rel="shortcut icon" href="/favicon.ico" />
 		<meta name="description" content={description} />
+		<meta name="author" content="Chris Tse" />
+		<meta
+			name="keywords"
+			content="Chris Tse, frontend engineer, software engineer, web developer, javascript, typescript, react, node.js, python, game developer, anime fan, keyboard enthusiast, pc enthusiast"
+		/>
+		<!-- Open Graph Meta Tags -->
+		<meta property="og:title" content={`${title} | Chris Tse`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content={currentUrl} />
+		{socialImage && <meta property="og:image" content={socialImage} />}
+		<meta property="og:site_name" content="Chris Tse" />
+		{
+			socialImage && (
+				<>
+					<meta property="og:image" content={socialImage} />
+					<meta
+						property="og:image:alt"
+						content={`${title} | Chris Tse - Coder, Gamer, Keyboard & PC Enthusiast, Anime Fan`}
+					/>
+				</>
+			)
+		}
+		<meta property="article:author" content="Chris Tse" />
+		<meta property="article:published_time" content={date} />
+
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={`${title} | Chris Tse`} />
+		<meta name="twitter:description" content={description} />
+		{
+			socialImage && (
+				<>
+					<meta name="twitter:image" content={socialImage} />
+					<meta name="twitter:image:alt" content={`${title} | Chris Tse`} />
+				</>
+			)
+		}
+		<meta name="twitter:creator" content="@ChrisMTse" />
+		<meta name="twitter:site" content="@ChrisMTse" />
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
 		<Analytics />
 	</head>
 	<body class="min-h-screen">
@@ -49,7 +97,9 @@ const navigationHrefs = {
 		<div
 			class="flex flex-col max-w-3xl mx-auto font-sans text-gray-800 text-lg"
 		>
-			<main class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4 prose prose-lg">
+			<main
+				class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4 prose prose-lg prose-headings:font-semibold prose-p:font-light"
+			>
 				{
 					heroImage && (
 						<img
@@ -61,20 +111,18 @@ const navigationHrefs = {
 				}
 				<h1
 					transition:name={`post-title-${Astro.params.slug}`}
-					class="text-3xl font-bold mb-4"
+					class="text-3xl font-bold mb-2"
 				>
 					{title}
 				</h1>
-				{
-					date && (
-						<p
-							class="text-base mb-2 text-gray-500"
-							transition:name={`post-date-${Astro.params.slug}`}
-						>
-							{date}
-						</p>
-					)
-				}
+
+				<time
+					class="block text-base mb-8 text-gray-500"
+					transition:name={`post-date-${Astro.params.slug}`}
+				>
+					{date}
+				</time>
+
 				<slot />
 			</main>
 		</div>
