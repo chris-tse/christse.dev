@@ -18,9 +18,9 @@
 		"technologies": ["React", "Performance"]
 	},
 	{
-		"name": "freeCodeCamp Oklahoma",
-		"description": "Community organizer for FreeCodeCamp Oklahoma, coordinating meetups and delivering technical talks. Focus on facilitating networking between local professionals and providing mentoring opportunities for new programmers.",
-		"href": "https://www.techlahoma.org/",
-		"technologies": ["Community", "Mentorship"]
+		"name": "Ghost Markdown Exporter",
+		"description": "A CLI tool written in Go that exports Ghost blog posts to Markdown format using their Content API.",
+		"href": "https://www.npmjs.com/ghost-export-to-markdown/",
+		"technologies": ["Go", "CLI"]
 	}
 ]
