@@ -64,26 +64,6 @@ Certainly wasn't for a hobby self-hoster like myself.
 
 ## Additional Reading
 
-[Help! My database was compromised!
-\
-A detailed look at an active PostgreSQL and MySQL Ransomware bot
-\
-![](https://ghost.ctse.dev/content/images/icon/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156)MediumBorder0
-\
-![](https://ghost.ctse.dev/content/images/thumbnail/0-0r7pUgzwnZTKA9fY.png)](https://medium.com/@border0/help-my-database-was-compromised-ec68ef15df65?ref=ghost.ctse.dev)
-
-[Protecting Postgres: Key Security Takeaways from a Postgres Honeypot
-\
-Team Axon shares key security takeaways from running a Postgres database honeypot that attracted several malicious actors.
-\
-![](https://ghost.ctse.dev/content/images/icon/Youtube-20Profile-20Picture-2.png)Cyber Hunters Ltd.Team Axon
-\
-![](https://ghost.ctse.dev/content/images/thumbnail/Featured-20images-20-9-.png)](https://www.hunters.security/en/blog/protecting-postgres?ref=ghost.ctse.dev)
-
-[Poorly secured PostgreSQL, MySQL servers targeted by ransomware bot - Help Net Security
-\
-Users exposing poorly secured PostgreSQL and MySQL servers online are in danger of getting their databases wiped by a ransomware bot.
-\
-![](https://ghost.ctse.dev/content/images/icon/icon.svg)Help Net SecurityZeljka Zorz
-\
-![](https://ghost.ctse.dev/content/images/thumbnail/postgresql.jpg)](https://www.helpnetsecurity.com/2024/01/18/postgresql-mysql-ransomware-bot/?ref=ghost.ctse.dev)
+- https://medium.com/@border0/help-my-database-was-compromised-ec68ef15df65?ref=christse.dev
+- https://www.hunters.security/en/blog/protecting-postgres?ref=christse.dev
+- https://www.helpnetsecurity.com/2024/01/18/postgresql-mysql-ransomware-bot/?ref=christse.dev
