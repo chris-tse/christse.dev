@@ -6,7 +6,10 @@ import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://christse.dev',
+	site:
+		process.env.NODE_ENV === 'production'
+			? 'https://christse.dev'
+			: 'http://localhost:4321',
 	integrations: [tailwind(), sitemap()],
 	trailingSlash: 'never',
 })
