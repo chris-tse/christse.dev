@@ -94,12 +94,12 @@ const currentUrl = new URL(Astro.url.pathname, Astro.site).href
 	</head>
 	<body class="min-h-screen">
 		<Navigation hrefs={navigationHrefs} />
-		<div
-			class="flex flex-col max-w-3xl mx-auto font-sans text-gray-800 text-lg"
+
+		<!-- Title Section with Gradient Background -->
+		<section
+			class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 pt-16 pb-12"
 		>
-			<main
-				class="flex-1 w-full px-4 mx-auto md:px-8 md:py-4 prose prose-lg prose-headings:font-semibold prose-p:font-light"
-			>
+			<div class="max-w-5xl mx-auto px-4 md:px-8">
 				{
 					heroImage && (
 						<img
@@ -111,18 +111,27 @@ const currentUrl = new URL(Astro.url.pathname, Astro.site).href
 				}
 				<h1
 					transition:name={`post-title-${Astro.params.slug}`}
-					class="text-3xl font-bold mb-2"
+					class="text-5xl font-bold mb-4 text-gray-900 text-center"
 				>
 					{title}
 				</h1>
 
 				<time
-					class="block text-base mb-8 text-gray-500"
+					class="block text-xl text-gray-600 text-center"
 					transition:name={`post-date-${Astro.params.slug}`}
 				>
 					{date}
 				</time>
+			</div>
+		</section>
 
+		<!-- Content Section -->
+		<div
+			class="flex flex-col max-w-5xl mx-auto font-sans text-gray-800 text-lg"
+		>
+			<main
+				class="flex-1 w-full px-4 mx-auto md:px-8 py-8 prose prose-lg prose-headings:font-semibold prose-p:font-light"
+			>
 				<slot />
 			</main>
 		</div>

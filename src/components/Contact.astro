@@ -1,0 +1,33 @@
+---
+interface Props {
+	id?: string
+}
+
+const { id } = Astro.props
+---
+
+<div id={id} class="bg-gray-50">
+	<div class="max-w-5xl mx-auto px-8 py-20">
+		<h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+		<div class="bg-white rounded-lg shadow-sm p-6">
+			<p class="text-gray-600 mb-6">
+				I'm always open to discussing new projects or opportunities. Feel free
+				to reach out!
+			</p>
+			<div class="flex space-x-4">
+				<a
+					href="https://bsky.app/profile/christse.dev"
+					class="text-center inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+				>
+					Connect on BlueSky
+				</a>
+				<a
+					href="https://linkedin.com"
+					class="text-center inline-flex items-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+				>
+					Message on LinkedIn
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
