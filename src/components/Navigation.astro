@@ -13,11 +13,12 @@ const isBlogRoute = currentPath.startsWith('/blog')
 			<a href="/" class="text-xl font-semibold text-gray-800"
 				>Chris Tse <span class="hidden md:inline-block">| クリス</span></a
 			>
-			
+
 			<!-- Desktop Navigation -->
 			<div class="hidden md:flex space-x-4">
 				<a href={about} class="text-gray-600 hover:text-gray-900">About</a>
-				<a href={projects} class="text-gray-600 hover:text-gray-900">Projects</a>
+				<a href={projects} class="text-gray-600 hover:text-gray-900">Projects</a
+				>
 				<a href={contact} class="text-gray-600 hover:text-gray-900">Contact</a>
 				<a
 					href="/blog"
@@ -32,18 +33,33 @@ const isBlogRoute = currentPath.startsWith('/blog')
 				class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
 				aria-label="Toggle mobile menu"
 			>
-				<span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
-				<span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
-				<span class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+				<span
+					class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"
+				></span>
+				<span
+					class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"
+				></span>
+				<span
+					class="hamburger-line w-6 h-0.5 bg-gray-800 transition-all duration-300"
+				></span>
 			</button>
 		</div>
 
 		<!-- Mobile Menu -->
-		<div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
+		<div
+			id="mobile-menu"
+			class="md:hidden hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t"
+		>
 			<div class="px-8 py-4 space-y-4">
-				<a href={about} class="block text-gray-600 hover:text-gray-900 py-2">About</a>
-				<a href={projects} class="block text-gray-600 hover:text-gray-900 py-2">Projects</a>
-				<a href={contact} class="block text-gray-600 hover:text-gray-900 py-2">Contact</a>
+				<a href={about} class="block text-gray-600 hover:text-gray-900 py-2"
+					>About</a
+				>
+				<a href={projects} class="block text-gray-600 hover:text-gray-900 py-2"
+					>Projects</a
+				>
+				<a href={contact} class="block text-gray-600 hover:text-gray-900 py-2"
+					>Contact</a
+				>
 				<a
 					href="/blog"
 					class={`block text-gray-600 hover:text-gray-900 py-2 ${isBlogRoute ? 'font-bold' : ''}`}
@@ -59,11 +75,11 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	.menu-open .hamburger-line:nth-child(1) {
 		transform: rotate(45deg) translate(6px, 6px);
 	}
-	
+
 	.menu-open .hamburger-line:nth-child(2) {
 		opacity: 0;
 	}
-	
+
 	.menu-open .hamburger-line:nth-child(3) {
 		transform: rotate(-45deg) translate(6px, -6px);
 	}
@@ -74,7 +90,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 		max-height: 0;
 		overflow: hidden;
 	}
-	
+
 	#mobile-menu.show {
 		max-height: 300px;
 	}
@@ -84,11 +100,11 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	document.addEventListener('DOMContentLoaded', () => {
 		const menuButton = document.getElementById('mobile-menu-button')
 		const mobileMenu = document.getElementById('mobile-menu')
-		
+
 		if (menuButton && mobileMenu) {
 			menuButton.addEventListener('click', () => {
 				const isOpen = mobileMenu.classList.contains('show')
-				
+
 				if (isOpen) {
 					// Close menu - wait for animation to complete
 					mobileMenu.classList.remove('show')

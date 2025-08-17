@@ -1,11 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
-const allPosts = await getCollection('blog')
-const sortedPosts = allPosts.sort((a, b) => {
+
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('posts')
+const sortedPosts = posts.sort((a, b) => {
 	return (
-		new Date(b.data.published_at).valueOf() -
-		new Date(a.data.published_at).valueOf()
+		new Date(b.data.publishedAt).valueOf() -
+		new Date(a.data.publishedAt).valueOf()
 	)
 })
 ---
@@ -24,25 +26,25 @@ const sortedPosts = allPosts.sort((a, b) => {
 			{
 				sortedPosts.map((post) => (
 					<article class="mb-10">
-						<h2 transition:name={`post-title-${post.slug}`}>
+						<h2 transition:name={`post-title-${post.data.slug}`}>
 							<a
 								class="text-purple-900 text-3xl font-semibold hover:underline"
-								href={`/blog/${post.slug}`}
+								href={`/blog/${post.data.slug}`}
 							>
 								{post.data.title}
 							</a>
 						</h2>
 						<time
 							class="block text-base mb-2 text-gray-500"
-							transition:name={`post-date-${post.slug}`}
+							transition:name={`post-date-${post.data.slug}`}
 						>
-							{new Date(post.data.published_at).toLocaleDateString('en-US', {
+							{new Date(post.data.publishedAt).toLocaleDateString('en-US', {
 								year: 'numeric',
 								month: 'numeric',
 								day: 'numeric',
 							})}
 						</time>
-						<p>{post.data.excerpt}</p>
+						<p>{post.data.description}</p>
 					</article>
 				))
 			}
