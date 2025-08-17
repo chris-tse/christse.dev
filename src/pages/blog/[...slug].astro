@@ -3,25 +3,24 @@ import { getCollection } from 'astro:content'
 import Layout from '../../layouts/BlogPostLayout.astro'
 
 export async function getStaticPaths() {
-	const blogEntries = await getCollection('blog')
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}))
+  const posts = await getCollection('posts');
+  return posts.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
 }
 
-const { entry } = Astro.props
-const { Content } = await entry.render()
+const { entry } = Astro.props;
 ---
 
 <Layout
 	title={entry.data.title}
-	pubDate={entry.data.published_at.toDateString() ?? null}
-	heroImage={entry.data.feature_image ?? null}
-	description={entry.data.excerpt ?? null}
-	socialImage={entry.data.social_image ?? null}
+	pubDate={entry.data.publishedAt.toDateString() ?? null}
+	heroImage={entry.data.coverImage ?? null}
+	description={entry.data.description ?? null}
+	socialImage={entry.data.coverImage ?? null}
 >
-	<article class="prose prose-purple lg:prose-lg mx-auto">
-		<Content />
+	<article class="prose prose-purple lg:prose-md mx-auto">
+		<div set:html={entry.data.content} />
 	</article>
 </Layout>

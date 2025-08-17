@@ -7,6 +7,6 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
 	readonly env: ImportMetaEnv
-	readonly GHOST_URL: string
-	readonly GHOST_CONTENT_API_KEY: string
+	readonly MARBLE_API_URL: string
+	readonly MARBLE_WORKSPACE_KEY: string
 }
