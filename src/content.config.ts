@@ -43,9 +43,18 @@ type Post = z.infer<typeof postSchema>
 const postsCollection = defineCollection({
 	schema: postSchema,
 	loader: async () => {
-		const response = await fetch(`${url}/${key}/posts`)
-		const { posts }: { posts: Post[] } = await response.json()
-		return Object.fromEntries(posts.map((post) => [post.id, post]))
+		if (!url || !key) {
+			console.warn('Marble CMS credentials not configured, skipping posts fetch')
+			return {}
+		}
+		try {
+			const response = await fetch(`${url}/${key}/posts`)
+			const { posts }: { posts: Post[] } = await response.json()
+			return Object.fromEntries(posts.map((post) => [post.id, post]))
+		} catch (error) {
+			console.error('Failed to fetch posts from Marble CMS:', error)
+			return {}
+		}
 	},
 })
 
