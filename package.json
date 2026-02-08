@@ -14,19 +14,20 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.6",
-		"@astrojs/rss": "^4.0.14",
-		"@astrojs/sitemap": "^3.6.0",
+		"@astrojs/mdx": "^4.3.13",
+		"@astrojs/rss": "^4.0.15",
+		"@astrojs/sitemap": "^3.7.0",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.18",
-		"astro": "5.16.6",
+		"astro": "^5.17.1",
 		"date-fns": "^4.1.0",
 		"lucide-astro": "^0.556.0",
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {
-		"dotenv": "^17.2.3",
-		"prettier": "^3.7.4",
+		"dotenv": "^17.2.4",
+		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "^5.9.3"
 	},
