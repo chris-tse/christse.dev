@@ -2,6 +2,7 @@
 import { ViewTransitions } from 'astro:transitions'
 import Navigation from '../components/Navigation.astro'
 import Analytics from '../components/Analytics.astro'
+import '../styles/global.css'
 
 interface Props {
 	title?: string | null
@@ -130,94 +131,64 @@ const currentUrl = new URL(Astro.url.pathname, Astro.site).href
 			class="flex flex-col max-w-5xl mx-auto font-sans text-gray-800 text-lg"
 		>
 			<main
-				class="flex-1 w-full px-4 mx-auto md:px-8 py-8 prose prose-lg prose-headings:font-semibold prose-p:font-light"
+				class="flex-1 w-full px-4 mx-auto md:px-8 py-8 prose prose-lg prose-slate max-w-none"
 			>
 				<slot />
 			</main>
 		</div>
 	</body>
 </html>
-<!-- <style is:global>
-	:root {
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			#da62c4 30%,
-			white 60%
-		);
-		box-sizing: border-box;
-	}
-
-	html {
-		font-family: system-ui, sans-serif;
-	}
-
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-
-	h2 {
-		@apply text-2xl mt-8 font-bold mb-4;
-	}
-
-	h3 {
-		@apply text-xl mt-8 font-bold mb-4;
-	}
-
-	h4 {
-		@apply text-lg mt-8 font-bold mb-4;
-	}
-
-	p {
-		@apply leading-loose mb-4;
-
-		& > code {
-			@apply bg-slate-100 rounded p-1;
-		}
-	}
-
-	blockquote {
-		@apply bg-slate-100 border-l-2 border-l-slate-300 pl-3 italic my-3 py-2 px-2;
-
-		& > p {
-			@apply m-0;
-		}
-	}
-
-	figure {
-
-		& > img {
-			@apply mx-auto;
-		}
-
-		& > figcaption {
-			@apply text-center text-gray-500 text-base mt-2;
-		}
-	}
-
-	.astro-code {
-		@apply p-4 rounded-md mb-4;
-	}
-</style> -->
 
 <style is:global>
 	@reference '../styles/global.css';
 
-	figure {
-		& > img {
-			@apply mx-auto;
-		}
+	/* Custom prose styles - commented out to use @tailwindcss/typography defaults
+	   Uncomment these if you need to override specific styles */
 
-		& > figcaption {
-			@apply text-center text-gray-500 text-base mt-2;
-		}
+	/* Paragraph spacing */
+	/* .prose p {
+		@apply leading-loose mb-4;
+	} */
+
+	/* Inline code styling */
+	/* .prose p > code {
+		@apply bg-slate-100 rounded px-1 py-0.5 text-sm;
+	} */
+
+	/* Heading spacing */
+	/* .prose h2 {
+		@apply text-2xl mt-8 font-bold mb-4;
 	}
+
+	.prose h3 {
+		@apply text-xl mt-8 font-bold mb-4;
+	}
+
+	.prose h4 {
+		@apply text-lg mt-8 font-bold mb-4;
+	} */
+
+	/* Blockquote styling */
+	/* .prose blockquote {
+		@apply bg-slate-100 border-l-2 border-l-slate-300 pl-3 italic my-3 py-2 px-2;
+	}
+
+	.prose blockquote > p {
+		@apply m-0;
+	} */
+
+	/* Code blocks */
+	/* .prose .astro-code,
+	.prose pre {
+		@apply p-4 rounded-md mb-4;
+	} */
+
+	/* Figure/figcaption */
+	/* .prose figure > img {
+		@apply mx-auto;
+	}
+
+	.prose figure > figcaption {
+		@apply text-center text-gray-500 text-base mt-2;
+	} */
 </style>

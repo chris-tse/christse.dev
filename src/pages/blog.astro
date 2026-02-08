@@ -10,6 +10,9 @@ const sortedPosts = posts.sort((a, b) => {
 		new Date(a.data.publishedAt).valueOf()
 	)
 })
+
+// Helper to get slug from id (e.g., "post-name.mdx" -> "post-name")
+const getSlug = (id: string) => id.replace(/\.mdx$/, '')
 ---
 
 <Layout
@@ -24,29 +27,32 @@ const sortedPosts = posts.sort((a, b) => {
 		<section>
 			<h1 class="text-2xl font-bold mb-8">Blog</h1>
 			{
-				sortedPosts.map((post) => (
-					<article class="mb-10">
-						<h2 transition:name={`post-title-${post.data.slug}`}>
-							<a
-								class="text-purple-900 text-3xl font-semibold hover:underline"
-								href={`/blog/${post.data.slug}`}
+				sortedPosts.map((post) => {
+					const slug = getSlug(post.id)
+					return (
+						<article class="mb-10">
+							<h2 transition:name={`post-title-${slug}`}>
+								<a
+									class="text-purple-900 text-3xl font-semibold hover:underline"
+									href={`/blog/${slug}`}
+								>
+									{post.data.title}
+								</a>
+							</h2>
+							<time
+								class="block text-base mb-2 text-gray-500"
+								transition:name={`post-date-${slug}`}
 							>
-								{post.data.title}
-							</a>
-						</h2>
-						<time
-							class="block text-base mb-2 text-gray-500"
-							transition:name={`post-date-${post.data.slug}`}
-						>
-							{new Date(post.data.publishedAt).toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'numeric',
-								day: 'numeric',
-							})}
-						</time>
-						<p>{post.data.description}</p>
-					</article>
-				))
+								{new Date(post.data.publishedAt).toLocaleDateString('en-US', {
+									year: 'numeric',
+									month: 'numeric',
+									day: 'numeric',
+								})}
+							</time>
+							<p>{post.data.description}</p>
+						</article>
+					)
+				})
 			}
 		</section>
 	</main>
