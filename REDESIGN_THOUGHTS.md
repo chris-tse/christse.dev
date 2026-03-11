@@ -9,18 +9,21 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 ## Design Direction
 
 ### Core Philosophy
+
 - **Clean & Professional** — but not sterile
 - **Personal** — shows hobbies, interests, personality
 - **Light Mode** — warm cream base with restrained color palette
 - **Structured with Whimsy** — organized layout with playful touches
 
 ### Color Palette
+
 - **Background**: `#FAF8F3` — warm off-white/cream (not clinical pure white)
 - **Primary Accent**: `#E8A598` — soft coral (food-inspired, warm)
 - **Secondary Accent**: `#9BB89F` — sage green (natural, calming)
 - **Text**: Gray-900 for headings, gray-700/600 for body
 
 ### Typography
+
 - **Font**: Lexend (clean, readable, friendly but professional)
 - **Japanese Text**: よろしく, またね！— personal touches without overdoing it
 
@@ -69,23 +72,27 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 ## Implemented Whimsy Effects
 
 ### 1. Typewriter Effect (Hero)
+
 - **What**: "よろしく" types out character by character
 - **How**: CSS animation with `steps()` and blinking cursor
 - **Why**: Terminal/dev aesthetic, subtle motion on load
 - **Respects**: `prefers-reduced-motion` (disabled if user prefers)
 
 ### 2. 3D Card Tilt (On Hover)
+
 - **What**: Cards subtly tilt toward cursor on hover (-2deg X, 2deg Y)
 - **How**: CSS `perspective` + `transform` on `:hover`
 - **Why**: Adds tactile feel, makes site feel responsive
 - **Respects**: `prefers-reduced-motion`
 
 ### 3. Timeline Pulse
+
 - **What**: Current job dot gently pulses
 - **How**: CSS `box-shadow` animation
 - **Why**: Visual hierarchy, draws eye to current role
 
 ### 4. Link Underlines
+
 - **What**: Links get animated underline on hover (coral → sage)
 - **How**: `::after` pseudo-element with `transform: scaleX()`
 - **Why**: Polished interaction feedback
@@ -95,18 +102,21 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 ## Pending Whimsy Ideas (Brainstorm)
 
 ### Subtle (Under Consideration)
+
 - [ ] **Cursor trail** — tiny particles following mouse
 - [ ] **Subtle noise texture** — 5% opacity grain overlay
 - [ ] **Keyboard typing sounds** — mechanical clicks on interactions
 - [ ] **Scroll progress** — indicator for reading position
 
 ### Playful (Future Exploration)
+
 - [ ] **Konami code easter egg** — ↑↑↓↓←→←→BA reveals something
 - [ ] **Random link underline colors** — like cassidoo's site
 - [ ] **Emoji floaters** — brief animations on page load
 - [ ] **Terminal typing** — more sections with typewriter effect
 
 ### Flashy (Probably Too Much)
+
 - [ ] **Particle background** — floating hiragana characters
 - [ ] **Day/night cycle** — theme based on visitor's time
 - [ ] **Boot sequence** — fake CLI loading on first visit
@@ -116,6 +126,7 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 ## Inspirations Referenced
 
 ### Sites We Like
+
 - **Wes Bos** — friendly, approachable, shows personality
 - **Ethan Niser** — clean, personal, hobby sections
 - **Josh Comeau** — playful but professional
@@ -123,6 +134,7 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 - **Cassidoo** — random link underline colors
 
 ### What We Avoided
+
 - Dark mode (user preference: light)
 - Glassmorphism (too generic/AI-looking)
 - Brutalist (not the right vibe)
@@ -133,17 +145,20 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 ## Technical Notes
 
 ### Data Sources
+
 - Work history: `src/data/work-history.json`
 - Projects: `src/data/projects.json`
 - All real data, no placeholders
 
 ### Accessibility
+
 - All animations respect `prefers-reduced-motion`
 - Proper semantic HTML
 - Color contrast compliant
 - Focus states on interactive elements
 
 ### Performance
+
 - CSS-only animations (no JS for effects)
 - Static generation (Astro)
 - Minimal JavaScript
@@ -170,4 +185,4 @@ Experimental homepage redesign exploring a warmer, more personal aesthetic while
 
 ---
 
-*Last updated: February 15, 2025*
+_Last updated: February 15, 2025_
