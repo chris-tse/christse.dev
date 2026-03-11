@@ -1,0 +1,537 @@
+---
+import '../styles/global.css'
+import workHistory from '../data/work-history.json'
+import projects from '../data/projects.json'
+
+const title = 'Chris Tse - Experimental 2'
+const description =
+	'A signal-board inspired portfolio concept with a playful editorial feel and dense information cards.'
+
+const recentRoles = workHistory.slice(0, 3)
+const spotlightProjects = projects.slice(0, 4)
+
+const quickFacts = [
+	'7+ years shipping frontend products',
+	'React + TypeScript specialist',
+	'Performance and accessibility focused',
+	'Keyboard builder and anime fan',
+]
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Space+Grotesk:wght@300..700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="noise"></div>
+		<div class="orbs" aria-hidden="true"></div>
+
+		<header class="masthead reveal">
+			<p class="eyebrow">Experimental Concept / 02</p>
+			<h1>
+				Chris Tse
+				<span>Frontend Engineer</span>
+			</h1>
+			<p class="lede">
+				A denser, editorial take on my portfolio: equal parts product craft,
+				performance work, and personality.
+			</p>
+			<div class="ticker" role="status" aria-label="Highlights">
+				<div class="ticker-track">
+					{quickFacts.concat(quickFacts).map((fact) => <span>{fact}</span>)}
+				</div>
+			</div>
+		</header>
+
+		<main class="board">
+			<section class="panel intro reveal">
+				<h2>Signal</h2>
+				<p>
+					I build accessible, high-performance interfaces with a strong bias
+					toward clarity. From refactors to greenfield launches, I focus on
+					making experiences feel fast and reliable.
+				</p>
+				<div class="chips">
+					<span>React</span>
+					<span>TypeScript</span>
+					<span>Next.js</span>
+					<span>Performance</span>
+					<span>DX</span>
+				</div>
+			</section>
+
+			<section class="panel timeline reveal">
+				<h2>Recent Roles</h2>
+				<ul>
+					{
+						recentRoles.map((role) => (
+							<li>
+								<p class="meta">{role.dateRange}</p>
+								<h3>{role.title}</h3>
+								<p class="company">{role.employer}</p>
+								<p>{role.description[0]}</p>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="panel projects reveal">
+				<h2>Project Radar</h2>
+				<div class="project-grid">
+					{
+						spotlightProjects.map((project) => (
+							<a href={project.href} target="_blank" rel="noopener noreferrer">
+								<p class="project-name">{project.name}</p>
+								<p>{project.description}</p>
+								<div class="tech-row">
+									{project.technologies.map((tech) => (
+										<span>{tech}</span>
+									))}
+								</div>
+							</a>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="panel now reveal">
+				<h2>Now</h2>
+				<ul>
+					<li>
+						Playing: Honkai: Star Rail, ZZZ, and whatever friends queue up.
+					</li>
+					<li>
+						Watching: Frieren, Dungeon Meshi, and old Cowboy Bebop episodes.
+					</li>
+					<li>
+						Building: FiguTrack, a local-first planner for figure pre-orders.
+					</li>
+				</ul>
+				<div class="actions">
+					<a
+						href="https://github.com/christse"
+						target="_blank"
+						rel="noopener noreferrer">GitHub</a
+					>
+					<a
+						href="https://www.linkedin.com/in/christse"
+						target="_blank"
+						rel="noopener noreferrer">LinkedIn</a
+					>
+					<a href="mailto:hello@christse.dev">Email</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="reveal">
+			<p>
+				Made with Astro. Experimental 02 for layout and visual direction
+				testing.
+			</p>
+		</footer>
+	</body>
+</html>
+
+<style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
+	:global(body) {
+		margin: 0;
+		background:
+			radial-gradient(
+				140% 130% at 10% 0%,
+				#fff4d6 0%,
+				#f6efe6 45%,
+				#efe8df 100%
+			),
+			#f6efe6;
+		color: #202129;
+		font-family: 'Space Grotesk', sans-serif;
+		line-height: 1.5;
+		min-height: 100vh;
+	}
+
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	.noise {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		opacity: 0.18;
+		background-image: radial-gradient(
+			circle at 1px 1px,
+			#1d1f241f 1px,
+			transparent 0
+		);
+		background-size: 3px 3px;
+	}
+
+	.orbs {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		background:
+			radial-gradient(36rem 28rem at 90% 12%, #ef8d5638 0%, transparent 70%),
+			radial-gradient(28rem 26rem at 8% 85%, #5a7f8733 0%, transparent 68%);
+	}
+
+	.masthead,
+	.board,
+	footer {
+		position: relative;
+		z-index: 1;
+		width: min(1100px, 92vw);
+		margin: 0 auto;
+	}
+
+	.masthead {
+		padding: 4.5rem 0 2.2rem;
+	}
+
+	.eyebrow {
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-weight: 700;
+		color: #5f5a4f;
+	}
+
+	h1 {
+		font-family: 'Fraunces', serif;
+		font-size: clamp(2.5rem, 7vw, 5.25rem);
+		line-height: 0.95;
+		margin: 0.45rem 0 1rem;
+		max-width: 16ch;
+	}
+
+	h1 span {
+		display: block;
+		font-family: 'Space Grotesk', sans-serif;
+		font-size: clamp(1rem, 2.2vw, 1.55rem);
+		letter-spacing: 0.01em;
+		color: #45454e;
+		margin-top: 0.85rem;
+	}
+
+	.lede {
+		font-size: clamp(1.05rem, 2vw, 1.34rem);
+		max-width: 62ch;
+		color: #31313b;
+		margin: 0;
+	}
+
+	.ticker {
+		margin-top: 1.4rem;
+		overflow: hidden;
+		background: #fffaf4;
+		border: 1px solid #ccbda8;
+		border-radius: 999px;
+		padding: 0.75rem 0;
+	}
+
+	.ticker-track {
+		display: inline-flex;
+		gap: 2.75rem;
+		white-space: nowrap;
+		padding-left: 2rem;
+		animation: ticker 22s linear infinite;
+	}
+
+	.ticker-track span {
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: #4b4a55;
+	}
+
+	.board {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	.panel {
+		background: #fdf8f1bf;
+		backdrop-filter: blur(8px);
+		border: 1px solid #d6c8b6;
+		border-radius: 1.4rem;
+		padding: 1.3rem;
+		box-shadow: 0 20px 40px -34px #1f19121f;
+	}
+
+	.panel h2 {
+		margin: 0 0 0.9rem;
+		font-family: 'Fraunces', serif;
+		font-size: 1.65rem;
+		font-weight: 550;
+	}
+
+	.intro {
+		grid-column: span 5;
+	}
+
+	.timeline {
+		grid-column: span 7;
+	}
+
+	.projects {
+		grid-column: span 8;
+	}
+
+	.now {
+		grid-column: span 4;
+	}
+
+	.chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		margin-top: 1rem;
+	}
+
+	.chips span,
+	.tech-row span {
+		background: #f0e6d9;
+		border: 1px solid #dbc8b2;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #434049;
+	}
+
+	.timeline ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.timeline li {
+		background: #fffdf9;
+		border: 1px solid #dfd3c5;
+		border-radius: 1rem;
+		padding: 0.95rem;
+	}
+
+	.meta {
+		margin: 0;
+		font-size: 0.76rem;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: #7a6e61;
+	}
+
+	h3 {
+		margin: 0.15rem 0;
+		font-size: 1rem;
+	}
+
+	.company {
+		margin: 0;
+		font-size: 0.9rem;
+		color: #605e66;
+	}
+
+	.timeline li p:last-child {
+		margin: 0.65rem 0 0;
+		font-size: 0.92rem;
+		color: #373640;
+	}
+
+	.project-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+	}
+
+	.project-grid a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		background: #fffcf7;
+		border: 1px solid #dfd4c7;
+		border-radius: 1rem;
+		padding: 1rem;
+		transition:
+			transform 0.25s ease,
+			border-color 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.project-grid a:hover {
+		transform: translateY(-4px) rotate(-0.2deg);
+		border-color: #b99372;
+		box-shadow: 0 14px 26px -22px #3c251166;
+	}
+
+	.project-name {
+		margin: 0;
+		font-size: 1.05rem;
+		font-weight: 700;
+	}
+
+	.project-grid a > p:nth-child(2) {
+		font-size: 0.9rem;
+		margin: 0.55rem 0 0.75rem;
+		color: #414049;
+	}
+
+	.tech-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.now ul {
+		margin: 0;
+		padding-left: 1.1rem;
+		display: grid;
+		gap: 0.65rem;
+		font-size: 0.94rem;
+		color: #34343d;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		margin-top: 1.1rem;
+	}
+
+	.actions a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		padding: 0.55rem 0.88rem;
+		border-radius: 0.6rem;
+		background: #22242f;
+		border: 1px solid #22242f;
+		color: #fff8ec;
+		font-size: 0.88rem;
+		font-weight: 600;
+		transition:
+			transform 0.25s ease,
+			background-color 0.25s ease;
+	}
+
+	.actions a:hover {
+		transform: translateY(-2px);
+		background: #353847;
+	}
+
+	footer {
+		padding: 1rem 0 3rem;
+	}
+
+	footer p {
+		margin: 0;
+		font-size: 0.85rem;
+		color: #5c5a63;
+	}
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(18px);
+		animation: reveal 0.7s ease forwards;
+	}
+
+	.masthead.reveal {
+		animation-delay: 0.05s;
+	}
+
+	.intro.reveal {
+		animation-delay: 0.12s;
+	}
+
+	.timeline.reveal {
+		animation-delay: 0.18s;
+	}
+
+	.projects.reveal {
+		animation-delay: 0.24s;
+	}
+
+	.now.reveal {
+		animation-delay: 0.3s;
+	}
+
+	footer.reveal {
+		animation-delay: 0.35s;
+	}
+
+	@keyframes reveal {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes ticker {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (max-width: 900px) {
+		.board {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+
+		.intro,
+		.timeline,
+		.projects,
+		.now {
+			grid-column: span 1;
+		}
+
+		.project-grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.masthead {
+			padding-top: 3.4rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+
+		.reveal,
+		.ticker-track,
+		.project-grid a,
+		.actions a {
+			animation: none;
+			transition: none;
+			transform: none;
+			opacity: 1;
+		}
+	}
+</style>
