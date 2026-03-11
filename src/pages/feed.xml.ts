@@ -2,24 +2,20 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 
 export async function GET(context: any) {
-	const blog = await getCollection('blog')
+	const posts = await getCollection('posts')
 
-	const items = blog
+	const items = posts
 		.sort((a, b) => {
 			return (
-				new Date(b.data.published_at).valueOf() -
-				new Date(a.data.published_at).valueOf()
+				new Date(b.data.publishedAt).valueOf() -
+				new Date(a.data.publishedAt).valueOf()
 			)
 		})
 		.map((post) => ({
 			title: post.data.title,
-			pubDate: new Date(post.data.published_at).toLocaleDateString('en-US', {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric',
-			}),
-			description: post.data.excerpt,
-			link: `/blog/${post.slug}/`,
+			pubDate: new Date(post.data.publishedAt),
+			description: post.data.description,
+			link: `/blog/${post.id}/`,
 		}))
 
 	return rss({

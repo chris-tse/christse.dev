@@ -2,17 +2,17 @@
 
 ## Build/Test Commands
 
-- **Dev**: `pnpm dev` or `pnpm start`
-- **Build**: `pnpm build`
-- **Preview**: `pnpm preview`
-- **Format**: `pnpm format:write` (check with `pnpm format:check`)
-- **Type check**: `pnpm astro check`
-- **Package management**: Always use `pnpm` (never npm/yarn)
+- **Dev**: `bun dev`
+- **Build**: `bun build`
+- **Preview**: `bun preview`
+- **Format**: `bun format:write` (check with `bun format:check`)
+- **Type check**: `bun astro check`
+- **Package management**: Always use `bun` (never npm/yarn)
 
 ## Code Style
 
 - **Formatting**: Tabs (width 2), single quotes, no semicolons, trailing commas
-- **Run `pnpm format:write` after making changes to .astro files**
+- **Run `bun format:write` after making changes to .astro files**
 - **TypeScript**: Strictest config (`astro/tsconfigs/strictest`)
 - **Imports**: ES modules only (`"type": "module"`)
 - **Naming**: kebab-case for components (e.g., `Work-Item.astro`)
