@@ -114,15 +114,15 @@ receives its data via props (no direct JSON imports — the page passes data dow
 Add a terminal-themed navigation to the terminal bar and a mobile-friendly
 solution.
 
-- [ ] Create `src/components/terminal/TerminalNav.astro`
-- [ ] Add anchor links in the terminal bar area: `[about]` `[skills]`
+- [x] Create `src/components/terminal/TerminalNav.astro`
+- [x] Add anchor links in the terminal bar area: `[about]` `[skills]`
       `[projects]` `[blog]` `[contact]` — styled as bracketed terminal commands
-- [ ] Props: `hrefs` object with optional overrides for each section
-- [ ] Include a `[blog]` link pointing to `/blog`
-- [ ] Mobile: collapse nav links behind a hamburger/toggle on small screens, or
+- [x] Props: `hrefs` object with optional overrides for each section
+- [x] Include a `[blog]` link pointing to `/blog`
+- [x] Mobile: collapse nav links behind a hamburger/toggle on small screens, or
       use a scrollable row. Keep it simple — no JS if possible (CSS-only toggle
       via `<details>` or similar)
-- [ ] Add a skip-to-content link (`<a href="#main-content"
+- [x] Add a skip-to-content link (`<a href="#main-content"
 class="sr-only focus:not-sr-only">Skip to content</a>`)
 
 **File:** `src/components/terminal/TerminalNav.astro`
