@@ -47,29 +47,13 @@ const { projects } = Astro.props
 </section>
 
 <style>
-	.block {
-		margin-bottom: 2rem;
-	}
-
-	.cmd-line {
-		margin: 0;
-		font-size: 0.88rem;
-		white-space: pre-wrap;
-	}
-
-	.prompt {
-		color: #39ff14;
-		font-weight: 700;
-		margin-right: 0.5rem;
-		user-select: none;
-	}
-
+	/* Component-specific styles only — shared classes from terminal.css */
 	.project-list {
 		display: grid;
 		gap: 0.5rem;
 		margin: 0.5rem 0 0 1.25rem;
 		padding-left: 0.75rem;
-		border-left: 2px solid #1d2433;
+		border-left: 2px solid var(--term-border);
 		font-size: 0.88rem;
 	}
 
@@ -78,9 +62,9 @@ const { projects } = Astro.props
 		text-decoration: none;
 		color: inherit;
 		padding: 0.85rem 1rem;
-		border: 1px solid #1d2433;
+		border: 1px solid var(--term-border);
 		border-radius: 4px;
-		background: #0a0e14;
+		background: var(--term-bg-deepest);
 		transition:
 			border-color 0.2s ease,
 			background-color 0.2s ease,
@@ -88,8 +72,8 @@ const { projects } = Astro.props
 	}
 
 	.project-entry:hover {
-		border-color: #39ff14;
-		background: #0f1520;
+		border-color: var(--term-green);
+		background: var(--term-bg-hover);
 		box-shadow: 0 0 20px rgba(57, 255, 20, 0.06);
 	}
 
@@ -100,12 +84,12 @@ const { projects } = Astro.props
 	}
 
 	.project-idx {
-		color: #5c6773;
+		color: var(--term-text-muted);
 		font-size: 0.78rem;
 	}
 
 	.project-name {
-		color: #e6e1cf;
+		color: var(--term-text-bright);
 		font-weight: 700;
 		font-size: 0.95rem;
 	}
@@ -116,7 +100,7 @@ const { projects } = Astro.props
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		color: #39ff14;
+		color: var(--term-green);
 		opacity: 0;
 		transition: opacity 0.2s ease;
 	}
@@ -128,7 +112,7 @@ const { projects } = Astro.props
 	.project-desc {
 		margin: 0.4rem 0 0.6rem;
 		font-size: 0.82rem;
-		color: #6c7080;
+		color: var(--term-text-desc);
 		max-width: 60ch;
 	}
 
@@ -140,11 +124,11 @@ const { projects } = Astro.props
 
 	.tech-tag {
 		padding: 0.15rem 0.5rem;
-		border: 1px solid #1d2433;
+		border: 1px solid var(--term-border);
 		border-radius: 3px;
 		font-size: 0.72rem;
-		color: #59c2ff;
-		background: #0d1117;
+		color: var(--term-blue);
+		background: var(--term-bg-body);
 	}
 
 	@media (prefers-reduced-motion: reduce) {

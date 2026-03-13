@@ -87,30 +87,7 @@ const latestRole = workHistory[0]
 </section>
 
 <style>
-	.block {
-		margin-bottom: 2rem;
-	}
-
-	.cmd-line {
-		margin: 0;
-		font-size: 0.88rem;
-		white-space: pre-wrap;
-	}
-
-	.prompt {
-		color: #39ff14;
-		font-weight: 700;
-		margin-right: 0.5rem;
-		user-select: none;
-	}
-
-	.output {
-		margin: 0.5rem 0 0 1.25rem;
-		padding-left: 0.75rem;
-		border-left: 2px solid #1d2433;
-		color: #acb2c0;
-		font-size: 0.88rem;
-	}
+	/* Component-specific styles only — shared classes from terminal.css */
 
 	/* ── Career todo list ── */
 	.todo-list {
@@ -124,7 +101,7 @@ const latestRole = workHistory[0]
 		align-items: flex-start;
 		gap: 0.65rem;
 		padding: 0.55rem 0;
-		border-bottom: 1px dashed #141a24;
+		border-bottom: 1px dashed var(--term-border-dashed);
 	}
 
 	.todo-item.done {
@@ -140,7 +117,7 @@ const latestRole = workHistory[0]
 		);
 		padding-left: 0.5rem;
 		margin-left: -0.5rem;
-		border-left: 2px solid #59c2ff;
+		border-left: 2px solid var(--term-blue);
 		border-bottom: none;
 	}
 
@@ -159,16 +136,16 @@ const latestRole = workHistory[0]
 	}
 
 	.done .todo-check {
-		border: 1px solid #2a3040;
-		color: #3d4455;
-		background: #0a0e14;
+		border: 1px solid var(--term-border-subtle);
+		color: var(--term-text-disabled);
+		background: var(--term-bg-deepest);
 		text-decoration: line-through;
 	}
 
 	.in-progress .todo-check {
-		border: 1px solid #59c2ff;
-		color: #59c2ff;
-		background: #0f1520;
+		border: 1px solid var(--term-blue);
+		color: var(--term-blue);
+		background: var(--term-bg-hover);
 		animation: pulse-glow 2s ease-in-out infinite;
 	}
 
@@ -195,17 +172,17 @@ const latestRole = workHistory[0]
 	}
 
 	.todo-title {
-		color: #acb2c0;
+		color: var(--term-text-output);
 		font-weight: 500;
 	}
 
 	.done .todo-title {
 		text-decoration: line-through;
-		text-decoration-color: #2a3040;
+		text-decoration-color: var(--term-border-subtle);
 	}
 
 	.in-progress .todo-title {
-		color: #e6e1cf;
+		color: var(--term-text-bright);
 		text-decoration: none;
 		font-weight: 600;
 	}
@@ -220,33 +197,33 @@ const latestRole = workHistory[0]
 	}
 
 	.badge-done {
-		color: #3d4455;
-		background: #141a24;
-		border: 1px solid #1d2433;
+		color: var(--term-text-disabled);
+		background: var(--term-bg-badge-dark);
+		border: 1px solid var(--term-border);
 	}
 
 	.badge-active {
-		color: #59c2ff;
-		background: #0f1520;
-		border: 1px solid #1a2a3a;
+		color: var(--term-blue);
+		background: var(--term-bg-hover);
+		border: 1px solid var(--term-blue-border);
 	}
 
 	.todo-meta {
 		display: block;
 		margin-top: 0.15rem;
 		font-size: 0.72rem;
-		color: #3d4455;
+		color: var(--term-text-disabled);
 		letter-spacing: 0.04em;
 	}
 
 	.in-progress .todo-meta {
-		color: #5c6773;
+		color: var(--term-text-muted);
 	}
 
 	/* ── Subagent block ── */
 	.subagent-block {
 		margin-top: 0.65rem;
-		border-left: 2px solid #2a3a50;
+		border-left: 2px solid var(--term-border-subagent);
 		border-radius: 0;
 		overflow: hidden;
 	}
@@ -257,7 +234,7 @@ const latestRole = workHistory[0]
 		gap: 0.6rem;
 		padding: 0.4rem 0.75rem;
 		background: transparent;
-		border-bottom: 1px dashed #1d2433;
+		border-bottom: 1px dashed var(--term-border);
 		flex-wrap: wrap;
 	}
 
@@ -267,16 +244,16 @@ const latestRole = workHistory[0]
 		font-weight: 800;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
-		color: #d2a6ff;
-		background: #1a1228;
-		border: 1px solid #2a1f3d;
+		color: var(--term-purple);
+		background: var(--term-purple-bg);
+		border: 1px solid var(--term-purple-border);
 		padding: 0.12rem 0.45rem;
 		border-radius: 3px;
 	}
 
 	.subagent-label {
 		font-size: 0.82rem;
-		color: #acb2c0;
+		color: var(--term-text-output);
 		font-weight: 600;
 	}
 
@@ -286,7 +263,7 @@ const latestRole = workHistory[0]
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
-		color: #3d4455;
+		color: var(--term-text-disabled);
 	}
 
 	.subagent-body {
@@ -301,14 +278,14 @@ const latestRole = workHistory[0]
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
 		gap: 0;
-		border: 1px solid #1d2433;
+		border: 1px solid var(--term-border);
 		border-radius: 4px;
 		overflow: hidden;
 	}
 
 	.tool-call {
-		border-right: 1px solid #1d2433;
-		background: #131820;
+		border-right: 1px solid var(--term-border);
+		background: var(--term-bg-tool);
 	}
 
 	.tool-call-header {
@@ -325,15 +302,15 @@ const latestRole = workHistory[0]
 		font-weight: 800;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
-		color: #d2a6ff;
-		background: #1a1228;
-		border: 1px solid #2a1f3d;
+		color: var(--term-purple);
+		background: var(--term-purple-bg);
+		border: 1px solid var(--term-purple-border);
 		padding: 0.12rem 0.45rem;
 		border-radius: 3px;
 	}
 
 	.task-result {
-		background: #0a0e14;
+		background: var(--term-bg-deepest);
 	}
 
 	.task-result-body {
@@ -343,7 +320,7 @@ const latestRole = workHistory[0]
 	.task-result-body p {
 		margin: 0;
 		font-size: 0.82rem;
-		color: #8b919e;
+		color: var(--term-text-result);
 		line-height: 1.5;
 	}
 
@@ -359,7 +336,7 @@ const latestRole = workHistory[0]
 
 		.tool-call {
 			border-right: none;
-			border-bottom: 1px solid #1d2433;
+			border-bottom: 1px solid var(--term-border);
 		}
 	}
 

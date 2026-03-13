@@ -54,11 +54,11 @@ const isBlogRoute = currentPath.startsWith('/blog')
 		left: 0;
 		z-index: 200;
 		padding: 0.5rem 1rem;
-		background: #0d1117;
-		color: #39ff14;
+		background: var(--term-bg-body);
+		color: var(--term-green);
 		font-size: 0.85rem;
 		text-decoration: none;
-		border: 1px solid #39ff14;
+		border: 1px solid var(--term-green);
 		border-radius: 0 0 4px 0;
 	}
 
@@ -83,7 +83,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	.nav-toggle-label {
 		display: none;
 		cursor: pointer;
-		color: #5c6773;
+		color: var(--term-text-muted);
 		font-size: 0.72rem;
 		letter-spacing: 0.03em;
 		padding: 0.2rem 0.4rem;
@@ -93,7 +93,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	}
 
 	.nav-toggle-label:hover {
-		color: #b3b1ad;
+		color: var(--term-text);
 	}
 
 	.nav-toggle-icon-close {
@@ -116,7 +116,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	}
 
 	.nav-link {
-		color: #5c6773;
+		color: var(--term-text-muted);
 		text-decoration: none;
 		font-size: 0.72rem;
 		letter-spacing: 0.03em;
@@ -130,17 +130,17 @@ const isBlogRoute = currentPath.startsWith('/blog')
 
 	.nav-link:hover,
 	.nav-link:focus-visible {
-		color: #39ff14;
+		color: var(--term-green);
 		background-color: rgba(57, 255, 20, 0.06);
 	}
 
 	.nav-link:focus-visible {
-		outline: 1px solid #39ff14;
+		outline: 1px solid var(--term-green);
 		outline-offset: 1px;
 	}
 
 	.nav-link.active {
-		color: #b3b1ad;
+		color: var(--term-text);
 	}
 
 	/* ── Mobile: collapse behind toggle ── */
@@ -156,8 +156,8 @@ const isBlogRoute = currentPath.startsWith('/blog')
 			right: 0;
 			flex-direction: column;
 			align-items: stretch;
-			background: #151a24;
-			border: 1px solid #1d2433;
+			background: var(--term-bg-bar);
+			border: 1px solid var(--term-border);
 			border-top: none;
 			border-radius: 0 0 6px 6px;
 			padding: 0.5rem;

@@ -89,3 +89,34 @@
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
 - Ran `bun format:write` — formatting applied
 - Commit: `feat: create TerminalNav.astro with terminal-themed navigation`
+
+## 2026-03-13 Task 6: Create shared terminal styles
+
+- Created `src/styles/terminal.css` with shared terminal CSS custom properties and base styles
+- **CSS custom properties** — full color palette (37 variables):
+  - Backgrounds: `--term-bg-deepest`, `--term-bg-body`, `--term-bg-bar`, `--term-bg-hover`, `--term-bg-tool`, `--term-bg-badge-dark`
+  - Borders: `--term-border`, `--term-border-dashed`, `--term-border-subtle`, `--term-border-subagent`
+  - Colors: `--term-green`, `--term-green-light`, `--term-green-code-bg`, `--term-blue`, `--term-blue-border`, `--term-purple`, `--term-purple-bg`, `--term-purple-border`, `--term-yellow`
+  - Text: `--term-text`, `--term-text-output`, `--term-text-bright`, `--term-text-muted`, `--term-text-disabled`, `--term-text-desc`, `--term-text-result`
+  - Dots: `--term-dot-red`, `--term-dot-yellow`, `--term-dot-green`
+  - Font: `--term-font`
+- **Base styles** — `body` reset (margin, min-height, background, color, font-family, line-height, overflow-x), universal box-sizing
+- **Shared structural classes** (previously duplicated across 6-8 components):
+  - `.block` — section spacing (`margin-bottom: 2rem`)
+  - `.cmd-line`, `.sys-line` — command/system line text
+  - `.sys-line.success` + `.sys-line.success code` — success state styling
+  - `.prompt` — green `$` prompt
+  - `.prompt-sys` — yellow `[system]` prompt
+  - `.output` + `.output p` — indented output area with left border
+  - `.md-output p`, `.md-heading`, `.md-hash` — markdown-styled output
+- **Cursor styles** — `.cursor` with `@keyframes blink`
+- **Reveal animation system** — `.reveal` with `@keyframes fadeUp`, delay classes `.d1`–`.d7` (previously only in experimental-5, now globally available for Task 7)
+- **Consolidated `prefers-reduced-motion`** — disables animations on `.reveal` and `.cursor`
+- **Updated all 12 terminal components** to remove duplicated CSS:
+  - Removed duplicated `.block`, `.cmd-line`, `.prompt`, `.output`, `.sys-line`, `.prompt-sys`, `.md-*`, `.cursor` definitions
+  - Converted all hardcoded hex colors to CSS custom property references (`var(--term-*)`)
+  - Component-specific styles remain scoped within each component's `<style>` block
+  - CrtOverlay retains its own `prefers-reduced-motion` (opacity: 0, not 1)
+- **Updated `TerminalLayout.astro`** to import `terminal.css` alongside `global.css`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
+- Ran `bun format:write` — all files unchanged (already formatted)

@@ -1,0 +1,195 @@
+/* ════════════════════════════════════════════════════════════
+   Terminal Theme — Shared Styles
+   Shared CSS custom properties, base styles, common patterns,
+   and reveal animations for the terminal-themed pages.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Color Palette ── */
+:root {
+	--term-bg-deepest: #0a0e14;
+	--term-bg-body: #0d1117;
+	--term-bg-bar: #151a24;
+	--term-bg-hover: #0f1520;
+	--term-bg-tool: #131820;
+	--term-bg-badge-dark: #141a24;
+	--term-border: #1d2433;
+	--term-border-dashed: #141a24;
+	--term-border-subtle: #2a3040;
+	--term-border-subagent: #2a3a50;
+	--term-green: #39ff14;
+	--term-green-light: #7ee787;
+	--term-green-code-bg: #1a2b1a;
+	--term-blue: #59c2ff;
+	--term-blue-border: #1a2a3a;
+	--term-purple: #d2a6ff;
+	--term-purple-bg: #1a1228;
+	--term-purple-border: #2a1f3d;
+	--term-yellow: #e6b450;
+	--term-text: #b3b1ad;
+	--term-text-output: #acb2c0;
+	--term-text-bright: #e6e1cf;
+	--term-text-muted: #5c6773;
+	--term-text-disabled: #3d4455;
+	--term-text-desc: #6c7080;
+	--term-text-result: #8b919e;
+	--term-dot-red: #ff5f57;
+	--term-dot-yellow: #febc2e;
+	--term-dot-green: #28c840;
+	--term-font: 'JetBrains Mono', monospace;
+}
+
+/* ── Base ── */
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--term-bg-deepest);
+	color: var(--term-text);
+	font-family: var(--term-font);
+	line-height: 1.6;
+	overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* ── Section blocks ── */
+.block {
+	margin-bottom: 2rem;
+}
+
+/* ── Command line ── */
+.cmd-line,
+.sys-line {
+	margin: 0;
+	font-size: 0.88rem;
+	white-space: pre-wrap;
+}
+
+.sys-line.success {
+	color: var(--term-green);
+}
+
+.sys-line.success code {
+	background: var(--term-green-code-bg);
+	padding: 0.1rem 0.4rem;
+	border-radius: 3px;
+	color: var(--term-green-light);
+}
+
+/* ── Prompt characters ── */
+.prompt {
+	color: var(--term-green);
+	font-weight: 700;
+	margin-right: 0.5rem;
+	user-select: none;
+}
+
+.prompt-sys {
+	color: var(--term-yellow);
+	font-weight: 600;
+	margin-right: 0.35rem;
+}
+
+/* ── Output area ── */
+.output {
+	margin: 0.5rem 0 0 1.25rem;
+	padding-left: 0.75rem;
+	border-left: 2px solid var(--term-border);
+	color: var(--term-text-output);
+	font-size: 0.88rem;
+}
+
+.output p {
+	margin: 0;
+	max-width: 68ch;
+}
+
+/* ── Markdown-styled output ── */
+.md-output p {
+	margin: 0;
+}
+
+.md-heading {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--term-text-bright);
+	margin-bottom: 0.4rem;
+}
+
+.md-hash {
+	color: var(--term-text-muted);
+	margin-right: 0.35rem;
+	font-weight: 400;
+}
+
+/* ── Blinking cursor ── */
+.cursor {
+	display: inline-block;
+	width: 0.55em;
+	height: 1.1em;
+	background: var(--term-green);
+	vertical-align: text-bottom;
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* ── Reveal animation ── */
+.reveal {
+	opacity: 0;
+	transform: translateY(10px);
+	animation: fadeUp 0.5s ease forwards;
+}
+
+.d1 {
+	animation-delay: 0.1s;
+}
+
+.d2 {
+	animation-delay: 0.3s;
+}
+
+.d3 {
+	animation-delay: 0.5s;
+}
+
+.d4 {
+	animation-delay: 0.7s;
+}
+
+.d5 {
+	animation-delay: 0.9s;
+}
+
+.d6 {
+	animation-delay: 1.1s;
+}
+
+.d7 {
+	animation-delay: 1.3s;
+}
+
+@keyframes fadeUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+	.reveal,
+	.cursor {
+		animation: none;
+		transition: none;
+		opacity: 1;
+		transform: none;
+	}
+}
