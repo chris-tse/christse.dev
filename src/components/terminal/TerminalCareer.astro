@@ -340,6 +340,44 @@ const latestRole = workHistory[0]
 		}
 	}
 
+	@media (max-width: 480px) {
+		.todo-item {
+			gap: 0.4rem;
+		}
+
+		.todo-check {
+			width: 1.1rem;
+			height: 1.1rem;
+			font-size: 0.62rem;
+		}
+
+		.subagent-header {
+			padding: 0.3rem 0.5rem;
+			gap: 0.4rem;
+		}
+
+		.subagent-body {
+			padding: 0.35rem 0.4rem;
+		}
+
+		.subagent-meta {
+			margin-left: 0;
+		}
+
+		.todo-item.in-progress {
+			margin-left: -0.25rem;
+			padding-left: 0.25rem;
+		}
+
+		.tool-call-header {
+			padding: 0.4rem 0.5rem;
+		}
+
+		.task-result-body {
+			padding: 0.15rem 0.5rem 0.45rem;
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.in-progress .todo-check {
 			animation: none;

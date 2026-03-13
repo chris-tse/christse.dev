@@ -89,6 +89,7 @@ const { projects } = Astro.props
 		display: flex;
 		align-items: baseline;
 		gap: 0.65rem;
+		flex-wrap: wrap;
 	}
 
 	.project-idx {
@@ -137,6 +138,32 @@ const { projects } = Astro.props
 		font-size: 0.72rem;
 		color: var(--term-blue);
 		background: var(--term-bg-body);
+	}
+
+	@media (max-width: 700px) {
+		.project-list {
+			margin-left: 0.75rem;
+			padding-left: 0.5rem;
+		}
+
+		.project-entry {
+			padding: 0.65rem 0.75rem;
+		}
+
+		.project-link {
+			opacity: 1;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.project-list {
+			margin-left: 0.25rem;
+			padding-left: 0.35rem;
+		}
+
+		.project-entry {
+			padding: 0.55rem 0.6rem;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {

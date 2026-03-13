@@ -183,6 +183,23 @@ body {
 	}
 }
 
+/* ── Narrow screens (< 480px) ── */
+@media (max-width: 480px) {
+	.output {
+		margin-left: 0.5rem;
+		padding-left: 0.5rem;
+	}
+
+	.block {
+		margin-bottom: 1.5rem;
+	}
+
+	.cmd-line,
+	.sys-line {
+		font-size: 0.82rem;
+	}
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
 	.reveal,
@@ -385,5 +402,26 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.post-content.prose a {
 		transition: none;
+	}
+}
+
+/* ── Prose narrow screens ── */
+@media (max-width: 480px) {
+	.post-content.prose {
+		font-size: 0.88rem;
+	}
+
+	.post-content.prose pre {
+		padding: 0.75rem;
+		font-size: 0.78rem;
+		margin-left: -0.25rem;
+		margin-right: -0.25rem;
+		border-radius: 4px;
+	}
+
+	.post-content.prose blockquote {
+		padding: 0.5rem 0.75rem;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
