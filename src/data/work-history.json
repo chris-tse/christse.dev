@@ -1,13 +1,13 @@
 [
 	{
-		"employer": "Rent. at Redfin",
+		"employer": "Redfin",
 		"title": "Software Engineer II",
 		"dateRange": "2021 - Present",
 		"description": [
-			"Reduced INP metrics by 80% through React performance audits and optimizations, boosting Core Web Vitals scores",
+			"Led redesign of the listing page media browser, implementing modern React patterns and a new image zoom experience that increased tour scheduling engagement by 12%",
+			"Diagnosed and improved LCP performance on Redfin's homepage, identifying ad campaign traffic from anonymous webviews as a key measurement confounder",
 			"Unified multiple brand applications by migrating legacy SSR React app to Next.js, cutting feature release time by 50%",
-			"Improved lead conversion by 10% by implementing ML-powered search and sort capabilities",
-			"Prevented critical service outages by resolving memory leaks in GraphQL gateway and Kubernetes infrastructure"
+			"Onboarded new engineers, overhauled team onboarding documentation, and participated in engineering interview loops"
 		]
 	},
 	{
