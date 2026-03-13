@@ -1,0 +1,89 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import Analytics from '../components/Analytics.astro'
+import '../styles/global.css'
+
+export interface Props {
+	title: string
+	description?: string
+	canonical?: string
+	socialImage?: string
+}
+
+const {
+	title,
+	description = 'Chris Tse is a frontend engineer, performance optimization specialist, and PC & mechanical keyboard enthusiast who likes to build stuff for the web.',
+	canonical,
+	socialImage,
+} = Astro.props
+
+const resolvedCanonical =
+	canonical ||
+	(Astro.site && Astro.url ? `${Astro.site}${Astro.url.pathname}` : undefined)
+const siteName = 'Chris Tse - Frontend Engineer'
+const fullTitle = `${title} | ${siteName}`
+const resolvedImage = socialImage || '/og-image.png'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<ClientRouter />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		{resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		<!-- Open Graph -->
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		{
+			resolvedCanonical && (
+				<meta property="og:url" content={resolvedCanonical} />
+			)
+		}
+		<meta property="og:image" content={resolvedImage} />
+		<meta property="og:site_name" content={siteName} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={resolvedImage} />
+		<meta name="twitter:creator" content="@ChrisMTse" />
+
+		<!-- JetBrains Mono -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<Analytics />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
+</style>
