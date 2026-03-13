@@ -187,3 +187,34 @@
 - **Reduced motion**: all transitions disabled
 - **Accessibility**: decorative `$` and `[system]` prompts marked `aria-hidden="true"`, skip-to-content link via TerminalNav, focus indicators on all links
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — applied formatting
+
+## 2026-03-13 Task 10: Configure Tailwind Typography dark prose styles
+
+- Moved all prose overrides from `TerminalBlogPostLayout.astro` `<style is:global>` block into `src/styles/terminal.css` as shared styles
+- Removed the `<style is:global>` block from `TerminalBlogPostLayout.astro` — styles now come from `terminal.css` which is already imported via `TerminalLayout.astro`
+- **Color adjustments** per Task 10 spec:
+  - Body text: changed from `var(--term-text-output)` (`#acb2c0`) to `#c8c8c8` (more neutral gray)
+  - Headings: changed from `var(--term-text-bright)` (`#e6e1cf`) to `#e0e0e0` (neutral bright)
+  - Strong text: `#e0e0e0`
+  - Emphasis: `#c8c8c8`
+  - Links: `#59c2ff` (terminal blue) with underline, green on hover
+  - List items: `#c8c8c8`
+  - `pre code` / table cells: `#c8c8c8`
+  - Table headers: `#e0e0e0`
+  - Ordered list markers: `#59c2ff` (terminal blue)
+- **Prose overrides** now in `terminal.css` under `.post-content.prose` selector:
+  - Base: `max-width: 72ch`, `font-size: 0.95rem`, `line-height: 1.9`
+  - Paragraphs: `margin-bottom: 1.5rem`
+  - Headings: `h2` with bottom border separator, `h3`/`h4` with appropriate spacing
+  - Links: terminal blue `#59c2ff` with underline, green hover
+  - Blockquotes: left border in terminal green, subtle green-tint bg, dimmed italic text
+  - Inline code: green on dark green bg (`--term-green-code-bg`)
+  - Code blocks: deepest dark bg with border, 1.7 line-height
+  - Lists: proper marker colors (muted for `ul`, blue for `ol`)
+  - HR: subtle terminal border
+  - Tables: bar-styled header, bordered cells
+  - Images: rounded with terminal border
+  - Figcaption: centered, muted
+  - Reduced motion: disables link transitions
+- Replaced `@apply` Tailwind directives with plain CSS values (avoids dependency on Tailwind processing within plain CSS files)
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — formatting applied

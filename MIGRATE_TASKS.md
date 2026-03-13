@@ -220,7 +220,7 @@ Style the `blog-redesign.astro` page with the full terminal aesthetic.
 
 Override `@tailwindcss/typography` prose defaults for dark terminal theme.
 
-- [ ] Add dark prose overrides in `src/styles/terminal.css` (or global.css)
+- [x] Add dark prose overrides in `src/styles/terminal.css` (or global.css)
       targeting `.prose` within terminal-themed pages:
   - Headings: bright text (e.g., `#e0e0e0`)
   - Body text: `#c8c8c8` on `#0d1117`
@@ -229,7 +229,7 @@ Override `@tailwindcss/typography` prose defaults for dark terminal theme.
   - Code/pre: terminal-native styling (dark bg, green/amber text)
   - `hr`: subtle border color
   - Lists: proper marker color
-- [ ] Verify prose renders correctly for all blog posts (check headings, code
+- [x] Verify prose renders correctly for all blog posts (check headings, code
       blocks, lists, links, blockquotes)
 
 **File:** `src/styles/terminal.css`
