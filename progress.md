@@ -227,3 +227,18 @@
 - Updated JSDoc comment to reflect current state (no longer "new", layout is terminal-themed)
 - Content is rendered via `<Content />` inside `<slot />` which gets terminal prose styling from `terminal.css`
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged
+
+## 2026-03-13 Task 12: Accessibility audit and fixes
+
+- **Color contrast fixes** — all updated to meet WCAG AA 4.5:1 minimum ratio:
+  - `--term-text-muted`: `#5c6773` → `#798390` (was 3.02:1 on `#151a24`, now 4.53:1) — affects `.bar-title`, `.project-idx`, `.nav-link`, `.md-hash`, prose elements
+  - `--term-text-disabled`: `#3d4455` → `#737d8d` (was 1.94:1 on `#0d1117`, now 4.55:1) — affects `.todo-meta`, `.badge-done`, `.subagent-meta`, `.term-footer p`
+  - `--term-text-desc`: `#6c7080` → `#7a8292` (was 3.93:1 on `#0a0e14`, now 5.01:1) — affects `.project-desc`, `.post-desc`
+  - `.todo-item.done`: opacity `0.55` → `0.7` in `TerminalCareer.astro`
+- **Keyboard focus indicators** — added `:focus-visible` styles:
+  - `TerminalProjects.astro`: `.project-entry:focus-visible` with green border, bg highlight, box-shadow, and outline
+  - `TerminalContact.astro`: `.contact-entry:focus-visible` with green border, bg highlight, outline, and arrow reveal
+  - Nav links and blog post links already had proper focus styles (confirmed in audit)
+- **Screen reader** — all decorative `$` prompts, `[system]` prefixes, `##` hashes, `[0]` indices, file permissions, cursor spans, and meta labels confirmed to have `aria-hidden="true"` (no changes needed)
+- **Skip-to-content** — verified skip link `<a href="#main-content">` exists in `TerminalNav.astro` and target `#main-content` element exists on all three pages (homepage, blog listing, blog posts)
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged

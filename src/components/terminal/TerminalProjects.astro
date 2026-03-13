@@ -77,6 +77,14 @@ const { projects } = Astro.props
 		box-shadow: 0 0 20px rgba(57, 255, 20, 0.06);
 	}
 
+	.project-entry:focus-visible {
+		border-color: var(--term-green);
+		background: var(--term-bg-hover);
+		box-shadow: 0 0 20px rgba(57, 255, 20, 0.06);
+		outline: 1px solid var(--term-green);
+		outline-offset: 1px;
+	}
+
 	.project-header {
 		display: flex;
 		align-items: baseline;

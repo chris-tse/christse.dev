@@ -252,17 +252,17 @@ Override `@tailwindcss/typography` prose defaults for dark terminal theme.
 
 ## Task 12: Accessibility audit and fixes
 
-- [ ] **Color contrast**: Audit and fix WCAG AA compliance:
+- [x] **Color contrast**: Audit and fix WCAG AA compliance:
   - `.todo-item.done` at `opacity: 0.55` — increase to at least 0.7 or
     adjust colors
   - `.todo-meta` `#3d4455` on `#0d1117` — lighten to meet 4.5:1 ratio
   - `.project-desc` `#6c7080` on `#0a0e14` — lighten to meet 4.5:1
   - `.bar-title` `#5c6773` on `#151a24` — lighten to meet 4.5:1
-- [ ] **Keyboard navigation**: Add visible focus indicators (outline or ring)
+- [x] **Keyboard navigation**: Add visible focus indicators (outline or ring)
       for all interactive elements (project links, contact links, nav links)
-- [ ] **Screen reader**: Mark decorative `$` prompts and `[system]` prefixes
+- [x] **Screen reader**: Mark decorative `$` prompts and `[system]` prefixes
       with `aria-hidden="true"` where not already done
-- [ ] **Skip-to-content**: Verify the skip link from Task 5 works correctly
+- [x] **Skip-to-content**: Verify the skip link from Task 5 works correctly
 
 **Files:** Terminal component styles
 **Depends on:** Tasks 4, 5, 7
