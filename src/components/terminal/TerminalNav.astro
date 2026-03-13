@@ -1,0 +1,186 @@
+---
+interface Props {
+	hrefs?: {
+		about?: string
+		skills?: string
+		projects?: string
+		blog?: string
+		contact?: string
+	}
+}
+
+const {
+	hrefs: {
+		about = '#about',
+		skills = '#skills',
+		projects = '#projects',
+		blog = '/blog',
+		contact = '#contact',
+	} = {},
+} = Astro.props
+
+const currentPath = Astro.url.pathname
+const isBlogRoute = currentPath.startsWith('/blog')
+---
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<nav class="terminal-nav" aria-label="Main navigation">
+	<input
+		type="checkbox"
+		id="nav-toggle"
+		class="nav-toggle-input"
+		aria-hidden="true"
+	/>
+	<label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+		<span class="nav-toggle-icon" aria-hidden="true">[menu]</span>
+		<span class="nav-toggle-icon-close" aria-hidden="true">[x]</span>
+	</label>
+
+	<div class="nav-links">
+		<a href={about} class="nav-link">[about]</a>
+		<a href={skills} class="nav-link">[skills]</a>
+		<a href={projects} class="nav-link">[projects]</a>
+		<a href={blog} class:list={['nav-link', { active: isBlogRoute }]}>[blog]</a>
+		<a href={contact} class="nav-link">[contact]</a>
+	</div>
+</nav>
+
+<style>
+	/* ── Skip link ── */
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 0;
+		z-index: 200;
+		padding: 0.5rem 1rem;
+		background: #0d1117;
+		color: #39ff14;
+		font-size: 0.85rem;
+		text-decoration: none;
+		border: 1px solid #39ff14;
+		border-radius: 0 0 4px 0;
+	}
+
+	.skip-link:focus {
+		top: 0;
+	}
+
+	/* ── Nav container ── */
+	.terminal-nav {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin-left: auto;
+	}
+
+	/* ── Checkbox toggle (hidden) ── */
+	.nav-toggle-input {
+		display: none;
+	}
+
+	/* ── Toggle label (mobile only) ── */
+	.nav-toggle-label {
+		display: none;
+		cursor: pointer;
+		color: #5c6773;
+		font-size: 0.72rem;
+		letter-spacing: 0.03em;
+		padding: 0.2rem 0.4rem;
+		border-radius: 3px;
+		transition: color 0.2s;
+		user-select: none;
+	}
+
+	.nav-toggle-label:hover {
+		color: #b3b1ad;
+	}
+
+	.nav-toggle-icon-close {
+		display: none;
+	}
+
+	.nav-toggle-input:checked ~ .nav-toggle-label .nav-toggle-icon {
+		display: none;
+	}
+
+	.nav-toggle-input:checked ~ .nav-toggle-label .nav-toggle-icon-close {
+		display: inline;
+	}
+
+	/* ── Nav links ── */
+	.nav-links {
+		display: flex;
+		gap: 0.25rem;
+		align-items: center;
+	}
+
+	.nav-link {
+		color: #5c6773;
+		text-decoration: none;
+		font-size: 0.72rem;
+		letter-spacing: 0.03em;
+		padding: 0.2rem 0.4rem;
+		border-radius: 3px;
+		transition:
+			color 0.2s,
+			background-color 0.2s;
+		white-space: nowrap;
+	}
+
+	.nav-link:hover,
+	.nav-link:focus-visible {
+		color: #39ff14;
+		background-color: rgba(57, 255, 20, 0.06);
+	}
+
+	.nav-link:focus-visible {
+		outline: 1px solid #39ff14;
+		outline-offset: 1px;
+	}
+
+	.nav-link.active {
+		color: #b3b1ad;
+	}
+
+	/* ── Mobile: collapse behind toggle ── */
+	@media (max-width: 700px) {
+		.nav-toggle-label {
+			display: block;
+		}
+
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			right: 0;
+			flex-direction: column;
+			align-items: stretch;
+			background: #151a24;
+			border: 1px solid #1d2433;
+			border-top: none;
+			border-radius: 0 0 6px 6px;
+			padding: 0.5rem;
+			min-width: 140px;
+			z-index: 50;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+		}
+
+		.nav-toggle-input:checked ~ .nav-links {
+			display: flex;
+		}
+
+		.nav-link {
+			padding: 0.4rem 0.6rem;
+			font-size: 0.8rem;
+		}
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		.nav-link,
+		.nav-toggle-label {
+			transition: none;
+		}
+	}
+</style>

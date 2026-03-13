@@ -70,3 +70,22 @@
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
 - Ran `bun format:write` — formatting applied
 - Commit: `feat: create terminal section components for homepage migration`
+
+## 2026-03-13 Task 5: Create terminal navigation
+
+- Created `src/components/terminal/TerminalNav.astro`
+- Props: `hrefs?` object with optional overrides for `about`, `skills`, `projects`, `blog`, `contact` (defaults to anchor links `#about`, `#skills`, `#projects`, `/blog`, `#contact`)
+- Bracketed terminal-style links: `[about]`, `[skills]`, `[projects]`, `[blog]`, `[contact]`
+- Blog link detects active route via `Astro.url.pathname` and highlights with `.active` class
+- Mobile (< 700px): CSS-only toggle using hidden checkbox + label — no JavaScript required
+  - `[menu]` / `[x]` toggle label shown on mobile
+  - Nav links collapse into dropdown positioned absolutely below terminal bar
+  - Dark dropdown with border, shadow, and rounded bottom corners
+- Skip-to-content link: `<a href="#main-content" class="skip-link">` — hidden until focused, then appears at top-left with green terminal styling
+- Focus-visible indicators: green outline on all nav links for keyboard navigation
+- `prefers-reduced-motion`: disables transitions on nav links and toggle
+- Updated `TerminalWindow.astro` to accept `<slot name="nav" />` in the terminal bar for nav composition
+- Added `position: relative` to `.terminal-bar` for mobile dropdown positioning
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
+- Ran `bun format:write` — formatting applied
+- Commit: `feat: create TerminalNav.astro with terminal-themed navigation`
