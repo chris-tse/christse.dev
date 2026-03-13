@@ -1,0 +1,157 @@
+---
+interface Project {
+	name: string
+	description: string
+	href: string
+	technologies: string[]
+}
+
+interface Props {
+	projects: Project[]
+}
+
+const { projects } = Astro.props
+---
+
+<section class="block block-projects">
+	<p class="cmd-line typed">
+		<span class="prompt" aria-hidden="true">$</span> find ~/projects -type f -name
+		"*.ship"
+	</p>
+	<div class="output project-list">
+		{
+			projects.map((project, i) => (
+				<a
+					href={project.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="project-entry"
+				>
+					<div class="project-header">
+						<span class="project-idx" aria-hidden="true">
+							[{i}]
+						</span>
+						<span class="project-name">{project.name}</span>
+						<span class="project-link">OPEN</span>
+					</div>
+					<p class="project-desc">{project.description}</p>
+					<div class="project-tech">
+						{project.technologies.map((tech) => (
+							<span class="tech-tag">{tech}</span>
+						))}
+					</div>
+				</a>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.block {
+		margin-bottom: 2rem;
+	}
+
+	.cmd-line {
+		margin: 0;
+		font-size: 0.88rem;
+		white-space: pre-wrap;
+	}
+
+	.prompt {
+		color: #39ff14;
+		font-weight: 700;
+		margin-right: 0.5rem;
+		user-select: none;
+	}
+
+	.project-list {
+		display: grid;
+		gap: 0.5rem;
+		margin: 0.5rem 0 0 1.25rem;
+		padding-left: 0.75rem;
+		border-left: 2px solid #1d2433;
+		font-size: 0.88rem;
+	}
+
+	.project-entry {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		padding: 0.85rem 1rem;
+		border: 1px solid #1d2433;
+		border-radius: 4px;
+		background: #0a0e14;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.project-entry:hover {
+		border-color: #39ff14;
+		background: #0f1520;
+		box-shadow: 0 0 20px rgba(57, 255, 20, 0.06);
+	}
+
+	.project-header {
+		display: flex;
+		align-items: baseline;
+		gap: 0.65rem;
+	}
+
+	.project-idx {
+		color: #5c6773;
+		font-size: 0.78rem;
+	}
+
+	.project-name {
+		color: #e6e1cf;
+		font-weight: 700;
+		font-size: 0.95rem;
+	}
+
+	.project-link {
+		margin-left: auto;
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #39ff14;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	.project-entry:hover .project-link {
+		opacity: 1;
+	}
+
+	.project-desc {
+		margin: 0.4rem 0 0.6rem;
+		font-size: 0.82rem;
+		color: #6c7080;
+		max-width: 60ch;
+	}
+
+	.project-tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.tech-tag {
+		padding: 0.15rem 0.5rem;
+		border: 1px solid #1d2433;
+		border-radius: 3px;
+		font-size: 0.72rem;
+		color: #59c2ff;
+		background: #0d1117;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.project-entry,
+		.project-link {
+			transition: none;
+			opacity: 1;
+		}
+	}
+</style>

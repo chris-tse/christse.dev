@@ -1,0 +1,72 @@
+---
+interface Props {
+	skills: string[]
+}
+
+const { skills } = Astro.props
+---
+
+<section class="block block-skills">
+	<p class="cmd-line typed">
+		<span class="prompt" aria-hidden="true">$</span> ls ~/skills/
+	</p>
+	<div class="output skill-grid">
+		{
+			skills.map((skill, i) => (
+				<span class="skill-item" style={`--i: ${i}`}>
+					{skill}/
+				</span>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.block {
+		margin-bottom: 2rem;
+	}
+
+	.cmd-line {
+		margin: 0;
+		font-size: 0.88rem;
+		white-space: pre-wrap;
+	}
+
+	.prompt {
+		color: #39ff14;
+		font-weight: 700;
+		margin-right: 0.5rem;
+		user-select: none;
+	}
+
+	.skill-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 1.2rem;
+		margin: 0.5rem 0 0 1.25rem;
+		padding-left: 0.75rem;
+		border-left: 2px solid #1d2433;
+		font-size: 0.88rem;
+	}
+
+	.skill-item {
+		color: #7ee787;
+		font-size: 0.88rem;
+		animation: typeIn 0.3s ease forwards;
+		animation-delay: calc(var(--i) * 0.06s);
+		opacity: 0;
+	}
+
+	@keyframes typeIn {
+		to {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.skill-item {
+			animation: none;
+			opacity: 1;
+		}
+	}
+</style>

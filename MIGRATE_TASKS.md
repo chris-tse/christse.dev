@@ -84,24 +84,24 @@ Extract the CRT scanline and flicker overlays into a standalone component.
 Extract each section from experimental-5 into its own component. Each component
 receives its data via props (no direct JSON imports — the page passes data down).
 
-- [ ] `src/components/terminal/TerminalBoot.astro` — system boot messages
-- [ ] `src/components/terminal/TerminalHero.astro` — ASCII art + `cat tagline.md`
+- [x] `src/components/terminal/TerminalBoot.astro` — system boot messages
+- [x] `src/components/terminal/TerminalHero.astro` — ASCII art + `cat tagline.md`
       output. Props: `asciiName: string[]`
-- [ ] `src/components/terminal/TerminalAbout.astro` — **NEW section** styled as
+- [x] `src/components/terminal/TerminalAbout.astro` — **NEW section** styled as
       `$ cat about.md`. Content: bio from current `About.astro` (7+ years
       experience, community involvement, hobbies)
-- [ ] `src/components/terminal/TerminalSkills.astro` — `ls ~/skills/` grid.
+- [x] `src/components/terminal/TerminalSkills.astro` — `ls ~/skills/` grid.
       Props: `skills: string[]`
-- [ ] `src/components/terminal/TerminalCareer.astro` — todo-list career history
+- [x] `src/components/terminal/TerminalCareer.astro` — todo-list career history
       with subagent block for latest role. Props: `workHistory` array,
       `toolNames: string[]`
-- [ ] `src/components/terminal/TerminalProjects.astro` — `find ~/projects`
+- [x] `src/components/terminal/TerminalProjects.astro` — `find ~/projects`
       listing. Props: `projects` array
-- [ ] `src/components/terminal/TerminalContact.astro` — contact links grid.
+- [x] `src/components/terminal/TerminalContact.astro` — contact links grid.
       Props: `contactLinks` array. Add Twitter/X link
       (`https://x.com/ChrisMTse`) and resume download link (`/resume.pdf`)
-- [ ] `src/components/terminal/TerminalPrompt.astro` — blinking cursor
-- [ ] `src/components/terminal/TerminalFooter.astro` — footer bar
+- [x] `src/components/terminal/TerminalPrompt.astro` — blinking cursor
+- [x] `src/components/terminal/TerminalFooter.astro` — footer bar
 
 **Files:** `src/components/terminal/*.astro`
 **Depends on:** None

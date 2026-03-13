@@ -1,0 +1,55 @@
+---
+
+---
+
+<section class="block block-boot">
+	<p class="sys-line">
+		<span class="prompt-sys" aria-hidden="true">[system]</span> booting christse.dev
+		v5.0.0 ...
+	</p>
+	<p class="sys-line">
+		<span class="prompt-sys" aria-hidden="true">[system]</span> loading modules: portfolio,
+		career, projects, contact
+	</p>
+	<p class="sys-line success">
+		<span class="prompt-sys" aria-hidden="true">[system]</span> ready. type
+		<code>help</code> for available commands.
+	</p>
+</section>
+
+<style>
+	.block {
+		margin-bottom: 2rem;
+	}
+
+	.block-boot {
+		margin-bottom: 1.5rem;
+	}
+
+	.block-boot .sys-line + .sys-line {
+		margin-top: 0.15rem;
+	}
+
+	.sys-line {
+		margin: 0;
+		font-size: 0.88rem;
+		white-space: pre-wrap;
+	}
+
+	.prompt-sys {
+		color: #e6b450;
+		font-weight: 600;
+		margin-right: 0.35rem;
+	}
+
+	.sys-line.success {
+		color: #39ff14;
+	}
+
+	.sys-line.success code {
+		background: #1a2b1a;
+		padding: 0.1rem 0.4rem;
+		border-radius: 3px;
+		color: #7ee787;
+	}
+</style>

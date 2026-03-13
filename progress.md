@@ -51,3 +51,22 @@
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build
 - Ran `bun format:write` — formatting applied
 - Commit: `feat: create CrtOverlay.astro with scanline and flicker effects`
+
+## 2026-03-13 Task 4: Create terminal section components
+
+- Created all 9 terminal section components in `src/components/terminal/`:
+  - **TerminalBoot.astro** — system boot messages with `[system]` prefixes marked `aria-hidden`; scoped styles for `.sys-line`, `.prompt-sys`, `.success`
+  - **TerminalHero.astro** — ASCII art name + `cat tagline.md` output; Props: `asciiName: string[]`; responsive `clamp()` font sizing for ASCII art; scoped styles for `.ascii-art`, `.md-output`, `.md-heading`
+  - **TerminalAbout.astro** — NEW section styled as `$ cat about.md`; content from About.astro (7+ years experience, community involvement, hobbies); two paragraphs with proper spacing
+  - **TerminalSkills.astro** — `ls ~/skills/` grid; Props: `skills: string[]`; staggered `typeIn` animation with CSS custom property `--i`; `prefers-reduced-motion` support
+  - **TerminalCareer.astro** — todo-list career history; Props: `workHistory` array, `toolNames: string[]`; reversed chronological order; latest role marked `in-progress` with subagent block and tool-call pairs; responsive mobile layout (single-column tool-call pairs); `prefers-reduced-motion` support for pulse-glow animation
+  - **TerminalProjects.astro** — `find ~/projects` listing; Props: `projects` array; clickable cards with tech tags; hover effects (green border glow, OPEN label); `prefers-reduced-motion` support
+  - **TerminalContact.astro** — `christse --contact --list`; Props: `contactLinks` array; hover effects with arrow reveal; proper `target`/`rel` handling for mailto vs external links; `prefers-reduced-motion` support
+  - **TerminalPrompt.astro** — blinking cursor with `step-end` animation; `prefers-reduced-motion` support
+  - **TerminalFooter.astro** — footer bar with session info; responsive mobile layout (column direction at 700px)
+- All decorative `$` prompts and `[system]` prefixes marked with `aria-hidden="true"`
+- Each component has self-contained scoped styles extracted from experimental-5
+- Data passed via props (no direct JSON imports in components — page passes data down)
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
+- Ran `bun format:write` — formatting applied
+- Commit: `feat: create terminal section components for homepage migration`
