@@ -136,3 +136,34 @@
 - Set `title="Chris Tse - Frontend Engineer"`, `canonical="https://christse.dev/"`
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — no changes needed
 - Commit: `feat: assemble terminal homepage from extracted components`
+
+## 2026-03-13 Task 8: Build terminal-themed blog post layout
+
+- Created `src/layouts/TerminalBlogPostLayout.astro`
+- Uses `TerminalLayout.astro` as the base (handles `<html>`, `<head>`, SEO, fonts, analytics)
+- Props: `title`, `pubDate`, `heroImage`, `description`, `socialImage`
+- Composes: `CrtOverlay`, `TerminalWindow` (with slug-based title `christse@portfolio ~/blog/{slug}`), `TerminalNav` (with homepage anchor hrefs), `TerminalFooter`
+- **Header**: terminal prompt `$ cat blog/{slug}.md` above the post title
+- **Hero image**: optional hero image with terminal-styled border, `transition:name` for view transitions
+- **Article meta**: date and author styled as terminal key-value output with blue labels (`date:`, `author:`)
+- **Content area**: `.post-content.prose` with dark terminal-themed overrides:
+  - `max-width: 72ch` for comfortable monospace reading
+  - `line-height: 1.9` (within the 1.8-2.0 range from spec)
+  - `font-size: 0.95rem`, `color: var(--term-text-output)` (soft off-white on dark)
+  - Paragraph spacing: `mb-6`
+  - Headings: bright text with `h2` bottom border separator
+  - Links: terminal blue `#59c2ff` with underline, green on hover
+  - Blockquotes: left border in terminal green, dimmed italic text, subtle green tint bg
+  - Inline code: green on dark green background (`--term-green-code-bg`)
+  - Code blocks: deepest dark bg with border, generous padding
+  - Lists: proper marker colors (muted for `ul`, blue for `ol`)
+  - HR: subtle terminal border
+  - Tables: bar-styled header, bordered cells
+  - Images: rounded with terminal border
+- **Back link**: `$ cd ~/blog/` styled as terminal command, links to `/blog`
+- **View transitions**: `transition:name` on title, date, and hero image
+- **Terminal nav**: consistent with homepage, using `/#about`, `/#skills` etc. for cross-page navigation
+- **Accessibility**: decorative `$` prompt marked `aria-hidden="true"`, focus-visible indicators on back link
+- **Responsive**: clamp-based title sizing, adjusts at 700px breakpoint
+- **Reduced motion**: transitions disabled
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — no changes needed
