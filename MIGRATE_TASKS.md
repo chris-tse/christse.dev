@@ -309,8 +309,8 @@ with browser devtools
 
 ## Task 15: Fix `site.webmanifest`
 
-- [ ] Set `name` to `"Chris Tse"` and `short_name` to `"Chris Tse"`
-- [ ] Update `theme_color` and `background_color` to match the terminal theme
+- [x] Set `name` to `"Chris Tse"` and `short_name` to `"Chris Tse"`
+- [x] Update `theme_color` and `background_color` to match the terminal theme
       (e.g., `#0a0e14`)
 
 **File:** `public/site.webmanifest`
