@@ -242,3 +242,14 @@
 - **Screen reader** — all decorative `$` prompts, `[system]` prefixes, `##` hashes, `[0]` indices, file permissions, cursor spans, and meta labels confirmed to have `aria-hidden="true"` (no changes needed)
 - **Skip-to-content** — verified skip link `<a href="#main-content">` exists in `TerminalNav.astro` and target `#main-content` element exists on all three pages (homepage, blog listing, blog posts)
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged
+
+## 2026-03-13 Task 15: Fix site.webmanifest
+
+- Updated `public/site.webmanifest`:
+  - Set `name` to `"Chris Tse"` (was empty string)
+  - Set `short_name` to `"Chris Tse"` (was empty string)
+  - Updated `theme_color` from `#ffffff` to `#0a0e14` (terminal background)
+  - Updated `background_color` from `#ffffff` to `#0a0e14` (terminal background)
+- Icons unchanged: `android-chrome-192x192.png` and `android-chrome-512x512.png`
+- Display mode unchanged: `standalone`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
