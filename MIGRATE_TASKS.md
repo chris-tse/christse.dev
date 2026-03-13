@@ -292,13 +292,13 @@ with browser devtools
 
 ## Task 14: Fonts — switch to JetBrains Mono, remove Lexend
 
-- [ ] Remove Lexend Google Fonts link from `Layout.astro`
-- [ ] Add JetBrains Mono Google Fonts link to `TerminalLayout.astro` (done in
+- [x] Remove Lexend Google Fonts link from `Layout.astro`
+- [x] Add JetBrains Mono Google Fonts link to `TerminalLayout.astro` (done in
       Task 1, verify weights: 400, 500, 600, 700, 800 — drop 300 weight)
-- [ ] Update `BlogPostLayout.astro` to use JetBrains Mono instead of Lexend
+- [x] Update `BlogPostLayout.astro` to use JetBrains Mono instead of Lexend
       (for the transition period while old blog pages exist)
-- [ ] Consider self-hosting via `@fontsource/jetbrains-mono` — evaluate in a
-      future task
+- [-] Consider self-hosting via `@fontsource/jetbrains-mono` — evaluate in a
+  future task
 
 **Files:** `src/layouts/TerminalLayout.astro`, `src/layouts/Layout.astro`,
 `src/layouts/BlogPostLayout.astro`
