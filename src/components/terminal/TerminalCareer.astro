@@ -1,0 +1,371 @@
+---
+interface WorkHistoryItem {
+	employer: string
+	title: string
+	dateRange: string
+	description: string[]
+}
+
+interface Props {
+	workHistory: WorkHistoryItem[]
+	toolNames: string[]
+}
+
+const { workHistory, toolNames } = Astro.props
+const latestRole = workHistory[0]
+---
+
+<section class="block block-career">
+	<p class="cmd-line typed">
+		<span class="prompt" aria-hidden="true">$</span> todo list --career
+	</p>
+	<div class="output">
+		<div class="todo-list" role="list" aria-label="Career history">
+			{
+				[...workHistory].reverse().map((job, i, arr) => {
+					const isActive = i === arr.length - 1
+					return (
+						<div
+							class={`todo-item ${isActive ? 'in-progress' : 'done'}`}
+							role="listitem"
+						>
+							<span class="todo-check" aria-hidden="true">
+								{isActive ? '>' : 'x'}
+							</span>
+							<div class="todo-content">
+								<div class="todo-title-row">
+									<span class="todo-title">
+										{job.title} @ {job.employer}
+									</span>
+									<span
+										class={`todo-badge ${isActive ? 'badge-active' : 'badge-done'}`}
+									>
+										{isActive ? 'in_progress' : 'completed'}
+									</span>
+								</div>
+								<span class="todo-meta">{job.dateRange}</span>
+								{isActive && (
+									<div class="subagent-block">
+										<div class="subagent-header">
+											<span class="subagent-icon" aria-hidden="true">
+												Task
+											</span>
+											<span class="subagent-label">
+												Expand '{latestRole?.title}'
+											</span>
+											<span class="subagent-meta">
+												subagent: explore | status: working
+											</span>
+										</div>
+										<div class="subagent-body">
+											{latestRole?.description.map((item, idx) => (
+												<div class="tool-call-pair">
+													<div class="tool-call">
+														<div class="tool-call-header">
+															<span class="tool-icon" aria-hidden="true">
+																{toolNames[idx % toolNames.length]}
+															</span>
+														</div>
+													</div>
+													<div class="task-result">
+														<div class="task-result-body">
+															<p>{item}</p>
+														</div>
+													</div>
+												</div>
+											))}
+										</div>
+									</div>
+								)}
+							</div>
+						</div>
+					)
+				})
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.block {
+		margin-bottom: 2rem;
+	}
+
+	.cmd-line {
+		margin: 0;
+		font-size: 0.88rem;
+		white-space: pre-wrap;
+	}
+
+	.prompt {
+		color: #39ff14;
+		font-weight: 700;
+		margin-right: 0.5rem;
+		user-select: none;
+	}
+
+	.output {
+		margin: 0.5rem 0 0 1.25rem;
+		padding-left: 0.75rem;
+		border-left: 2px solid #1d2433;
+		color: #acb2c0;
+		font-size: 0.88rem;
+	}
+
+	/* ── Career todo list ── */
+	.todo-list {
+		display: grid;
+		gap: 0;
+		font-size: 0.86rem;
+	}
+
+	.todo-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.65rem;
+		padding: 0.55rem 0;
+		border-bottom: 1px dashed #141a24;
+	}
+
+	.todo-item.done {
+		opacity: 0.55;
+	}
+
+	.todo-item.in-progress {
+		opacity: 1;
+		background: linear-gradient(
+			90deg,
+			rgba(89, 194, 255, 0.04) 0%,
+			transparent 100%
+		);
+		padding-left: 0.5rem;
+		margin-left: -0.5rem;
+		border-left: 2px solid #59c2ff;
+		border-bottom: none;
+	}
+
+	.todo-check {
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.4rem;
+		height: 1.4rem;
+		border-radius: 3px;
+		font-size: 0.72rem;
+		font-weight: 800;
+		margin-top: 0.1rem;
+		line-height: 1;
+	}
+
+	.done .todo-check {
+		border: 1px solid #2a3040;
+		color: #3d4455;
+		background: #0a0e14;
+		text-decoration: line-through;
+	}
+
+	.in-progress .todo-check {
+		border: 1px solid #59c2ff;
+		color: #59c2ff;
+		background: #0f1520;
+		animation: pulse-glow 2s ease-in-out infinite;
+	}
+
+	@keyframes pulse-glow {
+		0%,
+		100% {
+			box-shadow: 0 0 4px rgba(89, 194, 255, 0.15);
+		}
+		50% {
+			box-shadow: 0 0 10px rgba(89, 194, 255, 0.35);
+		}
+	}
+
+	.todo-content {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.todo-title-row {
+		display: flex;
+		align-items: baseline;
+		gap: 0.65rem;
+		flex-wrap: wrap;
+	}
+
+	.todo-title {
+		color: #acb2c0;
+		font-weight: 500;
+	}
+
+	.done .todo-title {
+		text-decoration: line-through;
+		text-decoration-color: #2a3040;
+	}
+
+	.in-progress .todo-title {
+		color: #e6e1cf;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.todo-badge {
+		font-size: 0.66rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		padding: 0.12rem 0.45rem;
+		border-radius: 3px;
+	}
+
+	.badge-done {
+		color: #3d4455;
+		background: #141a24;
+		border: 1px solid #1d2433;
+	}
+
+	.badge-active {
+		color: #59c2ff;
+		background: #0f1520;
+		border: 1px solid #1a2a3a;
+	}
+
+	.todo-meta {
+		display: block;
+		margin-top: 0.15rem;
+		font-size: 0.72rem;
+		color: #3d4455;
+		letter-spacing: 0.04em;
+	}
+
+	.in-progress .todo-meta {
+		color: #5c6773;
+	}
+
+	/* ── Subagent block ── */
+	.subagent-block {
+		margin-top: 0.65rem;
+		border-left: 2px solid #2a3a50;
+		border-radius: 0;
+		overflow: hidden;
+	}
+
+	.subagent-header {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.4rem 0.75rem;
+		background: transparent;
+		border-bottom: 1px dashed #1d2433;
+		flex-wrap: wrap;
+	}
+
+	.subagent-icon {
+		flex-shrink: 0;
+		font-size: 0.68rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #d2a6ff;
+		background: #1a1228;
+		border: 1px solid #2a1f3d;
+		padding: 0.12rem 0.45rem;
+		border-radius: 3px;
+	}
+
+	.subagent-label {
+		font-size: 0.82rem;
+		color: #acb2c0;
+		font-weight: 600;
+	}
+
+	.subagent-meta {
+		margin-left: auto;
+		font-size: 0.62rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #3d4455;
+	}
+
+	.subagent-body {
+		padding: 0.5rem 0.75rem;
+		background: transparent;
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	/* ── Tool call pairs ── */
+	.tool-call-pair {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+		gap: 0;
+		border: 1px solid #1d2433;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+
+	.tool-call {
+		border-right: 1px solid #1d2433;
+		background: #131820;
+	}
+
+	.tool-call-header {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.55rem 0.75rem;
+		height: 100%;
+	}
+
+	.tool-icon {
+		flex-shrink: 0;
+		font-size: 0.68rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #d2a6ff;
+		background: #1a1228;
+		border: 1px solid #2a1f3d;
+		padding: 0.12rem 0.45rem;
+		border-radius: 3px;
+	}
+
+	.task-result {
+		background: #0a0e14;
+	}
+
+	.task-result-body {
+		padding: 0.15rem 0.75rem 0.55rem;
+	}
+
+	.task-result-body p {
+		margin: 0;
+		font-size: 0.82rem;
+		color: #8b919e;
+		line-height: 1.5;
+	}
+
+	@media (max-width: 700px) {
+		.todo-title-row {
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		.tool-call-pair {
+			grid-template-columns: 1fr;
+		}
+
+		.tool-call {
+			border-right: none;
+			border-bottom: 1px solid #1d2433;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.in-progress .todo-check {
+			animation: none;
+		}
+	}
+</style>

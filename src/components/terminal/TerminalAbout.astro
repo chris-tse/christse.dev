@@ -1,0 +1,82 @@
+---
+
+---
+
+<section class="block block-about">
+	<p class="cmd-line">
+		<span class="prompt" aria-hidden="true">$</span> cat about.md
+	</p>
+	<div class="output md-output">
+		<p class="md-heading">
+			<span class="md-hash" aria-hidden="true">##</span> About Me
+		</p>
+		<p>
+			I'm a frontend engineer with 7+ years of experience building modern web
+			applications. I specialize in React, TypeScript, and responsive design,
+			with a strong focus on creating accessible and performant user interfaces.
+		</p>
+		<p>
+			When I'm not coding, you can find me engaging in my local tech community
+			through organizing meetups and mentoring aspiring developers. You can also
+			find me at the gym, practicing my Japanese, or just enjoying a fun video
+			game with friends.
+		</p>
+	</div>
+</section>
+
+<style>
+	.block {
+		margin-bottom: 2rem;
+	}
+
+	.cmd-line {
+		margin: 0;
+		font-size: 0.88rem;
+		white-space: pre-wrap;
+	}
+
+	.prompt {
+		color: #39ff14;
+		font-weight: 700;
+		margin-right: 0.5rem;
+		user-select: none;
+	}
+
+	.output {
+		margin: 0.5rem 0 0 1.25rem;
+		padding-left: 0.75rem;
+		border-left: 2px solid #1d2433;
+		color: #acb2c0;
+		font-size: 0.88rem;
+	}
+
+	.output p {
+		margin: 0;
+		max-width: 68ch;
+	}
+
+	.output p + p {
+		margin-top: 0.75rem;
+	}
+
+	.md-output p {
+		margin: 0;
+	}
+
+	.md-output p + p {
+		margin-top: 0.75rem;
+	}
+
+	.md-heading {
+		font-size: 1.2rem;
+		font-weight: 700;
+		color: #e6e1cf;
+		margin-bottom: 0.4rem;
+	}
+
+	.md-hash {
+		color: #5c6773;
+		margin-right: 0.35rem;
+		font-weight: 400;
+	}
+</style>
