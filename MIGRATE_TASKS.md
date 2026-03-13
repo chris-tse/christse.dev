@@ -65,12 +65,12 @@ reusable component.
 
 Extract the CRT scanline and flicker overlays into a standalone component.
 
-- [ ] Create `src/components/terminal/CrtOverlay.astro`
-- [ ] Markup: two `div`s (`.scanlines` and `.crt-flicker`), both `aria-hidden="true"`
-- [ ] Include scoped styles for scanlines gradient, flicker animation, and
+- [x] Create `src/components/terminal/CrtOverlay.astro`
+- [x] Markup: two `div`s (`.scanlines` and `.crt-flicker`), both `aria-hidden="true"`
+- [x] Include scoped styles for scanlines gradient, flicker animation, and
       `position: fixed` overlay positioning
-- [ ] Add `will-change: opacity` to `.crt-flicker` for GPU compositing
-- [ ] Respect `prefers-reduced-motion` — disable animations when reduced motion
+- [x] Add `will-change: opacity` to `.crt-flicker` for GPU compositing
+- [x] Respect `prefers-reduced-motion` — disable animations when reduced motion
       is preferred
 
 **File:** `src/components/terminal/CrtOverlay.astro`
