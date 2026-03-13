@@ -290,3 +290,12 @@
   - Blockquotes: reduced padding, removed margin
 - **Already verified as working**: ASCII art scales via `clamp()` with `overflow-x: auto` fallback; footer collapses to column at 700px; terminal nav CSS-only toggle works on mobile; blog post layout adjusts heading size at 700px with `clamp()`
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged
+
+## 2026-03-13 Task 14: Fonts — switch to JetBrains Mono, remove Lexend
+
+- **`Layout.astro`**: Replaced Lexend Google Fonts link (`Lexend:wght@100..900`) with JetBrains Mono (`JetBrains+Mono:wght@400;500;600;700;800`); added inline `font-family: 'JetBrains Mono', monospace` to body
+- **`BlogPostLayout.astro`**: Replaced Lexend Google Fonts link with JetBrains Mono (same weights); replaced `font-sans` class with `font-mono` on content wrapper; added inline `font-family: 'JetBrains Mono', monospace` for explicit font application
+- **`TerminalLayout.astro`**: Already had JetBrains Mono with correct weights (400, 500, 600, 700, 800) — verified, no changes needed
+- **Self-hosting** (`@fontsource/jetbrains-mono`): Marked as skipped/deferred — evaluate in a future task
+- No Lexend references remain in any source code files (only in documentation/planning files)
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — formatting applied to BlogPostLayout.astro
