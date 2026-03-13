@@ -2,13 +2,11 @@
 /**
  * Terminal-themed blog post page (redesign)
  *
- * Parallel to /blog/[slug] -- same content collection, new terminal layout.
+ * Parallel to /blog/[slug] -- same content collection, terminal layout.
  * Once finalised, this replaces src/pages/blog/[...slug].astro.
- *
- * TODO: Replace Layout import with a terminal-themed BlogPostLayout.
  */
 import { getCollection, render } from 'astro:content'
-import Layout from '../../layouts/BlogPostLayout.astro'
+import TerminalBlogPostLayout from '../../layouts/TerminalBlogPostLayout.astro'
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts')
@@ -22,18 +20,12 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<Layout
+<TerminalBlogPostLayout
 	title={entry.data.title}
 	pubDate={entry.data.publishedAt.toDateString() ?? null}
 	heroImage={entry.data.coverImage ?? null}
 	description={entry.data.description ?? null}
 	socialImage={entry.data.coverImage ?? null}
 >
-	<!-- TODO: Terminal-themed blog post layout
-	     - Dark background, JetBrains Mono
-	     - "cat blog/post-title.md" prompt header
-	     - Comfy reading styles: line-height 1.8-2.0, max-w-2xl/3xl, generous padding
-	     - Dark prose overrides for @tailwindcss/typography
-	-->
 	<Content />
-</Layout>
+</TerminalBlogPostLayout>
