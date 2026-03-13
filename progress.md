@@ -218,3 +218,12 @@
   - Reduced motion: disables link transitions
 - Replaced `@apply` Tailwind directives with plain CSS values (avoids dependency on Tailwind processing within plain CSS files)
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — formatting applied
+
+## 2026-03-13 Task 11: Update blog-redesign [...slug].astro to use terminal layout
+
+- Updated `src/pages/blog-redesign/[...slug].astro` to import `TerminalBlogPostLayout.astro` instead of `BlogPostLayout.astro`
+- Replaced `<Layout>` usage with `<TerminalBlogPostLayout>`, passing all required props: `title`, `pubDate`, `heroImage`, `description`, `socialImage`
+- Removed TODO comments (terminal blog post layout is now fully implemented via Task 8)
+- Updated JSDoc comment to reflect current state (no longer "new", layout is terminal-themed)
+- Content is rendered via `<Content />` inside `<slot />` which gets terminal prose styling from `terminal.css`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged

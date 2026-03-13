@@ -240,9 +240,9 @@ Override `@tailwindcss/typography` prose defaults for dark terminal theme.
 
 ## Task 11: Update blog-redesign `[...slug].astro` to use terminal layout
 
-- [ ] Update `src/pages/blog-redesign/[...slug].astro` to import
+- [x] Update `src/pages/blog-redesign/[...slug].astro` to import
       `TerminalBlogPostLayout.astro` instead of `BlogPostLayout.astro`
-- [ ] Pass all required props through
+- [x] Pass all required props through
 
 **File:** `src/pages/blog-redesign/[...slug].astro`
 **Depends on:** Task 8
