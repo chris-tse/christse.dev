@@ -1,0 +1,394 @@
+---
+import TerminalLayout from './TerminalLayout.astro'
+import CrtOverlay from '../components/terminal/CrtOverlay.astro'
+import TerminalWindow from '../components/terminal/TerminalWindow.astro'
+import TerminalNav from '../components/terminal/TerminalNav.astro'
+import TerminalFooter from '../components/terminal/TerminalFooter.astro'
+
+interface Props {
+	title?: string | null
+	pubDate?: string | null
+	heroImage?: string | null
+	description?: string | null
+	socialImage?: string | null
+}
+
+const { title, pubDate, heroImage, description, socialImage } = Astro.props
+
+const date = pubDate
+	? new Date(pubDate).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		})
+	: null
+
+const slug = Astro.params.slug ?? 'post'
+
+const navHrefs = {
+	about: '/#about',
+	skills: '/#skills',
+	projects: '/#projects',
+	blog: '/blog',
+	contact: '/#contact',
+}
+
+type TerminalLayoutProps = {
+	title: string
+	description?: string
+	canonical?: string
+	socialImage?: string
+}
+
+const layoutProps: TerminalLayoutProps = { title: title ?? 'Blog' }
+if (description) layoutProps.description = description
+if (socialImage) layoutProps.socialImage = socialImage
+---
+
+<TerminalLayout {...layoutProps}>
+	<CrtOverlay />
+
+	<TerminalWindow title={`christse@portfolio ~/blog/${slug}`}>
+		<TerminalNav slot="nav" hrefs={navHrefs} />
+
+		<article class="blog-post" id="main-content">
+			<!-- Terminal prompt header -->
+			<div class="block reveal d1">
+				<p class="cmd-line">
+					<span class="prompt" aria-hidden="true">$</span> cat blog/{slug}.md
+				</p>
+			</div>
+
+			<!-- Hero image -->
+			{
+				heroImage && (
+					<div class="hero-image reveal d2">
+						<img
+							src={heroImage}
+							alt={title ?? ''}
+							transition:name={`post-hero-${slug}`}
+						/>
+					</div>
+				)
+			}
+
+			<!-- Title and meta -->
+			<header class="post-header reveal d2">
+				<h1 transition:name={`post-title-${slug}`}>{title}</h1>
+				{
+					date && (
+						<div class="post-meta">
+							<p class="meta-line">
+								<span class="meta-label" aria-hidden="true">
+									date:
+								</span>
+								<time
+									datetime={pubDate ?? undefined}
+									transition:name={`post-date-${slug}`}
+								>
+									{date}
+								</time>
+							</p>
+							<p class="meta-line">
+								<span class="meta-label" aria-hidden="true">
+									author:
+								</span>
+								Chris Tse
+							</p>
+						</div>
+					)
+				}
+			</header>
+
+			<!-- Content -->
+			<div class="post-content prose reveal d3">
+				<slot />
+			</div>
+
+			<!-- Back link -->
+			<div class="back-link reveal d4">
+				<p class="cmd-line">
+					<span class="prompt" aria-hidden="true">$</span>
+					<a href="/blog">cd ~/blog/</a>
+				</p>
+			</div>
+		</article>
+	</TerminalWindow>
+
+	<TerminalFooter />
+</TerminalLayout>
+
+<style>
+	.blog-post {
+		max-width: 100%;
+	}
+
+	/* ── Hero image ── */
+	.hero-image {
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-image img {
+		width: 100%;
+		max-height: 400px;
+		object-fit: cover;
+		border-radius: 4px;
+		border: 1px solid var(--term-border);
+	}
+
+	/* ── Post header ── */
+	.post-header {
+		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--term-border);
+	}
+
+	.post-header h1 {
+		font-size: clamp(1.5rem, 4vw, 2.2rem);
+		font-weight: 700;
+		color: var(--term-text-bright);
+		line-height: 1.3;
+		margin: 0.75rem 0 1rem;
+	}
+
+	/* ── Meta info ── */
+	.post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.5rem;
+	}
+
+	.meta-line {
+		margin: 0;
+		font-size: 0.82rem;
+		color: var(--term-text-output);
+	}
+
+	.meta-label {
+		color: var(--term-blue);
+		margin-right: 0.35rem;
+	}
+
+	/* ── Back link ── */
+	.back-link {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--term-border);
+	}
+
+	.back-link a {
+		color: var(--term-blue);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.back-link a:hover,
+	.back-link a:focus-visible {
+		color: var(--term-green);
+		text-decoration: underline;
+	}
+
+	.back-link a:focus-visible {
+		outline: 1px solid var(--term-green);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 700px) {
+		.post-header h1 {
+			font-size: 1.4rem;
+		}
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		.back-link a {
+			transition: none;
+		}
+	}
+</style>
+
+<style is:global>
+	@reference '../styles/terminal.css';
+
+	/* ── Terminal Blog Prose Overrides ── */
+	.post-content.prose {
+		max-width: 72ch;
+		font-size: 0.95rem;
+		line-height: 1.9;
+		color: var(--term-text-output);
+	}
+
+	/* Paragraph spacing */
+	.post-content.prose p {
+		@apply mb-6;
+	}
+
+	/* Headings */
+	.post-content.prose h1,
+	.post-content.prose h2,
+	.post-content.prose h3,
+	.post-content.prose h4,
+	.post-content.prose h5,
+	.post-content.prose h6 {
+		color: var(--term-text-bright);
+		font-family: var(--term-font);
+	}
+
+	.post-content.prose h2 {
+		@apply text-xl mt-10 mb-4 font-bold;
+		border-bottom: 1px solid var(--term-border);
+		padding-bottom: 0.5rem;
+	}
+
+	.post-content.prose h3 {
+		@apply text-lg mt-8 mb-3 font-semibold;
+	}
+
+	.post-content.prose h4 {
+		@apply text-base mt-6 mb-2 font-semibold;
+	}
+
+	/* Links */
+	.post-content.prose a {
+		color: var(--term-blue);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: color 0.2s;
+	}
+
+	.post-content.prose a:hover {
+		color: var(--term-green);
+	}
+
+	/* Strong / emphasis */
+	.post-content.prose strong {
+		color: var(--term-text-bright);
+		font-weight: 600;
+	}
+
+	.post-content.prose em {
+		color: var(--term-text-output);
+	}
+
+	/* Blockquotes */
+	.post-content.prose blockquote {
+		border-left: 3px solid var(--term-green);
+		background: rgba(57, 255, 20, 0.03);
+		padding: 0.75rem 1rem;
+		margin: 1.5rem 0;
+		border-radius: 0 4px 4px 0;
+	}
+
+	.post-content.prose blockquote p {
+		color: var(--term-text-muted);
+		font-style: italic;
+		margin: 0;
+	}
+
+	/* Inline code */
+	.post-content.prose :not(pre) > code {
+		background: var(--term-green-code-bg);
+		color: var(--term-green-light);
+		padding: 0.15rem 0.4rem;
+		border-radius: 3px;
+		font-size: 0.88em;
+		font-family: var(--term-font);
+	}
+
+	/* Code blocks */
+	.post-content.prose pre {
+		background: var(--term-bg-deepest) !important;
+		border: 1px solid var(--term-border);
+		border-radius: 6px;
+		padding: 1.25rem;
+		margin: 1.5rem 0;
+		overflow-x: auto;
+		font-size: 0.85rem;
+		line-height: 1.7;
+	}
+
+	.post-content.prose pre code {
+		background: none;
+		padding: 0;
+		border-radius: 0;
+		color: var(--term-text-output);
+		font-size: inherit;
+	}
+
+	/* Lists */
+	.post-content.prose ul,
+	.post-content.prose ol {
+		padding-left: 1.5rem;
+		margin: 1rem 0;
+	}
+
+	.post-content.prose li {
+		margin-bottom: 0.5rem;
+		color: var(--term-text-output);
+	}
+
+	.post-content.prose li::marker {
+		color: var(--term-text-muted);
+	}
+
+	.post-content.prose ol li::marker {
+		color: var(--term-blue);
+	}
+
+	/* Horizontal rule */
+	.post-content.prose hr {
+		border: none;
+		border-top: 1px solid var(--term-border);
+		margin: 2rem 0;
+	}
+
+	/* Images */
+	.post-content.prose img {
+		border-radius: 4px;
+		border: 1px solid var(--term-border);
+	}
+
+	/* Tables */
+	.post-content.prose table {
+		border-collapse: collapse;
+		width: 100%;
+		margin: 1.5rem 0;
+	}
+
+	.post-content.prose th {
+		background: var(--term-bg-bar);
+		color: var(--term-text-bright);
+		font-weight: 600;
+		text-align: left;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid var(--term-border);
+	}
+
+	.post-content.prose td {
+		padding: 0.5rem 0.75rem;
+		border: 1px solid var(--term-border);
+		color: var(--term-text-output);
+	}
+
+	/* Figure / figcaption */
+	.post-content.prose figure > img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.post-content.prose figcaption {
+		text-align: center;
+		color: var(--term-text-muted);
+		font-size: 0.85rem;
+		margin-top: 0.5rem;
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		.post-content.prose a {
+			transition: none;
+		}
+	}
+</style>

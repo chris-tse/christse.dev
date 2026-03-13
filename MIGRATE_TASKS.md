@@ -177,21 +177,21 @@ Compose the new homepage from the extracted components and TerminalLayout.
 
 Create `TerminalBlogPostLayout.astro` for the blog-redesign post pages.
 
-- [ ] Create `src/layouts/TerminalBlogPostLayout.astro`
-- [ ] Use `TerminalLayout.astro` as the base (passes `<head>` tags, analytics,
+- [x] Create `src/layouts/TerminalBlogPostLayout.astro`
+- [x] Use `TerminalLayout.astro` as the base (passes `<head>` tags, analytics,
       fonts)
-- [ ] Props: `title`, `pubDate`, `heroImage`, `description`, `socialImage`
-- [ ] Header: terminal-styled prompt `$ cat blog/{slug}.md` above the title
+- [x] Props: `title`, `pubDate`, `heroImage`, `description`, `socialImage`
+- [x] Header: terminal-styled prompt `$ cat blog/{slug}.md` above the title
       (replaces the light gradient hero)
-- [ ] Include article meta (date, author) styled as terminal output
-- [ ] Content area: `<article>` with prose classes, dark-themed:
+- [x] Include article meta (date, author) styled as terminal output
+- [x] Content area: `<article>` with prose classes, dark-themed:
   - Max width: `max-w-3xl` (narrower for monospace readability)
   - Line height: `leading-loose` (1.8–2.0)
   - Generous padding: `px-6 md:px-10`
   - Paragraph spacing: `mb-6`
   - Soft off-white text on dark background
-- [ ] Add `transition:name` attributes for view transition animations
-- [ ] Include terminal nav consistent with homepage
+- [x] Add `transition:name` attributes for view transition animations
+- [x] Include terminal nav consistent with homepage
 
 **File:** `src/layouts/TerminalBlogPostLayout.astro`
 **Depends on:** Task 1
