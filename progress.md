@@ -167,3 +167,23 @@
 - **Responsive**: clamp-based title sizing, adjusts at 700px breakpoint
 - **Reduced motion**: transitions disabled
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — no changes needed
+
+## 2026-03-13 Task 9: Build terminal-themed blog listing
+
+- Updated `src/pages/blog-redesign.astro` to use `TerminalLayout.astro` instead of `Layout.astro`
+- Wrapped content in `TerminalWindow` (title: `christse@portfolio ~/blog`) + `CrtOverlay` + `TerminalFooter`
+- Included `TerminalNav` in terminal bar via named `nav` slot, with `navHrefs` pointing back to homepage sections (`/#about`, `/#skills`, etc.)
+- **Directory listing header**: `$ ls ~/blog/` command line + `[system] found N entries` count
+- **Post entries** styled as file listing:
+  - Each entry is a clickable `<article>` with `<a>` wrapping the entire card
+  - Header row: `-rw-r--r--` file permissions icon (hidden on mobile), date (mm/dd/yyyy), title in terminal blue
+  - Description: muted text below, max-width 68ch
+  - Tags: purple badges (`--term-purple` on `--term-purple-bg` with border)
+  - Hover: green left border, background highlight, title turns green
+  - Focus-visible: green outline for keyboard navigation
+- **View transitions**: `transition:name` on `post-title-{slug}` and `post-date-{slug}` for smooth transitions to/from blog post pages
+- **Blinking cursor prompt** at end of listing
+- **Responsive** (< 700px): post header stacks vertically, file permissions icon hidden, reduced padding
+- **Reduced motion**: all transitions disabled
+- **Accessibility**: decorative `$` and `[system]` prompts marked `aria-hidden="true"`, skip-to-content link via TerminalNav, focus indicators on all links
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — applied formatting
