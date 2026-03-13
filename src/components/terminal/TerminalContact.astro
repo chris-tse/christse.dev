@@ -67,6 +67,17 @@ const { contactLinks } = Astro.props
 		background: var(--term-bg-hover);
 	}
 
+	.contact-entry:focus-visible {
+		border-color: var(--term-green);
+		background: var(--term-bg-hover);
+		outline: 1px solid var(--term-green);
+		outline-offset: 1px;
+	}
+
+	.contact-entry:focus-visible .contact-arrow {
+		opacity: 1;
+	}
+
 	.contact-cmd {
 		color: var(--term-purple);
 		font-size: 0.78rem;
