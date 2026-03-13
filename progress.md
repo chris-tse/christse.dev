@@ -120,3 +120,19 @@
 - **Updated `TerminalLayout.astro`** to import `terminal.css` alongside `global.css`
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
 - Ran `bun format:write` — all files unchanged (already formatted)
+
+## 2026-03-13 Task 7: Assemble new index.astro
+
+- Replaced `src/pages/index.astro` with the terminal design, composing all extracted components
+- Uses `TerminalLayout.astro` as the base layout (handles `<html>`, `<head>`, SEO, fonts, analytics)
+- Composes the page from: `CrtOverlay`, `TerminalWindow` (wrapping `TerminalBoot`, `TerminalHero`, `TerminalAbout`, `TerminalSkills`, `TerminalCareer`, `TerminalProjects`, `TerminalContact`, `TerminalPrompt`), `TerminalFooter`
+- `TerminalNav` inserted into `TerminalWindow` via the `nav` named slot
+- Data imports: `work-history.json` and `projects.json` from `src/data/`, passed as props to section components
+- Inline data: `skills` array, `asciiName` ASCII art lines, `contactLinks` (github, linkedin, x/twitter, email, resume), `toolNames`
+- Added Twitter/X link (`https://x.com/ChrisMTse`) and resume download link (`/resume.pdf`) to contact links (per Task 4 spec)
+- Section IDs added for nav anchor links: `#about`, `#skills`, `#projects`, `#contact`
+- `#main-content` wrapper for skip-to-content link from `TerminalNav`
+- Reveal animation classes (`.reveal .d1`–`.d7`) applied to section wrappers for staggered entrance
+- Set `title="Chris Tse - Frontend Engineer"`, `canonical="https://christse.dev/"`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — no changes needed
+- Commit: `feat: assemble terminal homepage from extracted components`

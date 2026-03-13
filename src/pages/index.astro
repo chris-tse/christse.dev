@@ -1,47 +1,99 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Hero from '../components/Hero.astro'
-import About from '../components/About.astro'
-import WorkHistory from '../components/Work-History.astro'
-import ProjectSection from '../components/Project-Section.astro'
-import Contact from '../components/Contact.astro'
-import Footer from '../components/Footer.astro'
+import TerminalLayout from '../layouts/TerminalLayout.astro'
+import CrtOverlay from '../components/terminal/CrtOverlay.astro'
+import TerminalWindow from '../components/terminal/TerminalWindow.astro'
+import TerminalNav from '../components/terminal/TerminalNav.astro'
+import TerminalBoot from '../components/terminal/TerminalBoot.astro'
+import TerminalHero from '../components/terminal/TerminalHero.astro'
+import TerminalAbout from '../components/terminal/TerminalAbout.astro'
+import TerminalSkills from '../components/terminal/TerminalSkills.astro'
+import TerminalCareer from '../components/terminal/TerminalCareer.astro'
+import TerminalProjects from '../components/terminal/TerminalProjects.astro'
+import TerminalContact from '../components/terminal/TerminalContact.astro'
+import TerminalPrompt from '../components/terminal/TerminalPrompt.astro'
+import TerminalFooter from '../components/terminal/TerminalFooter.astro'
 
-const aboutId = 'about'
-const projectsId = 'projects'
-const contactId = 'contact'
+import workHistory from '../data/work-history.json'
+import projects from '../data/projects.json'
+
+const skills = [
+	'React',
+	'TypeScript',
+	'Next.js',
+	'Node.js',
+	'GraphQL',
+	'Performance',
+	'Accessibility',
+	'Kubernetes',
+]
+
+const asciiName = [
+	' ██████╗██╗  ██╗██████╗ ██╗███████╗    ████████╗███████╗███████╗',
+	'██╔════╝██║  ██║██╔══██╗██║██╔════╝    ╚══██╔══╝██╔════╝██╔════╝',
+	'██║     ███████║██████╔╝██║███████╗       ██║   ███████╗█████╗  ',
+	'██║     ██╔══██║██╔══██╗██║╚════██║       ██║   ╚════██║██╔══╝  ',
+	'╚██████╗██║  ██║██║  ██║██║███████║       ██║   ███████║███████╗',
+	' ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝       ╚═╝   ╚══════╝╚══════╝',
+]
+
+const contactLinks = [
+	{ label: 'github', href: 'https://github.com/christse', cmd: 'open' },
+	{
+		label: 'linkedin',
+		href: 'https://www.linkedin.com/in/christse',
+		cmd: 'open',
+	},
+	{ label: 'x / twitter', href: 'https://x.com/ChrisMTse', cmd: 'open' },
+	{ label: 'email', href: 'mailto:hello@christse.dev', cmd: 'compose' },
+	{ label: 'resume', href: '/resume.pdf', cmd: 'download' },
+]
+
+const toolNames = ['Edit', 'Bash', 'Task']
 ---
 
-<Layout
+<TerminalLayout
 	title="Chris Tse - Frontend Engineer"
 	canonical="https://christse.dev/"
-	navigationHrefs={{
-		about: `#${aboutId}`,
-		projects: `#${projectsId}`,
-		contact: `#${contactId}`,
-	}}
 >
-	<Hero contactId={contactId} />
+	<CrtOverlay />
 
-	<About id={aboutId} />
+	<TerminalWindow>
+		<TerminalNav slot="nav" />
 
-	<WorkHistory />
+		<div id="main-content">
+			<div class="reveal d1">
+				<TerminalBoot />
+			</div>
 
-	<ProjectSection />
+			<div class="reveal d2">
+				<TerminalHero asciiName={asciiName} />
+			</div>
 
-	<Contact id={contactId} />
+			<div id="about" class="reveal d3">
+				<TerminalAbout />
+			</div>
 
-	<Footer />
-</Layout>
+			<div id="skills" class="reveal d3">
+				<TerminalSkills skills={skills} />
+			</div>
 
-<style>
-	:global(html) {
-		scroll-behavior: smooth;
-	}
+			<div class="reveal d4">
+				<TerminalCareer workHistory={workHistory} toolNames={toolNames} />
+			</div>
 
-	@media (prefers-reduced-motion: reduce) {
-		:global(html) {
-			scroll-behavior: auto;
-		}
-	}
-</style>
+			<div id="projects" class="reveal d5">
+				<TerminalProjects projects={projects} />
+			</div>
+
+			<div id="contact" class="reveal d6">
+				<TerminalContact contactLinks={contactLinks} />
+			</div>
+
+			<div class="reveal d7">
+				<TerminalPrompt />
+			</div>
+		</div>
+	</TerminalWindow>
+
+	<TerminalFooter />
+</TerminalLayout>
