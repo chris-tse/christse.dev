@@ -273,16 +273,16 @@ with browser devtools
 
 ## Task 13: Responsive / mobile testing and fixes
 
-- [ ] Test terminal chrome at narrow widths (< 375px) — ensure no horizontal
+- [x] Test terminal chrome at narrow widths (< 375px) — ensure no horizontal
       overflow
-- [ ] Verify ASCII art scales properly via `clamp()` — no overflow or
+- [x] Verify ASCII art scales properly via `clamp()` — no overflow or
       illegibility on small screens
-- [ ] Verify footer collapses to column layout on mobile
-- [ ] Verify subagent/tool-call blocks use single-column on mobile with good
+- [x] Verify footer collapses to column layout on mobile
+- [x] Verify subagent/tool-call blocks use single-column on mobile with good
       padding
-- [ ] Verify blog post reading experience on mobile — generous padding, good
+- [x] Verify blog post reading experience on mobile — generous padding, good
       line length
-- [ ] Test terminal nav on mobile — collapsed state works, all links accessible
+- [x] Test terminal nav on mobile — collapsed state works, all links accessible
 
 **Files:** Various terminal components
 **Depends on:** Tasks 7, 8, 9

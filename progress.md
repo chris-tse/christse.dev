@@ -253,3 +253,40 @@
 - Icons unchanged: `android-chrome-192x192.png` and `android-chrome-512x512.png`
 - Display mode unchanged: `standalone`
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages)
+
+## 2026-03-13 Task 13: Responsive / mobile testing and fixes
+
+- **Audit**: Performed comprehensive responsive audit of all 17 terminal-related files, examining `@media` queries, `clamp()`, `overflow`, `max-width`, and indentation at 320px/375px viewports
+- **Identified issues**: Deep nesting indentation in TerminalCareer (~81px at 320px), missing `flex-wrap` on `.project-header`, no breakpoint below 700px, global `.output` indent not reduced on mobile
+- **Added 480px narrow breakpoint to `terminal.css`**:
+  - `.output`: margin-left reduced from `1.25rem` to `0.5rem`, padding-left from `0.75rem` to `0.5rem`
+  - `.block`: margin-bottom reduced from `2rem` to `1.5rem`
+  - `.cmd-line`, `.sys-line`: font-size reduced from `0.88rem` to `0.82rem`
+- **TerminalCareer.astro** — added `@media (max-width: 480px)`:
+  - Reduced `.todo-item` gap, `.todo-check` size, `.subagent-header`/`.subagent-body` padding
+  - Reset `.subagent-meta` margin-left to `0` (wraps instead of pushing right)
+  - Reduced `.todo-item.in-progress` negative margin from `-0.5rem` to `-0.25rem`
+  - Tightened `.tool-call-header` and `.task-result-body` padding
+- **TerminalProjects.astro**:
+  - Added `flex-wrap: wrap` to `.project-header` (prevents overflow with long project names)
+  - Added `@media (max-width: 700px)`: reduced list indent, entry padding, show OPEN label always
+  - Added `@media (max-width: 480px)`: further reduced indent and padding
+- **TerminalContact.astro**:
+  - Added `flex-wrap: wrap` to `.contact-entry` (safety net for long labels)
+  - Added `@media (max-width: 700px)`: reduced grid indent, always show arrow
+  - Added `@media (max-width: 480px)`: further reduced grid indent, entry padding and gap
+- **TerminalWindow.astro** — added `@media (max-width: 480px)`:
+  - Terminal uses full viewport width (`100vw`) with no margin
+  - `.terminal-body` padding reduced to `0.75rem`
+- **TerminalFooter.astro** — added `@media (max-width: 480px)`:
+  - Footer matches terminal width at `100vw`
+- **TerminalSkills.astro** — added `@media (max-width: 480px)`:
+  - Reduced `.skill-grid` indent and gap
+- **Blog listing (`blog-redesign.astro`)** — added `@media (max-width: 480px)`:
+  - Reduced `.post-link` padding
+- **Blog prose (`terminal.css`)** — added `@media (max-width: 480px)`:
+  - Reduced prose font-size to `0.88rem`
+  - Code blocks: reduced padding, slight negative margins for edge-to-edge feel, smaller border-radius
+  - Blockquotes: reduced padding, removed margin
+- **Already verified as working**: ASCII art scales via `clamp()` with `overflow-x: auto` fallback; footer collapses to column at 700px; terminal nav CSS-only toggle works on mobile; blog post layout adjusts heading size at 700px with `clamp()`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build (14 pages), `bun format:write` — all unchanged
