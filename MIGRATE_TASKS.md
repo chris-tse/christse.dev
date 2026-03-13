@@ -155,17 +155,17 @@ terminal color palette and typography.
 
 Compose the new homepage from the extracted components and TerminalLayout.
 
-- [ ] Replace `src/pages/index.astro` with the terminal design
-- [ ] Import and use `TerminalLayout.astro` as the layout
-- [ ] Import and compose: `CrtOverlay`, `TerminalWindow` (wrapping
+- [x] Replace `src/pages/index.astro` with the terminal design
+- [x] Import and use `TerminalLayout.astro` as the layout
+- [x] Import and compose: `CrtOverlay`, `TerminalWindow` (wrapping
       `TerminalBoot`, `TerminalHero`, `TerminalAbout`, `TerminalSkills`,
       `TerminalCareer`, `TerminalProjects`, `TerminalContact`,
       `TerminalPrompt`), `TerminalFooter`
-- [ ] TerminalWindow title bar should include `TerminalNav`
-- [ ] Pass data from JSON imports as props to each section component
-- [ ] Set `title="Chris Tse - Frontend Engineer"`,
+- [x] TerminalWindow title bar should include `TerminalNav`
+- [x] Pass data from JSON imports as props to each section component
+- [x] Set `title="Chris Tse - Frontend Engineer"`,
       `canonical="https://christse.dev/"`
-- [ ] Verify all sections render identically to experimental-5
+- [x] Verify all sections render identically to experimental-5
 
 **File:** `src/pages/index.astro`
 **Depends on:** Tasks 1–6
