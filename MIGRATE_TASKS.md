@@ -203,12 +203,12 @@ Create `TerminalBlogPostLayout.astro` for the blog-redesign post pages.
 
 Style the `blog-redesign.astro` page with the full terminal aesthetic.
 
-- [ ] Update `src/pages/blog-redesign.astro` to use `TerminalLayout.astro`
-- [ ] Wrap content in `TerminalWindow` + `CrtOverlay`
-- [ ] Style listing as directory output: `$ ls ~/blog/` header
-- [ ] Each post entry: filename-style link, date, description — terminal colors
-- [ ] Include `TerminalNav` in the terminal bar
-- [ ] Add `transition:name` attributes for view transition animations
+- [x] Update `src/pages/blog-redesign.astro` to use `TerminalLayout.astro`
+- [x] Wrap content in `TerminalWindow` + `CrtOverlay`
+- [x] Style listing as directory output: `$ ls ~/blog/` header
+- [x] Each post entry: filename-style link, date, description — terminal colors
+- [x] Include `TerminalNav` in the terminal bar
+- [x] Add `transition:name` attributes for view transition animations
 
 **File:** `src/pages/blog-redesign.astro`
 **Depends on:** Tasks 1, 2, 3, 5
