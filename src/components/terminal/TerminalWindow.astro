@@ -27,7 +27,7 @@ const { title = 'christse@portfolio ~' } = Astro.props
 	.terminal {
 		width: min(960px, calc(100vw - 2rem));
 		margin: 2rem auto 0;
-		border: 1px solid #1d2433;
+		border: 1px solid var(--term-border);
 		border-radius: 8px 8px 0 0;
 		overflow: hidden;
 		box-shadow:
@@ -41,8 +41,8 @@ const { title = 'christse@portfolio ~' } = Astro.props
 		align-items: center;
 		gap: 0.75rem;
 		padding: 0.6rem 1rem;
-		background: #151a24;
-		border-bottom: 1px solid #1d2433;
+		background: var(--term-bg-bar);
+		border-bottom: 1px solid var(--term-border);
 	}
 
 	.bar-dots {
@@ -57,21 +57,21 @@ const { title = 'christse@portfolio ~' } = Astro.props
 	}
 
 	.dot-red {
-		background: #ff5f57;
+		background: var(--term-dot-red);
 	}
 
 	.dot-yellow {
-		background: #febc2e;
+		background: var(--term-dot-yellow);
 	}
 
 	.dot-green {
-		background: #28c840;
+		background: var(--term-dot-green);
 	}
 
 	.bar-title {
 		margin: 0;
 		font-size: 0.72rem;
-		color: #5c6773;
+		color: var(--term-text-muted);
 		letter-spacing: 0.03em;
 	}
 
@@ -81,7 +81,7 @@ const { title = 'christse@portfolio ~' } = Astro.props
 
 	.terminal-body {
 		padding: 1.5rem;
-		background: #0d1117;
+		background: var(--term-bg-body);
 		min-height: 60vh;
 	}
 

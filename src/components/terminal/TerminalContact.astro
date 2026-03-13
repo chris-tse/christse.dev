@@ -37,29 +37,13 @@ const { contactLinks } = Astro.props
 </section>
 
 <style>
-	.block {
-		margin-bottom: 2rem;
-	}
-
-	.cmd-line {
-		margin: 0;
-		font-size: 0.88rem;
-		white-space: pre-wrap;
-	}
-
-	.prompt {
-		color: #39ff14;
-		font-weight: 700;
-		margin-right: 0.5rem;
-		user-select: none;
-	}
-
+	/* Component-specific styles only — shared classes from terminal.css */
 	.contact-grid {
 		display: grid;
 		gap: 0.4rem;
 		margin: 0.5rem 0 0 1.25rem;
 		padding-left: 0.75rem;
-		border-left: 2px solid #1d2433;
+		border-left: 2px solid var(--term-border);
 		font-size: 0.88rem;
 	}
 
@@ -69,35 +53,35 @@ const { contactLinks } = Astro.props
 		gap: 0.75rem;
 		text-decoration: none;
 		padding: 0.65rem 0.85rem;
-		border: 1px solid #1d2433;
+		border: 1px solid var(--term-border);
 		border-radius: 4px;
-		background: #0a0e14;
-		color: #acb2c0;
+		background: var(--term-bg-deepest);
+		color: var(--term-text-output);
 		transition:
 			border-color 0.2s ease,
 			background-color 0.2s ease;
 	}
 
 	.contact-entry:hover {
-		border-color: #39ff14;
-		background: #0f1520;
+		border-color: var(--term-green);
+		background: var(--term-bg-hover);
 	}
 
 	.contact-cmd {
-		color: #d2a6ff;
+		color: var(--term-purple);
 		font-size: 0.78rem;
 		font-weight: 600;
 	}
 
 	.contact-label {
-		color: #e6e1cf;
+		color: var(--term-text-bright);
 		font-weight: 600;
 		font-size: 0.88rem;
 	}
 
 	.contact-arrow {
 		margin-left: auto;
-		color: #39ff14;
+		color: var(--term-green);
 		font-size: 0.82rem;
 		opacity: 0;
 		transition: opacity 0.2s ease;

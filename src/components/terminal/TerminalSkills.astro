@@ -22,35 +22,19 @@ const { skills } = Astro.props
 </section>
 
 <style>
-	.block {
-		margin-bottom: 2rem;
-	}
-
-	.cmd-line {
-		margin: 0;
-		font-size: 0.88rem;
-		white-space: pre-wrap;
-	}
-
-	.prompt {
-		color: #39ff14;
-		font-weight: 700;
-		margin-right: 0.5rem;
-		user-select: none;
-	}
-
+	/* Component-specific styles only — shared classes from terminal.css */
 	.skill-grid {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.35rem 1.2rem;
 		margin: 0.5rem 0 0 1.25rem;
 		padding-left: 0.75rem;
-		border-left: 2px solid #1d2433;
+		border-left: 2px solid var(--term-border);
 		font-size: 0.88rem;
 	}
 
 	.skill-item {
-		color: #7ee787;
+		color: var(--term-green-light);
 		font-size: 0.88rem;
 		animation: typeIn 0.3s ease forwards;
 		animation-delay: calc(var(--i) * 0.06s);

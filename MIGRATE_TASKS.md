@@ -137,13 +137,13 @@ Move all shared CSS from experimental-5's inline `<style>` into either
 component-scoped styles (preferred for Astro) or a shared stylesheet. Define the
 terminal color palette and typography.
 
-- [ ] Create `src/styles/terminal.css` for shared terminal variables and base
+- [x] Create `src/styles/terminal.css` for shared terminal variables and base
       styles (CSS custom properties for the color palette, font stack, common
       patterns like `.cmd-line`, `.prompt`, `.output`, reveal animations)
-- [ ] Each component's unique styles stay in its own scoped `<style>` block
-- [ ] Ensure the reveal animation classes (`.reveal`, `.d1`–`.d7`) are available
+- [x] Each component's unique styles stay in its own scoped `<style>` block
+- [x] Ensure the reveal animation classes (`.reveal`, `.d1`–`.d7`) are available
       globally or in a shared location
-- [ ] Ensure `prefers-reduced-motion` disables all animations and transitions
+- [x] Ensure `prefers-reduced-motion` disables all animations and transitions
 
 **File:** `src/styles/terminal.css`
 **Depends on:** None
