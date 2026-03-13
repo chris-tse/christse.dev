@@ -193,3 +193,197 @@ body {
 		transform: none;
 	}
 }
+
+/* ════════════════════════════════════════════════════════════
+   Terminal Prose — Dark overrides for @tailwindcss/typography
+   Applied to `.prose` elements within terminal-themed pages.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Base prose container ── */
+.post-content.prose {
+	max-width: 72ch;
+	font-size: 0.95rem;
+	line-height: 1.9;
+	color: #c8c8c8;
+}
+
+/* ── Paragraph spacing ── */
+.post-content.prose p {
+	margin-bottom: 1.5rem;
+}
+
+/* ── Headings ── */
+.post-content.prose h1,
+.post-content.prose h2,
+.post-content.prose h3,
+.post-content.prose h4,
+.post-content.prose h5,
+.post-content.prose h6 {
+	color: #e0e0e0;
+	font-family: var(--term-font);
+}
+
+.post-content.prose h2 {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--term-border);
+	padding-bottom: 0.5rem;
+}
+
+.post-content.prose h3 {
+	font-size: 1.125rem;
+	font-weight: 600;
+	margin-top: 2rem;
+	margin-bottom: 0.75rem;
+}
+
+.post-content.prose h4 {
+	font-size: 1rem;
+	font-weight: 600;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+/* ── Links ── */
+.post-content.prose a {
+	color: #59c2ff;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: color 0.2s;
+}
+
+.post-content.prose a:hover {
+	color: var(--term-green);
+}
+
+/* ── Strong / emphasis ── */
+.post-content.prose strong {
+	color: #e0e0e0;
+	font-weight: 600;
+}
+
+.post-content.prose em {
+	color: #c8c8c8;
+}
+
+/* ── Blockquotes ── */
+.post-content.prose blockquote {
+	border-left: 3px solid var(--term-green);
+	background: rgba(57, 255, 20, 0.03);
+	padding: 0.75rem 1rem;
+	margin: 1.5rem 0;
+	border-radius: 0 4px 4px 0;
+}
+
+.post-content.prose blockquote p {
+	color: var(--term-text-muted);
+	font-style: italic;
+	margin: 0;
+}
+
+/* ── Inline code ── */
+.post-content.prose :not(pre) > code {
+	background: var(--term-green-code-bg);
+	color: var(--term-green-light);
+	padding: 0.15rem 0.4rem;
+	border-radius: 3px;
+	font-size: 0.88em;
+	font-family: var(--term-font);
+}
+
+/* ── Code blocks ── */
+.post-content.prose pre {
+	background: var(--term-bg-deepest) !important;
+	border: 1px solid var(--term-border);
+	border-radius: 6px;
+	padding: 1.25rem;
+	margin: 1.5rem 0;
+	overflow-x: auto;
+	font-size: 0.85rem;
+	line-height: 1.7;
+}
+
+.post-content.prose pre code {
+	background: none;
+	padding: 0;
+	border-radius: 0;
+	color: #c8c8c8;
+	font-size: inherit;
+}
+
+/* ── Lists ── */
+.post-content.prose ul,
+.post-content.prose ol {
+	padding-left: 1.5rem;
+	margin: 1rem 0;
+}
+
+.post-content.prose li {
+	margin-bottom: 0.5rem;
+	color: #c8c8c8;
+}
+
+.post-content.prose li::marker {
+	color: var(--term-text-muted);
+}
+
+.post-content.prose ol li::marker {
+	color: #59c2ff;
+}
+
+/* ── Horizontal rule ── */
+.post-content.prose hr {
+	border: none;
+	border-top: 1px solid var(--term-border);
+	margin: 2rem 0;
+}
+
+/* ── Images ── */
+.post-content.prose img {
+	border-radius: 4px;
+	border: 1px solid var(--term-border);
+}
+
+/* ── Tables ── */
+.post-content.prose table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 1.5rem 0;
+}
+
+.post-content.prose th {
+	background: var(--term-bg-bar);
+	color: #e0e0e0;
+	font-weight: 600;
+	text-align: left;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--term-border);
+}
+
+.post-content.prose td {
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--term-border);
+	color: #c8c8c8;
+}
+
+/* ── Figure / figcaption ── */
+.post-content.prose figure > img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.post-content.prose figcaption {
+	text-align: center;
+	color: var(--term-text-muted);
+	font-size: 0.85rem;
+	margin-top: 0.5rem;
+}
+
+/* ── Prose reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+	.post-content.prose a {
+		transition: none;
+	}
+}
