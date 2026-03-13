@@ -38,3 +38,16 @@
 - Includes responsive styles for mobile (< 700px): narrower width, no border-radius, reduced padding
 - Verified: `bun astro check` — 0 errors, `bun run build` — clean build
 - Commit: `feat: create TerminalWindow.astro reusable terminal chrome component`
+
+## 2026-03-13 Task 3: Create CrtOverlay.astro
+
+- Created `src/components/terminal/CrtOverlay.astro`
+- Markup: two `div`s (`.scanlines` and `.crt-flicker`), both `aria-hidden="true"`
+- Scoped styles extracted from experimental-5:
+  - `.scanlines`: `position: fixed`, full viewport, `z-index: 100`, repeating linear gradient (2px transparent + 2px dark scanlines)
+  - `.crt-flicker`: `position: fixed`, full viewport, `z-index: 99`, 8s infinite flicker animation with subtle green tint
+  - Added `will-change: opacity` to `.crt-flicker` for GPU compositing (new vs experimental-5)
+- `prefers-reduced-motion`: disables animation and sets opacity to 0 on `.crt-flicker`
+- Verified: `bun astro check` — 0 errors, `bun run build` — clean build
+- Ran `bun format:write` — formatting applied
+- Commit: `feat: create CrtOverlay.astro with scanline and flicker effects`
