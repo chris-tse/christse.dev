@@ -13,20 +13,16 @@
 		"ghost:export": "ghost-export-to-markdown --dir=src/content/blog"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.7",
-		"@astrojs/mdx": "^5.0.0",
+		"@astrojs/check": "^0.9.8",
+		"@astrojs/mdx": "^5.0.2",
 		"@astrojs/rss": "^4.0.17",
 		"@astrojs/sitemap": "^3.7.1",
-		"@tailwindcss/forms": "^0.5.11",
-		"@tailwindcss/typography": "^0.5.19",
-		"@tailwindcss/vite": "^4.1.18",
-		"astro": "^6",
-		"date-fns": "^4.1.0",
+		"astro": "^6.0.7",
 		"lucide-astro": "^0.556.0",
-		"tailwindcss": "^4.1.18"
+		"vite": "^8.0.1"
 	},
 	"devDependencies": {
-		"dotenv": "^17.2.4",
+		"dotenv": "^17.3.1",
 		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "^5.9.3"

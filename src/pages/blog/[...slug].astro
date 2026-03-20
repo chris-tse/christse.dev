@@ -1,11 +1,18 @@
 ---
+/**
+ * Terminal-themed blog post page
+ *
+ * Renders individual blog posts from the content collection
+ * with the terminal layout.
+ */
 import { getCollection, render } from 'astro:content'
-import Layout from '../../layouts/BlogPostLayout.astro'
+import TerminalBlogPostLayout from '../../layouts/TerminalBlogPostLayout.astro'
+import { getSlug } from '../../utils/blog'
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts')
 	return posts.map((entry) => ({
-		params: { slug: entry.id.replace(/\.mdx$/, '') },
+		params: { slug: getSlug(entry.id) },
 		props: { entry },
 	}))
 }
@@ -14,7 +21,7 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<Layout
+<TerminalBlogPostLayout
 	title={entry.data.title}
 	pubDate={entry.data.publishedAt.toDateString() ?? null}
 	heroImage={entry.data.coverImage ?? null}
@@ -22,4 +29,4 @@ const { Content } = await render(entry)
 	socialImage={entry.data.coverImage ?? null}
 >
 	<Content />
-</Layout>
+</TerminalBlogPostLayout>

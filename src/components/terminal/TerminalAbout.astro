@@ -1,36 +1,21 @@
 ---
+interface Props {
+	heading: string
+	paragraphs: string[]
+}
 
+const { heading, paragraphs } = Astro.props
 ---
 
-<section class="block block-about">
+<section class="block block-about" aria-label="About">
 	<p class="cmd-line">
 		<span class="prompt" aria-hidden="true">$</span> cat about.md
 	</p>
 	<div class="output md-output">
 		<p class="md-heading">
-			<span class="md-hash" aria-hidden="true">##</span> About Me
+			<span class="md-hash" aria-hidden="true">##</span>
+			{heading}
 		</p>
-		<p>
-			I'm a frontend engineer with 7+ years of experience building modern web
-			applications. I specialize in React, TypeScript, and responsive design,
-			with a strong focus on creating accessible and performant user interfaces.
-		</p>
-		<p>
-			When I'm not coding, you can find me engaging in my local tech community
-			through organizing meetups and mentoring aspiring developers. You can also
-			find me at the gym, practicing my Japanese, or just enjoying a fun video
-			game with friends.
-		</p>
+		{paragraphs.map((text) => <p>{text}</p>)}
 	</div>
 </section>
-
-<style>
-	/* Component-specific styles only — shared classes from terminal.css */
-	.output p + p {
-		margin-top: 0.75rem;
-	}
-
-	.md-output p + p {
-		margin-top: 0.75rem;
-	}
-</style>

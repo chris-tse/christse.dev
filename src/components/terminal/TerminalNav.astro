@@ -1,50 +1,157 @@
 ---
+import { Sun, Moon } from 'lucide-astro'
+
 interface Props {
 	hrefs?: {
-		about?: string
-		skills?: string
-		projects?: string
+		home?: string
+		uses?: string
 		blog?: string
-		contact?: string
 	}
 }
 
-const {
-	hrefs: {
-		about = '#about',
-		skills = '#skills',
-		projects = '#projects',
-		blog = '/blog',
-		contact = '#contact',
-	} = {},
-} = Astro.props
+const { hrefs: { home = '/', uses = '/uses', blog = '/blog' } = {} } =
+	Astro.props
 
 const currentPath = Astro.url.pathname
 const isBlogRoute = currentPath.startsWith('/blog')
+const isUsesRoute = currentPath.startsWith('/uses')
+const navMenuId = `nav-links-${currentPath.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'home'}`
 ---
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
-<nav class="terminal-nav" aria-label="Main navigation">
-	<input
-		type="checkbox"
-		id="nav-toggle"
-		class="nav-toggle-input"
-		aria-hidden="true"
-	/>
-	<label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+<nav
+	class="terminal-nav"
+	aria-label="Main navigation"
+	data-terminal-nav
+	data-open="false"
+>
+	<button
+		type="button"
+		class="nav-toggle-button"
+		aria-label="Toggle menu"
+		aria-expanded="false"
+		aria-controls={navMenuId}
+		data-nav-toggle
+	>
 		<span class="nav-toggle-icon" aria-hidden="true">[menu]</span>
 		<span class="nav-toggle-icon-close" aria-hidden="true">[x]</span>
-	</label>
+	</button>
 
-	<div class="nav-links">
-		<a href={about} class="nav-link">[about]</a>
-		<a href={skills} class="nav-link">[skills]</a>
-		<a href={projects} class="nav-link">[projects]</a>
+	<div class="nav-links" id={navMenuId} data-nav-links>
+		<a
+			href={home}
+			class:list={['nav-link', { active: !isBlogRoute && !isUsesRoute }]}
+			>[index]</a
+		>
+		<a href={uses} class:list={['nav-link', { active: isUsesRoute }]}>[uses]</a>
 		<a href={blog} class:list={['nav-link', { active: isBlogRoute }]}>[blog]</a>
-		<a href={contact} class="nav-link">[contact]</a>
+		<button
+			type="button"
+			class="nav-link theme-toggle"
+			id="theme-toggle"
+			aria-label="Toggle theme"
+			title="Toggle theme"
+			>[theme <span class="theme-icon" aria-hidden="true"
+				><span class="icon-sun"><Sun size={14} /></span><span class="icon-moon"
+					><Moon size={14} /></span
+				></span
+			>]</button
+		>
 	</div>
 </nav>
+
+<script>
+	// ── Nav menu toggle ──
+	const initNav = () => {
+		const root = document.querySelector<HTMLElement>('[data-terminal-nav]')
+		if (!root) return
+
+		const toggle = root.querySelector<HTMLButtonElement>('[data-nav-toggle]')
+		const links = root.querySelector<HTMLElement>('[data-nav-links]')
+		if (!toggle || !links) return
+
+		const mediaQuery = window.matchMedia('(max-width: 700px)')
+
+		const setOpen = (open: boolean) => {
+			root.dataset.open = String(open)
+			toggle.setAttribute('aria-expanded', String(open))
+		}
+
+		setOpen(false)
+
+		toggle.addEventListener('click', () =>
+			setOpen(root.dataset.open !== 'true'),
+		)
+
+		root.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && root.dataset.open === 'true') {
+				setOpen(false)
+				toggle.focus()
+			}
+		})
+
+		links.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => setOpen(false))
+		})
+
+		document.addEventListener('click', (event) => {
+			if (
+				root.dataset.open === 'true' &&
+				!root.contains(event.target as Node)
+			) {
+				setOpen(false)
+			}
+		})
+
+		mediaQuery.addEventListener('change', () => {
+			if (!mediaQuery.matches) setOpen(false)
+		})
+	}
+
+	// ── Theme toggle ──
+	const getTheme = () =>
+		localStorage.getItem('theme') ||
+		(window.matchMedia('(prefers-color-scheme: light)').matches
+			? 'light'
+			: 'dark')
+
+	const applyTheme = (t: string) => {
+		document.documentElement.dataset.theme = t
+		localStorage.setItem('theme', t)
+		document
+			.querySelectorAll<HTMLButtonElement>('#theme-toggle')
+			.forEach((btn) => {
+				btn.setAttribute(
+					'aria-label',
+					t === 'light' ? 'Switch to dark theme' : 'Switch to light theme',
+				)
+				btn.dataset.theme = t
+			})
+	}
+
+	const initThemeToggle = () => {
+		const btn = document.querySelector<HTMLButtonElement>('#theme-toggle')
+		if (!btn) return
+		btn.addEventListener('click', () =>
+			applyTheme(getTheme() === 'light' ? 'dark' : 'light'),
+		)
+	}
+
+	// astro:page-load fires on first load and after every view transition
+	document.addEventListener('astro:page-load', () => {
+		applyTheme(getTheme())
+		initNav()
+		initThemeToggle()
+	})
+
+	window
+		.matchMedia('(prefers-color-scheme: light)')
+		.addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme'))
+				applyTheme(e.matches ? 'light' : 'dark')
+		})
+</script>
 
 <style>
 	/* ── Skip link ── */
@@ -68,21 +175,19 @@ const isBlogRoute = currentPath.startsWith('/blog')
 
 	/* ── Nav container ── */
 	.terminal-nav {
+		position: relative;
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
 		margin-left: auto;
 	}
 
-	/* ── Checkbox toggle (hidden) ── */
-	.nav-toggle-input {
-		display: none;
-	}
-
-	/* ── Toggle label (mobile only) ── */
-	.nav-toggle-label {
+	/* ── Toggle button (mobile only) ── */
+	.nav-toggle-button {
 		display: none;
 		cursor: pointer;
+		border: 0;
+		background: transparent;
 		color: var(--term-text-muted);
 		font-size: 0.72rem;
 		letter-spacing: 0.03em;
@@ -92,19 +197,25 @@ const isBlogRoute = currentPath.startsWith('/blog')
 		user-select: none;
 	}
 
-	.nav-toggle-label:hover {
+	.nav-toggle-button:hover,
+	.nav-toggle-button:focus-visible {
 		color: var(--term-text);
+	}
+
+	.nav-toggle-button:focus-visible {
+		outline: 1px solid var(--term-green);
+		outline-offset: 1px;
 	}
 
 	.nav-toggle-icon-close {
 		display: none;
 	}
 
-	.nav-toggle-input:checked ~ .nav-toggle-label .nav-toggle-icon {
+	.nav-toggle-button[aria-expanded='true'] .nav-toggle-icon {
 		display: none;
 	}
 
-	.nav-toggle-input:checked ~ .nav-toggle-label .nav-toggle-icon-close {
+	.nav-toggle-button[aria-expanded='true'] .nav-toggle-icon-close {
 		display: inline;
 	}
 
@@ -131,7 +242,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	.nav-link:hover,
 	.nav-link:focus-visible {
 		color: var(--term-green);
-		background-color: rgba(57, 255, 20, 0.06);
+		background-color: rgb(var(--term-green-rgb) / 0.06);
 	}
 
 	.nav-link:focus-visible {
@@ -143,9 +254,42 @@ const isBlogRoute = currentPath.startsWith('/blog')
 		color: var(--term-text);
 	}
 
+	/* ── Theme toggle button ── */
+	.theme-toggle {
+		cursor: pointer;
+		border: 0;
+		background: transparent;
+		padding: 0.2rem 0.4rem;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.theme-icon {
+		display: inline-flex;
+		align-items: center;
+		vertical-align: middle;
+	}
+
+	.theme-icon :global(svg) {
+		display: block;
+	}
+
+	/* Show sun in dark mode, moon in light mode */
+	.icon-moon {
+		display: none;
+	}
+
+	.theme-toggle[data-theme='light'] .icon-sun {
+		display: none;
+	}
+
+	.theme-toggle[data-theme='light'] .icon-moon {
+		display: contents;
+	}
+
 	/* ── Mobile: collapse behind toggle ── */
 	@media (max-width: 700px) {
-		.nav-toggle-label {
+		.nav-toggle-button {
 			display: block;
 		}
 
@@ -166,7 +310,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 		}
 
-		.nav-toggle-input:checked ~ .nav-links {
+		.terminal-nav[data-open='true'] .nav-links {
 			display: flex;
 		}
 
@@ -179,7 +323,7 @@ const isBlogRoute = currentPath.startsWith('/blog')
 	/* ── Reduced motion ── */
 	@media (prefers-reduced-motion: reduce) {
 		.nav-link,
-		.nav-toggle-label {
+		.nav-toggle-button {
 			transition: none;
 		}
 	}

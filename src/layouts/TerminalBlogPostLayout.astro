@@ -1,9 +1,12 @@
 ---
-import TerminalLayout from './TerminalLayout.astro'
+import TerminalLayout, {
+	type Props as TerminalLayoutProps,
+} from './TerminalLayout.astro'
 import CrtOverlay from '../components/terminal/CrtOverlay.astro'
 import TerminalWindow from '../components/terminal/TerminalWindow.astro'
 import TerminalNav from '../components/terminal/TerminalNav.astro'
 import TerminalFooter from '../components/terminal/TerminalFooter.astro'
+import { navHrefs } from '../config/nav'
 
 interface Props {
 	title?: string | null
@@ -24,21 +27,6 @@ const date = pubDate
 	: null
 
 const slug = Astro.params.slug ?? 'post'
-
-const navHrefs = {
-	about: '/#about',
-	skills: '/#skills',
-	projects: '/#projects',
-	blog: '/blog',
-	contact: '/#contact',
-}
-
-type TerminalLayoutProps = {
-	title: string
-	description?: string
-	canonical?: string
-	socialImage?: string
-}
 
 const layoutProps: TerminalLayoutProps = { title: title ?? 'Blog' }
 if (description) layoutProps.description = description
@@ -101,7 +89,7 @@ if (socialImage) layoutProps.socialImage = socialImage
 			</header>
 
 			<!-- Content -->
-			<div class="post-content prose reveal d3">
+			<div class="post-content reveal d3">
 				<slot />
 			</div>
 

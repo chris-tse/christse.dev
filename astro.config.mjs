@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 
-import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 import mdx from '@astrojs/mdx'
 
@@ -11,8 +10,5 @@ export default defineConfig({
 			? 'https://christse.dev'
 			: 'http://localhost:4321',
 	integrations: [sitemap(), mdx()],
-	vite: {
-		plugins: [tailwindcss()],
-	},
 	trailingSlash: 'never',
 })

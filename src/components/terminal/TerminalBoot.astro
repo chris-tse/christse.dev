@@ -1,11 +1,15 @@
 ---
+interface Props {
+	version: string
+}
 
+const { version } = Astro.props
 ---
 
-<section class="block block-boot">
+<section class="block block-boot" aria-label="System boot">
 	<p class="sys-line">
 		<span class="prompt-sys" aria-hidden="true">[system]</span> booting christse.dev
-		v5.0.0 ...
+		v{version} ...
 	</p>
 	<p class="sys-line">
 		<span class="prompt-sys" aria-hidden="true">[system]</span> loading modules: portfolio,

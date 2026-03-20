@@ -1,9 +1,5 @@
 ---
-interface ContactLink {
-	label: string
-	href: string
-	cmd: string
-}
+import type { ContactLink } from '../../types'
 
 interface Props {
 	contactLinks: ContactLink[]
@@ -12,7 +8,7 @@ interface Props {
 const { contactLinks } = Astro.props
 ---
 
-<section class="block block-contact">
+<section class="block block-contact" aria-label="Contact">
 	<p class="cmd-line typed">
 		<span class="prompt" aria-hidden="true">$</span> christse --contact --list
 	</p>
@@ -29,7 +25,9 @@ const { contactLinks } = Astro.props
 				>
 					<span class="contact-cmd">{link.cmd}</span>
 					<span class="contact-label">{link.label}</span>
-					<span class="contact-arrow">&rarr;</span>
+					<span class="contact-arrow" aria-hidden="true">
+						&rarr;
+					</span>
 				</a>
 			))
 		}
@@ -41,9 +39,6 @@ const { contactLinks } = Astro.props
 	.contact-grid {
 		display: grid;
 		gap: 0.4rem;
-		margin: 0.5rem 0 0 1.25rem;
-		padding-left: 0.75rem;
-		border-left: 2px solid var(--term-border);
 		font-size: 0.88rem;
 	}
 

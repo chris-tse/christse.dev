@@ -1,7 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro'
-
+/**
+ * Terminal-themed blog listing page
+ *
+ * Lists all blog posts from the content collection, rendered
+ * with the terminal aesthetic.
+ */
+import TerminalLayout from '../layouts/TerminalLayout.astro'
+import CrtOverlay from '../components/terminal/CrtOverlay.astro'
+import TerminalWindow from '../components/terminal/TerminalWindow.astro'
+import TerminalNav from '../components/terminal/TerminalNav.astro'
+import TerminalFooter from '../components/terminal/TerminalFooter.astro'
 import { getCollection } from 'astro:content'
+import { getSlug } from '../utils/blog'
+import { navHrefs } from '../config/nav'
 
 const posts = await getCollection('posts')
 const sortedPosts = posts.sort((a, b) => {
@@ -10,50 +21,230 @@ const sortedPosts = posts.sort((a, b) => {
 		new Date(a.data.publishedAt).valueOf()
 	)
 })
-
-// Helper to get slug from id (e.g., "post-name.mdx" -> "post-name")
-const getSlug = (id: string) => id.replace(/\.mdx$/, '')
 ---
 
-<Layout
-	title="Blog"
-	navigationHrefs={{
-		about: '/#about',
-		projects: '/#projects',
-		contact: '/#contact',
-	}}
->
-	<main class="max-w-5xl flex-1 w-full px-4 py-8 mx-auto md:px-8 md:py-8">
-		<section>
-			<h1 class="text-2xl font-bold mb-8">Blog</h1>
-			{
-				sortedPosts.map((post) => {
-					const slug = getSlug(post.id)
-					return (
-						<article class="mb-10">
-							<h2 transition:name={`post-title-${slug}`}>
-								<a
-									class="text-purple-900 text-3xl font-semibold hover:underline"
-									href={`/blog/${slug}`}
-								>
-									{post.data.title}
+<TerminalLayout title="Blog" description="Blog posts by Chris Tse">
+	<CrtOverlay />
+
+	<TerminalWindow title="christse@portfolio ~/blog">
+		<TerminalNav slot="nav" hrefs={navHrefs} />
+
+		<div id="main-content">
+			<!-- Directory listing header -->
+			<div class="block">
+				<p class="cmd-line">
+					<span class="prompt" aria-hidden="true">$</span> ls ~/blog/
+				</p>
+			</div>
+
+			<!-- Post count output -->
+			<div class="block">
+				<p class="sys-line">
+					<span class="prompt-sys" aria-hidden="true">[system]</span>
+					found {sortedPosts.length} entries
+				</p>
+			</div>
+
+			<!-- Post listing -->
+			<section class="post-list" aria-label="Blog posts">
+				{
+					sortedPosts.map((post) => {
+						const slug = getSlug(post.id)
+						const date = new Date(post.data.publishedAt).toLocaleDateString(
+							'en-US',
+							{
+								year: 'numeric',
+								month: '2-digit',
+								day: '2-digit',
+							},
+						)
+						return (
+							<article class="post-entry">
+								<a href={`/blog/${slug}`} class="post-link">
+									<div class="post-header">
+										<span class="post-icon" aria-hidden="true">
+											-rw-r--r--
+										</span>
+										<time
+											class="post-date"
+											datetime={post.data.publishedAt.toISOString()}
+											transition:name={`post-date-${slug}`}
+										>
+											{date}
+										</time>
+										<h2
+											class="post-title"
+											transition:name={`post-title-${slug}`}
+										>
+											{post.data.title}
+										</h2>
+									</div>
+									<p class="post-desc">{post.data.description}</p>
+									{post.data.tags.length > 0 && (
+										<div class="post-tags">
+											{post.data.tags.map((tag: string) => (
+												<span class="post-tag">{tag}</span>
+											))}
+										</div>
+									)}
 								</a>
-							</h2>
-							<time
-								class="block text-base mb-2 text-gray-500"
-								transition:name={`post-date-${slug}`}
-							>
-								{new Date(post.data.publishedAt).toLocaleDateString('en-US', {
-									year: 'numeric',
-									month: 'numeric',
-									day: 'numeric',
-								})}
-							</time>
-							<p>{post.data.description}</p>
-						</article>
-					)
-				})
-			}
-		</section>
-	</main>
-</Layout>
+							</article>
+						)
+					})
+				}
+			</section>
+
+			<!-- End prompt -->
+			<div class="block">
+				<p class="cmd-line">
+					<span class="prompt" aria-hidden="true">$</span>
+					<span class="cursor" aria-hidden="true"></span>
+				</p>
+			</div>
+		</div>
+	</TerminalWindow>
+
+	<TerminalFooter />
+</TerminalLayout>
+
+<style>
+	/* ── Post listing ── */
+	.post-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		margin-bottom: 2rem;
+	}
+
+	.post-entry {
+		border-radius: 4px;
+		transition: background-color 0.2s;
+	}
+
+	.post-entry:hover {
+		background: var(--term-bg-hover);
+	}
+
+	/* ── Post link ── */
+	.post-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		padding: 0.75rem 1rem;
+		border-left: 2px solid transparent;
+		transition:
+			border-color 0.2s,
+			background-color 0.2s;
+	}
+
+	.post-link:hover,
+	.post-link:focus-visible {
+		border-left-color: var(--term-green);
+	}
+
+	.post-link:focus-visible {
+		outline: 1px solid var(--term-green);
+		outline-offset: -1px;
+		border-radius: 4px;
+	}
+
+	/* ── Post header row ── */
+	.post-header {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.post-icon {
+		font-size: 0.75rem;
+		color: var(--term-text-muted);
+		flex-shrink: 0;
+	}
+
+	.post-date {
+		font-size: 0.78rem;
+		color: var(--term-text-muted);
+		flex-shrink: 0;
+	}
+
+	.post-title {
+		margin: 0;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--term-blue);
+		transition: color 0.2s;
+	}
+
+	.post-link:hover .post-title,
+	.post-link:focus-visible .post-title {
+		color: var(--term-green);
+	}
+
+	/* ── Description ── */
+	.post-desc {
+		margin: 0.35rem 0 0;
+		font-size: 0.82rem;
+		color: var(--term-text-desc);
+		line-height: 1.5;
+		max-width: 68ch;
+		padding-left: 0.75rem; /* Offset past icon area on wider screens */
+	}
+
+	/* ── Tags ── */
+	.post-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin-top: 0.4rem;
+		padding-left: 0.75rem;
+	}
+
+	.post-tag {
+		font-size: 0.7rem;
+		color: var(--term-purple);
+		background: var(--term-purple-bg);
+		border: 1px solid var(--term-purple-border);
+		padding: 0.1rem 0.45rem;
+		border-radius: 3px;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 700px) {
+		.post-header {
+			flex-direction: column;
+			gap: 0.15rem;
+		}
+
+		.post-icon {
+			display: none;
+		}
+
+		.post-link {
+			padding: 0.6rem 0.75rem;
+		}
+
+		.post-desc {
+			padding-left: 0;
+		}
+
+		.post-tags {
+			padding-left: 0;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.post-link {
+			padding: 0.5rem 0.5rem;
+		}
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		.post-entry,
+		.post-link,
+		.post-title {
+			transition: none;
+		}
+	}
+</style>
