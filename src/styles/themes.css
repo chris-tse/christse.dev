@@ -1,0 +1,126 @@
+/* ════════════════════════════════════════════════════════════
+   Theme Tokens — CSS custom properties for theming
+   All --term-* token definitions are here. Dark theme is default.
+   Light theme uses Catppuccin Latte palette.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Dark theme (default) ── */
+:root {
+	--term-bg-deepest: oklch(16.2% 0.014 258.4);
+	--term-bg-body: oklch(17.6% 0.014 258.4);
+	--term-bg-bar: oklch(21.8% 0.021 264);
+	--term-bg-hover: oklch(19.5% 0.024 262.2);
+	--term-bg-tool: oklch(20.8% 0.018 259.7);
+	--term-bg-badge-dark: oklch(21.7% 0.022 260.5);
+	--term-border: oklch(26.1% 0.03 265);
+	--term-border-dashed: oklch(21.7% 0.022 260.5);
+	--term-border-subtle: oklch(31.1% 0.03 268.6);
+	--term-border-subagent: oklch(34.5% 0.044 256.5);
+	--term-green: oklch(87.1% 0.286 141.5);
+	--term-green-rgb: 57 255 20;
+	--term-green-light: oklch(84.2% 0.164 145.8);
+	--term-green-code-bg: oklch(26.8% 0.038 144.4);
+	--term-blue: oklch(77.7% 0.13 237.3);
+	--term-blue-rgb: 89 194 255;
+	--term-blue-border: oklch(27.9% 0.037 249.3);
+	--term-purple: oklch(79.7% 0.131 306.3);
+	--term-purple-bg: oklch(20.5% 0.044 299.3);
+	--term-purple-border: oklch(26.8% 0.056 299.5);
+	--term-yellow: oklch(79.7% 0.13 82.2);
+	--term-text: oklch(76.1% 0.006 84.6);
+	--term-text-output: oklch(76.3% 0.021 267.2);
+	--term-text-bright: oklch(90.9% 0.025 94.1);
+	--term-text-muted: oklch(60.6% 0.023 255);
+	--term-text-disabled: oklch(58.7% 0.027 259.8);
+	--term-text-desc: oklch(60.5% 0.026 264.4);
+	--term-text-result: oklch(65.6% 0.021 265.9);
+	--term-dot-red: oklch(69.4% 0.196 26.4);
+	--term-dot-yellow: oklch(83.5% 0.161 80.9);
+	--term-dot-green: oklch(72.8% 0.217 144.7);
+	--term-scanline-rgb: 0 0 0;
+	--term-shadow-rgb: 0 0 0;
+	--term-text-prose: oklch(83.3% 0 NaN);
+	--term-text-prose-heading: oklch(90.7% 0 NaN);
+	--term-font: 'JetBrains Mono', monospace;
+	--term-max-width: 960px;
+	--term-prose-width: 72ch;
+}
+
+/* ── Light theme (Catppuccin Latte) ── */
+[data-theme='light'] {
+	--term-bg-deepest: oklch(90.6% 0.012 264.5);
+	--term-bg-body: oklch(95.8% 0.006 264.5);
+	--term-bg-bar: oklch(93.3% 0.009 264.5);
+	--term-bg-hover: oklch(85.7% 0.014 268.5);
+	--term-bg-tool: oklch(93.3% 0.009 264.5);
+	--term-bg-badge-dark: oklch(90.6% 0.012 264.5);
+	--term-border: oklch(75.8% 0.02 273.2);
+	--term-border-dashed: oklch(80.8% 0.017 271.2);
+	--term-border-subtle: oklch(70.8% 0.024 274.6);
+	--term-border-subagent: oklch(64.8% 0.107 212.9);
+	--term-green: oklch(62.5% 0.177 140.4);
+	--term-green-rgb: 64 160 43;
+	--term-green-light: oklch(62.5% 0.177 140.4);
+	--term-green-code-bg: oklch(85.7% 0.014 268.5);
+	--term-blue: oklch(55.9% 0.226 262.1);
+	--term-blue-rgb: 30 102 245;
+	--term-blue-border: oklch(80.8% 0.017 271.2);
+	--term-purple: oklch(55.5% 0.25 297);
+	--term-purple-bg: oklch(85.7% 0.014 268.5);
+	--term-purple-border: oklch(75.8% 0.02 273.2);
+	--term-yellow: oklch(71.4% 0.149 67.8);
+	--term-text: oklch(49.2% 0.038 279.3);
+	--term-text-output: oklch(54.7% 0.034 279.1);
+	--term-text-bright: oklch(43.5% 0.043 279.3);
+	--term-text-muted: oklch(65.4% 0.027 278.1);
+	--term-text-disabled: oklch(70.8% 0.024 274.6);
+	--term-text-desc: oklch(65.4% 0.027 278.1);
+	--term-text-result: oklch(60.1% 0.03 278.7);
+	--term-dot-red: oklch(55% 0.216 19.8);
+	--term-dot-yellow: oklch(71.4% 0.149 67.8);
+	--term-dot-green: oklch(62.5% 0.177 140.4);
+	--term-scanline-rgb: 92 95 119;
+	--term-shadow-rgb: 140 140 150;
+	--term-text-prose: oklch(49.2% 0.038 279.3);
+	--term-text-prose-heading: oklch(43.5% 0.043 279.3);
+}
+
+/* ── System preference fallback (no explicit user choice) ── */
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme]) {
+		--term-bg-deepest: oklch(90.6% 0.012 264.5);
+		--term-bg-body: oklch(95.8% 0.006 264.5);
+		--term-bg-bar: oklch(93.3% 0.009 264.5);
+		--term-bg-hover: oklch(85.7% 0.014 268.5);
+		--term-bg-tool: oklch(93.3% 0.009 264.5);
+		--term-bg-badge-dark: oklch(90.6% 0.012 264.5);
+		--term-border: oklch(75.8% 0.02 273.2);
+		--term-border-dashed: oklch(80.8% 0.017 271.2);
+		--term-border-subtle: oklch(70.8% 0.024 274.6);
+		--term-border-subagent: oklch(64.8% 0.107 212.9);
+		--term-green: oklch(62.5% 0.177 140.4);
+		--term-green-rgb: 64 160 43;
+		--term-green-light: oklch(62.5% 0.177 140.4);
+		--term-green-code-bg: oklch(85.7% 0.014 268.5);
+		--term-blue: oklch(55.9% 0.226 262.1);
+		--term-blue-rgb: 30 102 245;
+		--term-blue-border: oklch(80.8% 0.017 271.2);
+		--term-purple: oklch(55.5% 0.25 297);
+		--term-purple-bg: oklch(85.7% 0.014 268.5);
+		--term-purple-border: oklch(75.8% 0.02 273.2);
+		--term-yellow: oklch(71.4% 0.149 67.8);
+		--term-text: oklch(49.2% 0.038 279.3);
+		--term-text-output: oklch(54.7% 0.034 279.1);
+		--term-text-bright: oklch(43.5% 0.043 279.3);
+		--term-text-muted: oklch(65.4% 0.027 278.1);
+		--term-text-disabled: oklch(70.8% 0.024 274.6);
+		--term-text-desc: oklch(65.4% 0.027 278.1);
+		--term-text-result: oklch(60.1% 0.03 278.7);
+		--term-dot-red: oklch(55% 0.216 19.8);
+		--term-dot-yellow: oklch(71.4% 0.149 67.8);
+		--term-dot-green: oklch(62.5% 0.177 140.4);
+		--term-shadow-rgb: 140 140 150;
+		--term-text-prose: oklch(49.2% 0.038 279.3);
+		--term-text-prose-heading: oklch(43.5% 0.043 279.3);
+	}
+}

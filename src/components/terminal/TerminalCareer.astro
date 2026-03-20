@@ -1,82 +1,67 @@
 ---
-interface WorkHistoryItem {
-	employer: string
-	title: string
-	dateRange: string
-	description: string[]
-}
+import CareerSubagent from './CareerSubagent.astro'
+import type { WorkHistoryItem } from '../../types'
 
 interface Props {
 	workHistory: WorkHistoryItem[]
-	toolNames: string[]
 }
 
-const { workHistory, toolNames } = Astro.props
-const latestRole = workHistory[0]
+const { workHistory } = Astro.props
+
+// Reverse for display order (oldest to newest)
+const displayHistory = [...workHistory].reverse()
 ---
 
 <section class="block block-career">
 	<p class="cmd-line typed">
 		<span class="prompt" aria-hidden="true">$</span> todo list --career
+		<span class="cmd-meta">({displayHistory.length} items)</span>
 	</p>
 	<div class="output">
 		<div class="todo-list" role="list" aria-label="Career history">
 			{
-				[...workHistory].reverse().map((job, i, arr) => {
+				displayHistory.map((job, i, arr) => {
 					const isActive = i === arr.length - 1
+					const jobId = `job-${i}`
 					return (
 						<div
-							class={`todo-item ${isActive ? 'in-progress' : 'done'}`}
+							id={jobId}
+							class={`todo-item ${isActive ? 'in-progress' : 'done'} ${isActive ? 'expanded' : 'collapsed'}`}
+							data-job-index={i}
+							data-is-active={isActive}
 							role="listitem"
 						>
 							<span class="todo-check" aria-hidden="true">
 								{isActive ? '>' : 'x'}
 							</span>
 							<div class="todo-content">
-								<div class="todo-title-row">
-									<span class="todo-title">
-										{job.title} @ {job.employer}
-									</span>
-									<span
-										class={`todo-badge ${isActive ? 'badge-active' : 'badge-done'}`}
-									>
-										{isActive ? 'in_progress' : 'completed'}
-									</span>
-								</div>
-								<span class="todo-meta">{job.dateRange}</span>
-								{isActive && (
-									<div class="subagent-block">
-										<div class="subagent-header">
-											<span class="subagent-icon" aria-hidden="true">
-												Task
-											</span>
-											<span class="subagent-label">
-												Expand '{latestRole?.title}'
-											</span>
-											<span class="subagent-meta">
-												subagent: explore | status: working
-											</span>
-										</div>
-										<div class="subagent-body">
-											{latestRole?.description.map((item, idx) => (
-												<div class="tool-call-pair">
-													<div class="tool-call">
-														<div class="tool-call-header">
-															<span class="tool-icon" aria-hidden="true">
-																{toolNames[idx % toolNames.length]}
-															</span>
-														</div>
-													</div>
-													<div class="task-result">
-														<div class="task-result-body">
-															<p>{item}</p>
-														</div>
-													</div>
-												</div>
-											))}
-										</div>
+								<button
+									class="todo-header-btn"
+									type="button"
+									aria-expanded={isActive}
+									aria-controls={`${jobId}-details`}
+								>
+									<div class="todo-title-row">
+										<span class="todo-title">
+											{job.title} @ {job.employer}
+										</span>
+										<span
+											class={`todo-badge ${isActive ? 'badge-active' : 'badge-done'}`}
+										>
+											{isActive ? 'in_progress' : 'completed'}
+										</span>
 									</div>
-								)}
+									<span class="todo-meta">{job.dateRange}</span>
+									<span class="expand-hint" aria-hidden="true">
+										{isActive ? '[click to collapse]' : '[click to expand]'}
+									</span>
+								</button>
+								<div id={`${jobId}-details`} class="todo-details">
+									<CareerSubagent
+										company={job.employer}
+										descriptions={job.description}
+									/>
+								</div>
 							</div>
 						</div>
 					)
@@ -86,8 +71,51 @@ const latestRole = workHistory[0]
 	</div>
 </section>
 
+<script>
+	function initCareerExpansion() {
+		const todoItems = document.querySelectorAll('.todo-item')
+
+		todoItems.forEach((item) => {
+			const btn = item.querySelector('.todo-header-btn')
+			const details = item.querySelector('.todo-details')
+			const hint = item.querySelector('.expand-hint')
+
+			if (!btn || !details) return
+
+			btn.addEventListener('click', () => {
+				const isExpanded = item.classList.contains('expanded')
+
+				if (isExpanded) {
+					item.classList.remove('expanded')
+					item.classList.add('collapsed')
+					btn.setAttribute('aria-expanded', 'false')
+					if (hint) hint.textContent = '[click to expand]'
+				} else {
+					item.classList.remove('collapsed')
+					item.classList.add('expanded')
+					btn.setAttribute('aria-expanded', 'true')
+					if (hint) hint.textContent = '[click to collapse]'
+				}
+			})
+		})
+	}
+
+	// Initialize on DOM ready
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initCareerExpansion)
+	} else {
+		initCareerExpansion()
+	}
+</script>
+
 <style>
 	/* Component-specific styles only — shared classes from terminal.css */
+
+	.cmd-meta {
+		margin-left: 0.5rem;
+		font-size: 0.75rem;
+		color: var(--term-text-disabled);
+	}
 
 	/* ── Career todo list ── */
 	.todo-list {
@@ -112,12 +140,9 @@ const latestRole = workHistory[0]
 		opacity: 1;
 		background: linear-gradient(
 			90deg,
-			rgba(89, 194, 255, 0.04) 0%,
+			rgb(var(--term-blue-rgb) / 0.04) 0%,
 			transparent 100%
 		);
-		padding-left: 0.5rem;
-		margin-left: -0.5rem;
-		border-left: 2px solid var(--term-blue);
 		border-bottom: none;
 	}
 
@@ -152,16 +177,39 @@ const latestRole = workHistory[0]
 	@keyframes pulse-glow {
 		0%,
 		100% {
-			box-shadow: 0 0 4px rgba(89, 194, 255, 0.15);
+			box-shadow: 0 0 4px rgb(var(--term-blue-rgb) / 0.15);
 		}
 		50% {
-			box-shadow: 0 0 10px rgba(89, 194, 255, 0.35);
+			box-shadow: 0 0 10px rgb(var(--term-blue-rgb) / 0.35);
 		}
 	}
 
 	.todo-content {
 		flex: 1;
 		min-width: 0;
+	}
+
+	.todo-header-btn {
+		display: block;
+		width: 100%;
+		background: transparent;
+		border: none;
+		padding: 0;
+		text-align: left;
+		cursor: pointer;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+	}
+
+	.todo-header-btn:hover .todo-title,
+	.todo-header-btn:focus .todo-title {
+		color: var(--term-blue);
+	}
+
+	.todo-header-btn:focus {
+		outline: 2px solid var(--term-blue);
+		outline-offset: 2px;
 	}
 
 	.todo-title-row {
@@ -174,11 +222,11 @@ const latestRole = workHistory[0]
 	.todo-title {
 		color: var(--term-text-output);
 		font-weight: 500;
+		transition: color 0.15s ease;
 	}
 
 	.done .todo-title {
-		text-decoration: line-through;
-		text-decoration-color: var(--term-border-subtle);
+		color: var(--term-text-muted);
 	}
 
 	.in-progress .todo-title {
@@ -220,123 +268,48 @@ const latestRole = workHistory[0]
 		color: var(--term-text-muted);
 	}
 
-	/* ── Subagent block ── */
-	.subagent-block {
-		margin-top: 0.65rem;
-		border-left: 2px solid var(--term-border-subagent);
-		border-radius: 0;
-		overflow: hidden;
-	}
-
-	.subagent-header {
-		display: flex;
-		align-items: center;
-		gap: 0.6rem;
-		padding: 0.4rem 0.75rem;
-		background: transparent;
-		border-bottom: 1px dashed var(--term-border);
-		flex-wrap: wrap;
-	}
-
-	.subagent-icon {
-		flex-shrink: 0;
+	.expand-hint {
+		display: block;
+		margin-top: 0.25rem;
 		font-size: 0.68rem;
-		font-weight: 800;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--term-purple);
-		background: var(--term-purple-bg);
-		border: 1px solid var(--term-purple-border);
-		padding: 0.12rem 0.45rem;
-		border-radius: 3px;
-	}
-
-	.subagent-label {
-		font-size: 0.82rem;
-		color: var(--term-text-output);
-		font-weight: 600;
-	}
-
-	.subagent-meta {
-		margin-left: auto;
-		font-size: 0.62rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
 		color: var(--term-text-disabled);
+		font-style: italic;
+		opacity: 0.7;
+		transition: opacity 0.15s ease;
 	}
 
-	.subagent-body {
-		padding: 0.5rem 0.75rem;
-		background: transparent;
-		display: grid;
-		gap: 0.4rem;
+	.todo-header-btn:hover .expand-hint,
+	.todo-header-btn:focus .expand-hint {
+		opacity: 1;
 	}
 
-	/* ── Tool call pairs ── */
-	.tool-call-pair {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-		gap: 0;
-		border: 1px solid var(--term-border);
-		border-radius: 4px;
-		overflow: hidden;
+	/* Collapsed state */
+	.todo-item.collapsed .todo-details {
+		display: none;
 	}
 
-	.tool-call {
-		border-right: 1px solid var(--term-border);
-		background: var(--term-bg-tool);
+	/* Expanded state */
+	.todo-item.expanded .todo-details {
+		display: block;
+		margin-top: 0.5rem;
+		animation: expand-in 0.2s ease-out;
 	}
 
-	.tool-call-header {
-		display: flex;
-		align-items: center;
-		gap: 0.55rem;
-		padding: 0.55rem 0.75rem;
-		height: 100%;
-	}
-
-	.tool-icon {
-		flex-shrink: 0;
-		font-size: 0.68rem;
-		font-weight: 800;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--term-purple);
-		background: var(--term-purple-bg);
-		border: 1px solid var(--term-purple-border);
-		padding: 0.12rem 0.45rem;
-		border-radius: 3px;
-	}
-
-	.task-result {
-		background: var(--term-bg-deepest);
-	}
-
-	.task-result-body {
-		padding: 0.15rem 0.75rem 0.55rem;
-	}
-
-	.task-result-body p {
-		margin: 0;
-		font-size: 0.82rem;
-		color: var(--term-text-result);
-		line-height: 1.5;
+	@keyframes expand-in {
+		from {
+			opacity: 0;
+			transform: translateY(-4px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	@media (max-width: 700px) {
 		.todo-title-row {
 			flex-direction: column;
 			gap: 0.25rem;
-		}
-
-		.tool-call-pair {
-			grid-template-columns: 1fr;
-		}
-
-		.tool-call {
-			border-right: none;
-			border-bottom: 1px solid var(--term-border);
 		}
 	}
 
@@ -350,37 +323,23 @@ const latestRole = workHistory[0]
 			height: 1.1rem;
 			font-size: 0.62rem;
 		}
-
-		.subagent-header {
-			padding: 0.3rem 0.5rem;
-			gap: 0.4rem;
-		}
-
-		.subagent-body {
-			padding: 0.35rem 0.4rem;
-		}
-
-		.subagent-meta {
-			margin-left: 0;
-		}
-
-		.todo-item.in-progress {
-			margin-left: -0.25rem;
-			padding-left: 0.25rem;
-		}
-
-		.tool-call-header {
-			padding: 0.4rem 0.5rem;
-		}
-
-		.task-result-body {
-			padding: 0.15rem 0.5rem 0.45rem;
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.in-progress .todo-check {
 			animation: none;
+		}
+
+		.todo-item.expanded .todo-details {
+			animation: none;
+		}
+
+		.todo-title {
+			transition: none;
+		}
+
+		.expand-hint {
+			transition: none;
 		}
 	}
 </style>

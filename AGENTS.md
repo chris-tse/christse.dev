@@ -17,6 +17,11 @@
 - **Imports**: ES modules only (`"type": "module"`)
 - **Naming**: kebab-case for components (e.g., `Work-Item.astro`)
 - **Astro components**: Use frontmatter for logic, destructure props clearly
+- **Frontmatter computation**: Do all data transformations (mapping, indexing,
+  filtering) in the frontmatter section, not in template expressions. The
+  strictest TypeScript config (`noUncheckedIndexedAccess`) cannot narrow types
+  properly inside Astro template JSX, so pre-compute derived values above the
+  `---` fence where full TypeScript runs.
 - **Content**: Use Zod schemas for type safety (see `src/content/config.ts`)
 
 ## Project Structure

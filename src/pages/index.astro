@@ -15,6 +15,9 @@ import TerminalFooter from '../components/terminal/TerminalFooter.astro'
 
 import workHistory from '../data/work-history.json'
 import projects from '../data/projects.json'
+import packageJson from '../../package.json'
+
+const siteVersion = packageJson.version
 
 const skills = [
 	'React',
@@ -24,16 +27,24 @@ const skills = [
 	'GraphQL',
 	'Performance',
 	'Accessibility',
-	'Kubernetes',
+	'Testing',
+	'Design Systems',
+	'PostgreSQL',
 ]
 
 const asciiName = [
-	' ██████╗██╗  ██╗██████╗ ██╗███████╗    ████████╗███████╗███████╗',
-	'██╔════╝██║  ██║██╔══██╗██║██╔════╝    ╚══██╔══╝██╔════╝██╔════╝',
-	'██║     ███████║██████╔╝██║███████╗       ██║   ███████╗█████╗  ',
-	'██║     ██╔══██║██╔══██╗██║╚════██║       ██║   ╚════██║██╔══╝  ',
-	'╚██████╗██║  ██║██║  ██║██║███████║       ██║   ███████║███████╗',
-	' ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝       ╚═╝   ╚══════╝╚══════╝',
+	' ██████╗██╗  ██╗██████╗ ██╗███████╗',
+	'██╔════╝██║  ██║██╔══██╗██║██╔════╝',
+	'██║     ███████║██████╔╝██║███████╗',
+	'██║     ██╔══██║██╔══██╗██║╚════██║',
+	'╚██████╗██║  ██║██║  ██║██║███████║',
+	' ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝',
+	'████████╗███████╗███████╗',
+	'╚══██╔══╝██╔════╝██╔════╝',
+	'   ██║   ███████╗█████╗  ',
+	'   ██║   ╚════██║██╔══╝  ',
+	'   ██║   ███████║███████╗',
+	'   ╚═╝   ╚══════╝╚══════╝',
 ]
 
 const contactLinks = [
@@ -48,7 +59,20 @@ const contactLinks = [
 	{ label: 'resume', href: '/resume.pdf', cmd: 'download' },
 ]
 
-const toolNames = ['Edit', 'Bash', 'Task']
+const profileInfo = [
+	{ key: 'name', value: 'Chris Tse' },
+	{ key: 'role', value: 'Frontend Engineer' },
+	{ key: 'exp', value: '8+ years' },
+	{ key: 'stack', value: 'React, TypeScript, Next.js' },
+	{ key: 'focus', value: 'Performance & Accessibility' },
+	{ key: 'status', value: 'Building fast, accessible UIs' },
+]
+
+const aboutHeading = 'About Me'
+const aboutParagraphs = [
+	"I'm a frontend engineer with 7+ years of experience building modern web applications. I specialize in React, TypeScript, and responsive design, with a strong focus on creating accessible and performant user interfaces.",
+	"When I'm not coding, you can find me engaging in my local tech community through organizing meetups and mentoring aspiring developers. You can also find me at the gym, practicing my Japanese, or just enjoying a fun video game with friends.",
+]
 ---
 
 <TerminalLayout
@@ -61,37 +85,29 @@ const toolNames = ['Edit', 'Bash', 'Task']
 		<TerminalNav slot="nav" />
 
 		<div id="main-content">
-			<div class="reveal d1">
-				<TerminalBoot />
+			<TerminalBoot version={siteVersion} />
+
+			<TerminalHero asciiName={asciiName} info={profileInfo} />
+
+			<div id="about">
+				<TerminalAbout heading={aboutHeading} paragraphs={aboutParagraphs} />
 			</div>
 
-			<div class="reveal d2">
-				<TerminalHero asciiName={asciiName} />
-			</div>
-
-			<div id="about" class="reveal d3">
-				<TerminalAbout />
-			</div>
-
-			<div id="skills" class="reveal d3">
+			<div id="skills">
 				<TerminalSkills skills={skills} />
 			</div>
 
-			<div class="reveal d4">
-				<TerminalCareer workHistory={workHistory} toolNames={toolNames} />
-			</div>
+			<TerminalCareer workHistory={workHistory} />
 
-			<div id="projects" class="reveal d5">
+			<div id="projects">
 				<TerminalProjects projects={projects} />
 			</div>
 
-			<div id="contact" class="reveal d6">
+			<div id="contact">
 				<TerminalContact contactLinks={contactLinks} />
 			</div>
 
-			<div class="reveal d7">
-				<TerminalPrompt />
-			</div>
+			<TerminalPrompt />
 		</div>
 	</TerminalWindow>
 

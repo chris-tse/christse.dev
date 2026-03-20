@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions'
 import Analytics from '../components/Analytics.astro'
 import '../styles/global.css'
+import '../styles/themes.css'
 import '../styles/terminal.css'
 
 export interface Props {
@@ -29,6 +30,35 @@ const resolvedImage = socialImage || '/og-image.png'
 <!doctype html>
 <html lang="en">
 	<head>
+		<script is:inline>
+			;(function () {
+				const apply = () => {
+					const saved = localStorage.getItem('theme')
+					if (saved === 'light' || saved === 'dark') {
+						document.documentElement.dataset.theme = saved
+					} else {
+						delete document.documentElement.dataset.theme
+					}
+				}
+				// Suppress transition on initial load and page swaps to avoid flash
+				document.documentElement.classList.add('no-transition')
+				apply()
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						document.documentElement.classList.remove('no-transition')
+					})
+				})
+				document.addEventListener('astro:after-swap', () => {
+					document.documentElement.classList.add('no-transition')
+					apply()
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
+							document.documentElement.classList.remove('no-transition')
+						})
+					})
+				})
+			})()
+		</script>
 		<ClientRouter />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

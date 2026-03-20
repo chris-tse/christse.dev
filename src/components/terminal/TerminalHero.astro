@@ -1,49 +1,149 @@
 ---
+import type { ProfileInfoItem } from '../../types'
+
 interface Props {
 	asciiName: string[]
+	info: ProfileInfoItem[]
 }
 
-const { asciiName } = Astro.props
+const { asciiName, info } = Astro.props
 ---
 
-<section class="block block-ascii" aria-label="Chris Tse">
-	<div class="ascii-art">
-		{asciiName.map((line) => <pre>{line}</pre>)}
-	</div>
+<section class="block block-neofetch" aria-label="Chris Tse">
 	<p class="cmd-line">
-		<span class="prompt" aria-hidden="true">$</span> cat tagline.md
+		<span class="prompt" aria-hidden="true">$</span> profilefetch
 	</p>
-	<div class="output md-output">
-		<p class="md-heading">
-			<span class="md-hash" aria-hidden="true">##</span> Frontend Engineer
-		</p>
-		<p>
-			I build accessible, high-performance interfaces with a strong bias toward
-			clarity and speed. From performance audits to greenfield launches, I focus
-			on making experiences feel fast and teams more productive.
-		</p>
+	<div class="output neofetch-layout">
+		<div class="ascii-art" aria-hidden="true">
+			{asciiName.map((line) => <pre>{line}</pre>)}
+		</div>
+		<div class="info-panel">
+			<p class="info-title">
+				<span class="info-user">christse</span><span class="info-at">@</span
+				><span class="info-host">portfolio</span>
+			</p>
+			<p class="info-separator" aria-hidden="true">---------------------</p>
+			{
+				info.map(({ key, value }) => (
+					<p class="info-row">
+						<span class="info-key">{key}</span>
+						<span class="info-value">{value}</span>
+					</p>
+				))
+			}
+			<p class="info-separator" aria-hidden="true">---------------------</p>
+			<div class="color-blocks" aria-hidden="true">
+				<span class="cb" style="background: var(--term-border)"></span>
+				<span class="cb" style="background: var(--term-dot-red)"></span>
+				<span class="cb" style="background: var(--term-dot-yellow)"></span>
+				<span class="cb" style="background: var(--term-dot-green)"></span>
+				<span class="cb" style="background: var(--term-blue)"></span>
+				<span class="cb" style="background: var(--term-purple)"></span>
+				<span class="cb" style="background: var(--term-yellow)"></span>
+				<span class="cb" style="background: var(--term-text-bright)"></span>
+			</div>
+		</div>
 	</div>
 </section>
 
 <style>
-	/* Component-specific styles only — shared classes from terminal.css */
+	.neofetch-layout {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
 	.ascii-art {
-		overflow-x: auto;
-		margin-bottom: 0.75rem;
+		overflow: hidden;
 	}
 
 	.ascii-art pre {
 		margin: 0;
-		font-size: clamp(0.38rem, 1.1vw, 0.68rem);
+		font-size: clamp(0.35rem, 1vw, 0.65rem);
 		line-height: 1.15;
 		color: var(--term-green);
-		text-shadow: 0 0 12px rgba(57, 255, 20, 0.3);
+		text-shadow: 0 0 12px rgb(var(--term-green-rgb) / 0.3);
 		white-space: pre;
 	}
 
+	.info-panel {
+		padding-top: 0.25rem;
+		min-width: 0;
+	}
+
+	.info-title {
+		font-size: 0.9rem;
+		font-weight: 700;
+		margin: 0;
+	}
+
+	.info-user {
+		color: var(--term-blue);
+	}
+
+	.info-at {
+		color: var(--term-text-muted);
+	}
+
+	.info-host {
+		color: var(--term-green-light);
+	}
+
+	.info-separator {
+		margin: 0.35rem 0;
+		font-size: 0.85rem;
+		line-height: 1;
+		color: var(--term-text-muted);
+	}
+
+	.info-row {
+		margin: 0.15rem 0;
+		font-size: 0.85rem;
+		line-height: 1.5;
+	}
+
+	.info-key {
+		color: var(--term-blue);
+		font-weight: 600;
+	}
+
+	.info-key::after {
+		content: ': ';
+		color: var(--term-text-muted);
+	}
+
+	.info-value {
+		color: var(--term-text);
+	}
+
+	.color-blocks {
+		display: flex;
+		gap: 0.25rem;
+		margin-top: 0.5rem;
+	}
+
+	.cb {
+		width: 1.2rem;
+		height: 0.75rem;
+		border-radius: 2px;
+	}
+
 	@media (max-width: 700px) {
+		.neofetch-layout {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
 		.ascii-art pre {
 			font-size: clamp(0.26rem, 1.4vw, 0.5rem);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.neofetch-layout {
+			margin-left: 0.25rem;
+			padding-left: 0.35rem;
 		}
 	}
 </style>

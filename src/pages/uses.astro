@@ -1,0 +1,353 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro'
+import CrtOverlay from '../components/terminal/CrtOverlay.astro'
+import TerminalWindow from '../components/terminal/TerminalWindow.astro'
+import TerminalNav from '../components/terminal/TerminalNav.astro'
+import TerminalFooter from '../components/terminal/TerminalFooter.astro'
+import { navHrefs } from '../config/nav'
+---
+
+<TerminalLayout
+	title="Uses"
+	description="Hardware, software, and tools used by Chris Tse"
+>
+	<CrtOverlay />
+
+	<TerminalWindow title="christse@portfolio ~/uses">
+		<TerminalNav slot="nav" hrefs={navHrefs} />
+
+		<div id="main-content">
+			<div class="block">
+				<p class="cmd-line">
+					<span class="prompt" aria-hidden="true">$</span> man uses
+				</p>
+			</div>
+
+			<article class="uses-content block">
+				<div class="man-header">
+					<p class="man-title">
+						CHRIS TSE(1)<span class="man-spacer"></span>Personal Reference<span
+							class="man-spacer"></span>CHRIS TSE(1)
+					</p>
+				</div>
+
+				<section class="man-section">
+					<h2 class="man-heading">NAME</h2>
+					<p class="man-text">
+						uses — hardware, software, and tools used by Chris Tse
+					</p>
+				</section>
+
+				<section class="man-section">
+					<h2 class="man-heading">SYNOPSIS</h2>
+					<p class="man-text">A living document. Last updated March 2026.</p>
+				</section>
+
+				<section class="man-section">
+					<h2 class="man-heading">HARDWARE</h2>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Computers</h3>
+						<div class="man-entry">
+							<div class="man-item">M1 MacBook Pro (14-inch, 2021)</div>
+							<div class="man-specs">
+								Apple Silicon M1 Pro, 32GB RAM, 1TB SSD
+							</div>
+							<div class="man-note">
+								Primary development machine, daily driver
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">M4 MacBook Air (13-inch, 2024)</div>
+							<div class="man-specs">Apple Silicon M4, 16GB RAM, 256GB SSD</div>
+							<div class="man-note">Lightweight, portable, on the road</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Custom Windows PC</div>
+							<div class="man-specs">
+								Gigabyte B650 Eagle AX, AMD Ryzen 9 7800X3D, AMD RX 7900 XT,
+								64GB RAM
+							</div>
+							<div class="man-note">Gaming and light development work</div>
+						</div>
+					</div>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Peripherals</h3>
+						<div class="man-entry">
+							<div class="man-item">Keyboards</div>
+							<div class="man-specs">ZSA Ergodox EZ, ZSA Voyager</div>
+							<div class="man-note">
+								Split ergonomic mechanical, QMK programmable
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Monitor</div>
+							<div class="man-specs">
+								Dell AW3821DW (37.5" Ultra-wide curved, 3840×1600)
+							</div>
+							<div class="man-note">Coding and gaming</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Chair</div>
+							<div class="man-specs">Herman Miller Embody</div>
+							<div class="man-note">
+								Ergonomic posture support for long sessions
+							</div>
+						</div>
+					</div>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Audio</h3>
+						<div class="man-entry">
+							<div class="man-item">Microphone</div>
+							<div class="man-specs">Shure SM7B</div>
+							<div class="man-note">Professional cardioid condenser</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Headphones</div>
+							<div class="man-specs">Sennheiser HD 6XX</div>
+							<div class="man-note">Open-back, accurate reference sound</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Amplifier & DAC</div>
+							<div class="man-specs">
+								JDS Labs Atom Amp + OL DAC (Objective2)
+							</div>
+							<div class="man-note">
+								Clean amplification and digital conversion
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="man-section">
+					<h2 class="man-heading">DEVELOPMENT</h2>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Editors</h3>
+						<div class="man-entry">
+							<div class="man-item">Cursor</div>
+							<div class="man-note">
+								AI-powered code editor, increasingly my go-to
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Neovim</div>
+							<div class="man-note">
+								Terminal-based, for quick edits and terminal workflows
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">IntelliJ IDEA</div>
+							<div class="man-note">For heavy Java monolith at work</div>
+						</div>
+					</div>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Tech Stack</h3>
+						<div class="man-entry">
+							<div class="man-item">Languages</div>
+							<div class="man-note">TypeScript, JavaScript, HTML, CSS</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Frontend</div>
+							<div class="man-note">
+								React, Svelte, Astro, Vite, Tailwind, Shadcn
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Backend</div>
+							<div class="man-note">Node, Bun, Next.js, PostgreSQL</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="man-section">
+					<h2 class="man-heading">SOFTWARE</h2>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Browsers</h3>
+						<div class="man-entry">
+							<div class="man-item">Arc</div>
+							<div class="man-note">
+								Primary browser, great tab management and workflow
+							</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Helium</div>
+							<div class="man-note">Testing and light use</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Zen</div>
+							<div class="man-note">Firefox-based Arc replacement</div>
+						</div>
+					</div>
+
+					<div class="man-subsection">
+						<h3 class="man-subheading">Utilities & Productivity</h3>
+						<div class="man-entry">
+							<div class="man-item">Raycast</div>
+							<div class="man-note">Command launcher and automation</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">1Password</div>
+							<div class="man-note">Password manager and secrets vault</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Slack</div>
+							<div class="man-note">Team communication</div>
+						</div>
+						<div class="man-entry">
+							<div class="man-item">Discord</div>
+							<div class="man-note">Community and gaming</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="man-section">
+					<h2 class="man-heading">COLOPHON</h2>
+					<p class="man-text">
+						This site is built with <a
+							href="https://astro.build"
+							target="_blank">Astro</a
+						> and styled with custom CSS. The terminal aesthetic is inspired by classic
+						Unix tools and modern web development practices.
+					</p>
+				</section>
+			</article>
+		</div>
+
+		<TerminalFooter slot="footer" />
+	</TerminalWindow>
+</TerminalLayout>
+
+<style>
+	.uses-content {
+		font-family: var(--term-font);
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: var(--term-text);
+	}
+
+	/* Man page header */
+	.man-header {
+		margin-bottom: 1.5rem;
+		border-bottom: 1px solid var(--term-border);
+		padding-bottom: 0.75rem;
+	}
+
+	.man-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		margin: 0;
+	}
+
+	.man-spacer {
+		flex: 1;
+	}
+
+	/* Sections */
+	.man-section {
+		margin-bottom: 2rem;
+	}
+
+	.man-heading {
+		font-size: 0.9rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--term-green);
+		margin: 0 0 1rem 0;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--term-border-subtle);
+	}
+
+	/* Subsections */
+	.man-subsection {
+		margin-bottom: 1.5rem;
+		margin-left: 1.5rem;
+	}
+
+	.man-subheading {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--term-text-muted);
+		text-transform: capitalize;
+		margin: 0.75rem 0 0.5rem 0;
+		letter-spacing: 0.03em;
+	}
+
+	/* Entries */
+	.man-entry {
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+
+	.man-item {
+		font-weight: 600;
+		color: var(--term-text);
+		margin-bottom: 0.25rem;
+	}
+
+	.man-specs {
+		font-size: 0.8rem;
+		color: var(--term-text-muted);
+		margin-bottom: 0.25rem;
+		font-style: italic;
+	}
+
+	.man-note {
+		font-size: 0.8rem;
+		color: var(--term-text-desc);
+		line-height: 1.5;
+	}
+
+	/* Inline text styling */
+	.man-text {
+		margin: 0.5rem 0;
+		line-height: 1.6;
+	}
+
+	.man-text a {
+		color: var(--term-blue);
+		text-decoration: none;
+		border-bottom: 1px dotted var(--term-blue);
+	}
+
+	.man-text a:hover {
+		text-decoration: underline;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 700px) {
+		.uses-content {
+			font-size: 0.8rem;
+		}
+
+		.man-title {
+			flex-direction: column;
+			text-align: center;
+			gap: 0.5rem;
+		}
+
+		.man-spacer {
+			display: none;
+		}
+
+		.man-subsection {
+			margin-left: 0.75rem;
+		}
+
+		.man-entry {
+			padding-left: 0.75rem;
+		}
+
+		.man-subheading {
+			margin-left: 0.5rem;
+		}
+	}
+</style>

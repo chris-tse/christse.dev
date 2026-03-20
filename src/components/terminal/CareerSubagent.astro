@@ -1,0 +1,133 @@
+---
+interface Props {
+	company: string
+	descriptions: string[]
+}
+
+const { company, descriptions } = Astro.props
+---
+
+<div class="subagent-block">
+	<div class="subagent-header">
+		<span class="subagent-icon" aria-hidden="true">Task</span>
+		<span class="subagent-label">Expand 'Working at {company}'</span>
+		<span class="subagent-meta">subagent: explore</span>
+	</div>
+	<div class="subagent-body">
+		<ul class="description-list">
+			{
+				descriptions.map((description) => (
+					<li class="description-item">
+						<span class="bullet" aria-hidden="true">
+							&gt;
+						</span>
+						<span class="description-text">{description}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
+
+<style>
+	.subagent-block {
+		margin-top: 0.65rem;
+		border-left: 2px solid var(--term-border-subagent);
+		border-radius: 0;
+		overflow: hidden;
+	}
+
+	.subagent-header {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.4rem 0.75rem;
+		background: transparent;
+		border-bottom: 1px dashed var(--term-border);
+		flex-wrap: wrap;
+	}
+
+	.subagent-icon {
+		flex-shrink: 0;
+		font-size: 0.68rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--term-purple);
+		background: var(--term-purple-bg);
+		border: 1px solid var(--term-purple-border);
+		padding: 0.12rem 0.45rem;
+		border-radius: 3px;
+	}
+
+	.subagent-label {
+		font-size: 0.82rem;
+		color: var(--term-text-output);
+		font-weight: 600;
+	}
+
+	.subagent-meta {
+		margin-left: auto;
+		font-size: 0.62rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--term-text-disabled);
+	}
+
+	.subagent-body {
+		padding: 0.5rem 0.75rem;
+		background: transparent;
+	}
+
+	.description-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.description-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+		padding: 0.4rem 0.5rem;
+		background: var(--term-bg-deepest);
+		border: 1px solid var(--term-border);
+		border-radius: 3px;
+	}
+
+	.bullet {
+		flex-shrink: 0;
+		color: var(--term-purple);
+		font-weight: 700;
+		font-size: 0.75rem;
+		line-height: 1.4;
+	}
+
+	.description-text {
+		font-size: 0.82rem;
+		color: var(--term-text-result);
+		line-height: 1.5;
+	}
+
+	@media (max-width: 480px) {
+		.subagent-header {
+			padding: 0.3rem 0.5rem;
+			gap: 0.4rem;
+		}
+
+		.subagent-body {
+			padding: 0.35rem 0.4rem;
+		}
+
+		.subagent-meta {
+			margin-left: 0;
+		}
+
+		.description-item {
+			padding: 0.35rem 0.4rem;
+		}
+	}
+</style>

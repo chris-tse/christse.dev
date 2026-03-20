@@ -1,4 +1,6 @@
 ---
+import { Folder } from 'lucide-astro'
+
 interface Props {
 	skills: string[]
 }
@@ -6,15 +8,16 @@ interface Props {
 const { skills } = Astro.props
 ---
 
-<section class="block block-skills">
+<section class="block block-skills" aria-label="Skills">
 	<p class="cmd-line typed">
-		<span class="prompt" aria-hidden="true">$</span> ls ~/skills/
+		<span class="prompt" aria-hidden="true">$</span> eza --icons ~/skills/
 	</p>
 	<div class="output skill-grid">
 		{
 			skills.map((skill, i) => (
 				<span class="skill-item" style={`--i: ${i}`}>
-					{skill}/
+					<Folder size={14} aria-hidden="true" class="skill-icon" />
+					{skill}
 				</span>
 			))
 		}
@@ -22,28 +25,32 @@ const { skills } = Astro.props
 </section>
 
 <style>
-	/* Component-specific styles only — shared classes from terminal.css */
+	/* eza-style grid layout with folder icons */
 	.skill-grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.35rem 1.2rem;
-		margin: 0.5rem 0 0 1.25rem;
-		padding-left: 0.75rem;
-		border-left: 2px solid var(--term-border);
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+		gap: 0.4rem 1rem;
 		font-size: 0.88rem;
 	}
 
 	.skill-item {
-		color: var(--term-green-light);
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		color: var(--term-blue);
 		font-size: 0.88rem;
-		animation: typeIn 0.3s ease forwards;
-		animation-delay: calc(var(--i) * 0.06s);
-		opacity: 0;
+		font-weight: 600;
 	}
 
-	@keyframes typeIn {
-		to {
-			opacity: 1;
+	.skill-item :global(svg) {
+		color: var(--term-blue);
+		flex-shrink: 0;
+		display: inline;
+	}
+
+	@media (max-width: 700px) {
+		.skill-grid {
+			grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 		}
 	}
 
@@ -51,14 +58,8 @@ const { skills } = Astro.props
 		.skill-grid {
 			margin-left: 0.25rem;
 			padding-left: 0.35rem;
-			gap: 0.3rem 0.8rem;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.skill-item {
-			animation: none;
-			opacity: 1;
+			gap: 0.3rem 0.6rem;
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 </style>

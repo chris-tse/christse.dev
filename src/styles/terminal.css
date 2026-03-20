@@ -4,40 +4,6 @@
    and reveal animations for the terminal-themed pages.
    ════════════════════════════════════════════════════════════ */
 
-/* ── Color Palette ── */
-:root {
-	--term-bg-deepest: #0a0e14;
-	--term-bg-body: #0d1117;
-	--term-bg-bar: #151a24;
-	--term-bg-hover: #0f1520;
-	--term-bg-tool: #131820;
-	--term-bg-badge-dark: #141a24;
-	--term-border: #1d2433;
-	--term-border-dashed: #141a24;
-	--term-border-subtle: #2a3040;
-	--term-border-subagent: #2a3a50;
-	--term-green: #39ff14;
-	--term-green-light: #7ee787;
-	--term-green-code-bg: #1a2b1a;
-	--term-blue: #59c2ff;
-	--term-blue-border: #1a2a3a;
-	--term-purple: #d2a6ff;
-	--term-purple-bg: #1a1228;
-	--term-purple-border: #2a1f3d;
-	--term-yellow: #e6b450;
-	--term-text: #b3b1ad;
-	--term-text-output: #acb2c0;
-	--term-text-bright: #e6e1cf;
-	--term-text-muted: #798390;
-	--term-text-disabled: #737d8d;
-	--term-text-desc: #7a8292;
-	--term-text-result: #8b919e;
-	--term-dot-red: #ff5f57;
-	--term-dot-yellow: #febc2e;
-	--term-dot-green: #28c840;
-	--term-font: 'JetBrains Mono', monospace;
-}
-
 /* ── Base ── */
 body {
 	margin: 0;
@@ -65,7 +31,7 @@ body {
 .sys-line {
 	margin: 0;
 	font-size: 0.88rem;
-	white-space: pre-wrap;
+	white-space: normal;
 }
 
 .sys-line.success {
@@ -141,48 +107,6 @@ body {
 	}
 }
 
-/* ── Reveal animation ── */
-.reveal {
-	opacity: 0;
-	transform: translateY(10px);
-	animation: fadeUp 0.5s ease forwards;
-}
-
-.d1 {
-	animation-delay: 0.1s;
-}
-
-.d2 {
-	animation-delay: 0.3s;
-}
-
-.d3 {
-	animation-delay: 0.5s;
-}
-
-.d4 {
-	animation-delay: 0.7s;
-}
-
-.d5 {
-	animation-delay: 0.9s;
-}
-
-.d6 {
-	animation-delay: 1.1s;
-}
-
-.d7 {
-	animation-delay: 1.3s;
-}
-
-@keyframes fadeUp {
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 /* ── Narrow screens (< 480px) ── */
 @media (max-width: 480px) {
 	.output {
@@ -202,45 +126,42 @@ body {
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-	.reveal,
 	.cursor {
 		animation: none;
 		transition: none;
-		opacity: 1;
-		transform: none;
 	}
 }
 
 /* ════════════════════════════════════════════════════════════
-   Terminal Prose — Dark overrides for @tailwindcss/typography
-   Applied to `.prose` elements within terminal-themed pages.
+   Terminal Prose — Styles for blog post content
+   Applied to `.post-content` elements within terminal-themed pages.
    ════════════════════════════════════════════════════════════ */
 
 /* ── Base prose container ── */
-.post-content.prose {
-	max-width: 72ch;
+.post-content {
+	max-width: var(--term-prose-width);
 	font-size: 0.95rem;
 	line-height: 1.9;
-	color: #c8c8c8;
+	color: var(--term-text-prose);
 }
 
 /* ── Paragraph spacing ── */
-.post-content.prose p {
+.post-content p {
 	margin-bottom: 1.5rem;
 }
 
 /* ── Headings ── */
-.post-content.prose h1,
-.post-content.prose h2,
-.post-content.prose h3,
-.post-content.prose h4,
-.post-content.prose h5,
-.post-content.prose h6 {
-	color: #e0e0e0;
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+	color: var(--term-text-prose-heading);
 	font-family: var(--term-font);
 }
 
-.post-content.prose h2 {
+.post-content h2 {
 	font-size: 1.25rem;
 	font-weight: 700;
 	margin-top: 2.5rem;
@@ -249,14 +170,14 @@ body {
 	padding-bottom: 0.5rem;
 }
 
-.post-content.prose h3 {
+.post-content h3 {
 	font-size: 1.125rem;
 	font-weight: 600;
 	margin-top: 2rem;
 	margin-bottom: 0.75rem;
 }
 
-.post-content.prose h4 {
+.post-content h4 {
 	font-size: 1rem;
 	font-weight: 600;
 	margin-top: 1.5rem;
@@ -264,44 +185,44 @@ body {
 }
 
 /* ── Links ── */
-.post-content.prose a {
-	color: #59c2ff;
+.post-content a {
+	color: var(--term-blue);
 	text-decoration: underline;
 	text-underline-offset: 3px;
 	transition: color 0.2s;
 }
 
-.post-content.prose a:hover {
+.post-content a:hover {
 	color: var(--term-green);
 }
 
 /* ── Strong / emphasis ── */
-.post-content.prose strong {
-	color: #e0e0e0;
+.post-content strong {
+	color: var(--term-text-prose-heading);
 	font-weight: 600;
 }
 
-.post-content.prose em {
-	color: #c8c8c8;
+.post-content em {
+	color: var(--term-text-prose);
 }
 
 /* ── Blockquotes ── */
-.post-content.prose blockquote {
+.post-content blockquote {
 	border-left: 3px solid var(--term-green);
-	background: rgba(57, 255, 20, 0.03);
+	background: rgb(var(--term-green-rgb) / 0.03);
 	padding: 0.75rem 1rem;
 	margin: 1.5rem 0;
 	border-radius: 0 4px 4px 0;
 }
 
-.post-content.prose blockquote p {
+.post-content blockquote p {
 	color: var(--term-text-muted);
 	font-style: italic;
 	margin: 0;
 }
 
 /* ── Inline code ── */
-.post-content.prose :not(pre) > code {
+.post-content :not(pre) > code {
 	background: var(--term-green-code-bg);
 	color: var(--term-green-light);
 	padding: 0.15rem 0.4rem;
@@ -311,8 +232,8 @@ body {
 }
 
 /* ── Code blocks ── */
-.post-content.prose pre {
-	background: var(--term-bg-deepest) !important;
+.post-content pre {
+	background: var(--term-bg-deepest);
 	border: 1px solid var(--term-border);
 	border-radius: 6px;
 	padding: 1.25rem;
@@ -322,76 +243,76 @@ body {
 	line-height: 1.7;
 }
 
-.post-content.prose pre code {
+.post-content pre code {
 	background: none;
 	padding: 0;
 	border-radius: 0;
-	color: #c8c8c8;
+	color: var(--term-text-prose);
 	font-size: inherit;
 }
 
 /* ── Lists ── */
-.post-content.prose ul,
-.post-content.prose ol {
+.post-content ul,
+.post-content ol {
 	padding-left: 1.5rem;
 	margin: 1rem 0;
 }
 
-.post-content.prose li {
+.post-content li {
 	margin-bottom: 0.5rem;
-	color: #c8c8c8;
+	color: var(--term-text-prose);
 }
 
-.post-content.prose li::marker {
+.post-content li::marker {
 	color: var(--term-text-muted);
 }
 
-.post-content.prose ol li::marker {
-	color: #59c2ff;
+.post-content ol li::marker {
+	color: var(--term-blue);
 }
 
 /* ── Horizontal rule ── */
-.post-content.prose hr {
+.post-content hr {
 	border: none;
 	border-top: 1px solid var(--term-border);
 	margin: 2rem 0;
 }
 
 /* ── Images ── */
-.post-content.prose img {
+.post-content img {
 	border-radius: 4px;
 	border: 1px solid var(--term-border);
 }
 
 /* ── Tables ── */
-.post-content.prose table {
+.post-content table {
 	border-collapse: collapse;
 	width: 100%;
 	margin: 1.5rem 0;
 }
 
-.post-content.prose th {
+.post-content th {
 	background: var(--term-bg-bar);
-	color: #e0e0e0;
+	color: var(--term-text-prose-heading);
 	font-weight: 600;
 	text-align: left;
 	padding: 0.5rem 0.75rem;
 	border: 1px solid var(--term-border);
 }
 
-.post-content.prose td {
+.post-content td {
 	padding: 0.5rem 0.75rem;
 	border: 1px solid var(--term-border);
-	color: #c8c8c8;
+	color: var(--term-text-prose);
 }
 
 /* ── Figure / figcaption ── */
-.post-content.prose figure > img {
+.post-content figure > img {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.post-content.prose figcaption {
+.post-content figcaption {
 	text-align: center;
 	color: var(--term-text-muted);
 	font-size: 0.85rem;
@@ -400,18 +321,18 @@ body {
 
 /* ── Prose reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-	.post-content.prose a {
+	.post-content a {
 		transition: none;
 	}
 }
 
 /* ── Prose narrow screens ── */
 @media (max-width: 480px) {
-	.post-content.prose {
+	.post-content {
 		font-size: 0.88rem;
 	}
 
-	.post-content.prose pre {
+	.post-content pre {
 		padding: 0.75rem;
 		font-size: 0.78rem;
 		margin-left: -0.25rem;
@@ -419,7 +340,7 @@ body {
 		border-radius: 4px;
 	}
 
-	.post-content.prose blockquote {
+	.post-content blockquote {
 		padding: 0.5rem 0.75rem;
 		margin-left: 0;
 		margin-right: 0;
