@@ -1,35 +1,29 @@
 {
-	"name": "christse.dev",
-	"type": "module",
-	"version": "1.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"format:write": "prettier . --write",
-		"format:check": "prettier . --check",
-		"ghost:export": "ghost-export-to-markdown --dir=src/content/blog"
-	},
-	"dependencies": {
-		"@astrojs/check": "^0.9.8",
-		"@astrojs/mdx": "^5.0.2",
-		"@astrojs/rss": "^4.0.17",
-		"@astrojs/sitemap": "^3.7.1",
-		"astro": "^6.0.7",
-		"lucide-astro": "^0.556.0",
-		"vite": "^8.0.1"
-	},
-	"devDependencies": {
-		"dotenv": "^17.3.1",
-		"prettier": "^3.8.1",
-		"prettier-plugin-astro": "^0.14.1",
-		"typescript": "^5.9.3"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
-	}
+  "name": "christse.dev",
+  "version": "1.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fmt": "oxfmt .",
+    "format:check": "oxfmt . --check",
+    "ghost:export": "ghost-export-to-markdown --dir=src/content/blog"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
+    "astro": "^6.0.7",
+    "lucide-astro": "^0.556.0",
+    "vite": "^8.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.3.1",
+    "oxfmt": "^0.41.0",
+    "typescript": "rc"
+  }
 }
