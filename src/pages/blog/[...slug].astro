@@ -10,7 +10,9 @@ import TerminalBlogPostLayout from '../../layouts/TerminalBlogPostLayout.astro'
 import { getSlug } from '../../utils/blog'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('posts')
+	const posts = await getCollection('posts', (entry) =>
+		import.meta.env.PROD ? !entry.data.draft : true,
+	)
 	return posts.map((entry) => ({
 		params: { slug: getSlug(entry.id) },
 		props: { entry },
